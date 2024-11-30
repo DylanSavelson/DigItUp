@@ -15,7 +15,7 @@
 
 ## ✒️ Description
 
-In this tycoon/simulator game, the player tries to mine different ores to get a better pickaxe and make coins. The user goes to a certain block on the map and mine it and then will have a random chance at any of the ores in the game. There will be a chance that the user gets explosive ore and if the user does not have a defuse kit (purchaseable from the shop) they will blow up and lose some ores/gems/coins and health. The shop will contain pickaxe upgrades, health potions and defuse kits all purchaseable for coins which are obtained by selling ores/gems. The goal of the game is to get the max pickaxe to escape the mine. 
+In this tycoon/simulator game, the player tries to mine different ores to get a better pickaxe and make coins. The user goes to a certain block on the map and mine it and then will have a random chance at any of the ores in the game. There will be a chance that the user gets explosive ore and if the user does not have a defuse kit (purchaseable from the shop) they will blow up and lose some ores/gems/coins and health. The shop will contain pickaxe upgrades, health potions and defuse kits all purchaseable for coins which are obtained by selling ores/gems. The goal of the game is to get the max pickaxe to escape the mine. The user will use w a s d to move and space bar to dig. To enter the shop it will be tab and mouse in the shop.
 
 
 ## 🕹️ Gameplay
@@ -60,7 +60,7 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 > [!note]
 > Remember that you'll need diagrams for not only game states but entity states as well.
 
-![State Diagram](./assets/images/StateDiagram.png)
+![State Diagram]([![](https://mermaid.ink/img/pako:eNp9kD9rAzEMxb-K0ZzjoKOHQuAodGiXGwLBizirPpGzbPynEEK-e3xN0xAC1fQk_fRA7wRTsAQacsFCA6NL6LvvFyOq1btdWJzqule1w-Wwaq12_bYf-0HFRDmTfSIHdu5KjhEneuRuNiv4e6PVZ1AssZZn5F-v2_LBayvssXAQ9cbCeaZsBDbgKXlk2x49rccGykyeDOgmLaaDASPnxmEtYTzKBLqkShtIoboZ9BcuuXU12ntKf9OIsg_h3pPlEtLHNdefeM8XYhd09g?type=png)](https://mermaid.live/edit#pako:eNp9kD9rAzEMxb-K0ZzjoKOHQuAodGiXGwLBizirPpGzbPynEEK-e3xN0xAC1fQk_fRA7wRTsAQacsFCA6NL6LvvFyOq1btdWJzqule1w-Wwaq12_bYf-0HFRDmTfSIHdu5KjhEneuRuNiv4e6PVZ1AssZZn5F-v2_LBayvssXAQ9cbCeaZsBDbgKXlk2x49rccGykyeDOgmLaaDASPnxmEtYTzKBLqkShtIoboZ9BcuuXU12ntKf9OIsg_h3pPlEtLHNdefeM8XYhd09g))
 
 ### 🗺️ Class Diagram
 

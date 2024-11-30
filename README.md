@@ -68,26 +68,21 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 
 ### 🧵 Wireframes
 
-> [!note]
-> Your wireframes don't have to be super polished. They can even be black/white and hand drawn. I'm just looking for a rough idea about what you're visualizing.
+![Game](./assets/images/DigItUpWireframe.png)
 
-![Main Menu](./assets/images/Main-Menu.png)
+-   User can walk and look around and mine different blocks for different rewards
+-   User can press tab to open the shop
+-   User can press b to open the backpack
 
--   _Let's Play_ will navigate to the main game.
--   _Upload Cards_ will navigation to the forms for uploading and parsing the data files for the game.
--   _Change Log_ will navigate the user to a page with a list of features/changes that have been implemented throughout the development of the game.
+![Backpack](./assets/BackpackWireframe.png)
 
-![Game Board](./assets/images/Game-Board.png)
+After pressing B, the user will have a view of the inventory which shows the amount of coins and ores the user is currently holding.
 
-We want to keep the GUI as simple and clear as possible by having cards with relevant images to act as a way for the user to intuitively navigate the game. We want to implement a layout that would look like as if one were playing a match of the Pokémon Trading Card Game with physical cards in real life. Clicking on any of the cards will reveal that card's details to the player.
+![Shop](./assets/ShopWireframe.png)
+
+After pressing tab the user will be able to open the shop and view what each product they can buy does for them and how much it will cost, etc.
 
 ### 🎨 Assets
-
-We used [app.diagrams.net](https://app.diagrams.net/) to create the wireframes. Wireframes are the equivalent to the skeleton of a web app since they are used to describe the functionality of the product and the users experience.
-
-We plan on following trends already found in other trading card video games, such as Pokémon Trading Card Game Online, Hearthstone, Magic the Gathering Arena, and Gwent.
-
-The GUI will be kept simple and playful, as to make sure the game is easy to understand what each component does and is, as well as light hearted to keep to the Pokémon theme.
 
 #### 🖼️ Images
 

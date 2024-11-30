@@ -74,11 +74,11 @@ Block State Diagram
 -   User can press tab to open the shop
 -   User can press b to open the backpack
 
-![Backpack](./assets/BackpackWireFrame.png)
+![Backpack](./assets/images/BackpackWireFrame.png)
 
 After pressing B, the user will have a view of the inventory which shows the amount of coins and ores the user is currently holding.
 
-![Shop](./assets/ShopWireFrame.png)
+![Shop](./assets/images/ShopWireFrame.png)
 
 After pressing tab the user will be able to open the shop and view what each product they can buy does for them and how much it will cost, etc.
 

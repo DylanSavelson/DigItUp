@@ -60,7 +60,7 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 > [!note]
 > Remember that you'll need diagrams for not only game states but entity states as well.
 
-![State Diagram]([![](https://mermaid.ink/img/pako:eNp9kD9rAzEMxb-K0ZzjoKOHQuAodGiXGwLBizirPpGzbPynEEK-e3xN0xAC1fQk_fRA7wRTsAQacsFCA6NL6LvvFyOq1btdWJzqule1w-Wwaq12_bYf-0HFRDmTfSIHdu5KjhEneuRuNiv4e6PVZ1AssZZn5F-v2_LBayvssXAQ9cbCeaZsBDbgKXlk2x49rccGykyeDOgmLaaDASPnxmEtYTzKBLqkShtIoboZ9BcuuXU12ntKf9OIsg_h3pPlEtLHNdefeM8XYhd09g?type=png)](https://mermaid.live/edit#pako:eNp9kD9rAzEMxb-K0ZzjoKOHQuAodGiXGwLBizirPpGzbPynEEK-e3xN0xAC1fQk_fRA7wRTsAQacsFCA6NL6LvvFyOq1btdWJzqule1w-Wwaq12_bYf-0HFRDmTfSIHdu5KjhEneuRuNiv4e6PVZ1AssZZn5F-v2_LBayvssXAQ9cbCeaZsBDbgKXlk2x49rccGykyeDOgmLaaDASPnxmEtYTzKBLqkShtIoboZ9BcuuXU12ntKf9OIsg_h3pPlEtLHNdefeM8XYhd09g))
+![State Diagram](./assets/images/StateDiagram.png)
 
 ### 🗺️ Class Diagram
 

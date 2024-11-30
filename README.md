@@ -1,15 +1,3 @@
-# Final Project
-
--   [ ] Read the [project requirements](https://vikramsinghmtl.github.io/420-5P6-Game-Programming/project/requirements).
--   [ ] Replace the sample proposal below with the one for your game idea.
--   [ ] Get the proposal greenlit by Vik.
--   [ ] Place any assets in `assets/` and remember to update `src/config.json`.
--   [ ] Decide on a height and width inside `src/globals.js`. The height and width will most likely be determined based on the size of the assets you find.
--   [ ] Start building the individual components of your game, constantly referring to the proposal you wrote to keep yourself on track.
--   [ ] Good luck, you got this!
-
----
-
 # Dig It Up
 
 
@@ -25,36 +13,23 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 
 ## 📃 Requirements
 
-> [!note]
-> This was a web project so that's why you'll see requirements about logging in and uploading data which for you is irrelevant. Focus more on the requirements describing actions taken for gameplay.
-
-1. The user shall register to be able to login.
-2. The user shall login to be able to play a game.
-3. The user shall upload a valid deck file.
-4. The user shall upload a valid cards file.
-5. The user shall upload a valid abilities file.
-6. The user shall select which deck they will use in the game.
-7. The user shall select which deck the AI will use in the game.
-8. The system shall "flip a coin" to decide which player goes first.
-9. The system shall shuffle the user's deck.
-10. The system shall draw the top 7 cards from the user's deck.
-11. If the user does not have a Basic Pokémon in their hand the system shall "mulligan" until they do.
-12. Upon each mulligan, the AI shall draw a card.
-13. The user shall put one of their Basic Pokémon face down as their Active Pokémon.
-14. The user shall put up to 5 more Basic Pokémon face down on their Bench.
-15. Upon a new turn, the system shall draw a card from the deck of the current player.
-16. Upon a new turn, the system shall place the drawn card in the hand of the current player.
-17. The user shall put (up to 5 total) Basic Pokémon cards from their hand onto their Bench.
-18. The user shall Evolve their Pokémon as many times as they choose.
-19. The user shall attach an Energy card from their hand to one of their Pokémon once per turn.
-20. The user shall play Trainer cards (as many as they want, but only one Supporter card and one Stadium card per turn).
-21. The user shall Retreat their Active Pokémon once per turn.
-22. The user shall use as many Abilities as they choose.
-23. The user shall attack the opponent's Active Pokémon.
-24. After a player attacks, the system shall end their turn and start their opponent's turn.
-25. The system shall execute any "special conditions" after a turn is over.
-26. The user shall pick a Victory Card when the opposing Active Pokémon dies.
-
+1. The user be able to move in all directions (2d).
+2. The user shall be able to mine a block.
+3. The user shall be able to open the shop.
+4. The user shall be able to buy an item.
+5. The user shall be able to sell ores.
+6. The user shall be able to open a backpack.
+7. The user shall upgrade their pickaxe.
+8. The user shall be able to defuse explosive ore.
+9. The system shall decide which ore the user gets after mining.
+10. The system shall decide how much an ore is worth after mining.
+11. The system shall decide how many ore the user gets.
+13. The user shall lose a life when not being able to defuse an explosive ore.
+14. The system will end the game when user loses all lives.
+15. The user shall be able to use a health potion which is bought from the shop.
+16. The user is able to buy an item which ends the game (user wins).
+17. The system decides how much hp the explosive ore does upon explosion.
+18. 
 ### 🤖 State Diagram
 
 Player State Diagram
@@ -86,23 +61,21 @@ After pressing tab the user will be able to open the shop and view what each pro
 
 #### 🖼️ Images
 
--   Most images will be used from the well known community driven wikipedia site, [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page).
--   Especially their [Trading Card Game section](<https://bulbapedia.bulbagarden.net/wiki/Full_Art_card_(TCG)>).
+-   Most images will be used from various Itch.io projects and possibly hand made:
+-   [Itch](https://shield-arc.itch.io/free-16x16-pickaxes)
+-   [Itch](https://verysmallsquares.itch.io/free-16-bit-ores-sprite-sheet)
 
 #### ✏️ Fonts
 
-For fonts, a simple sans-serif like Roboto will look quite nice. It's a font that is legible, light on storage size, and fun to keep with the theme we're going for. We also used a more cartoonish Pokemon font for the title screen.
+For fonts, a simple sans-serif like Roboto will look quite nice. It's a font that is legible, light on storage size, and fun to keep with the theme we're going for.
 
--   [Pokemon](https://www.dafont.com/pokemon.font)
 -   [Roboto](https://fonts.google.com/specimen/Roboto)
 
 #### 🔊 Sounds
 
-All sounds were taken from [freesound.org](https://freesound.org) for the actions pertaining to cards.
+All sounds were taken from [freesound.org](https://freesound.org) for the actions of mining blocks, purchasing items and everything else.
 
--   [Shuffle cards](https://freesound.org/people/VKProduktion/sounds/217502/)
--   [Flip card](https://freesound.org/people/Splashdust/sounds/84322/)
-
-### 📚 References
-
--   [Pokemon Rulebook](http://assets.pokemon.com/assets/cms2/pdf/trading-card-game/rulebook/xy8-rulebook-en.pdf)
+-   [Pickaxe](https://freesound.org/people/NoisyRedFox/sounds/760567/)
+-   [Coins](https://freesound.org/people/DominikBraun/sounds/483507/)
+-   [Explosion](https://freesound.org/people/suntemple/sounds/253169/)
+-   More to come.

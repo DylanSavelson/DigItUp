@@ -68,17 +68,17 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 
 ### 🧵 Wireframes
 
-![Game](./assets/images/DigItUpWireframe.png)
+![Game](./assets/images/DigItUpWireFrame.png)
 
 -   User can walk and look around and mine different blocks for different rewards
 -   User can press tab to open the shop
 -   User can press b to open the backpack
 
-![Backpack](./assets/BackpackWireframe.png)
+![Backpack](./assets/BackpackWireFrame.png)
 
 After pressing B, the user will have a view of the inventory which shows the amount of coins and ores the user is currently holding.
 
-![Shop](./assets/ShopWireframe.png)
+![Shop](./assets/ShopWireFrame.png)
 
 After pressing tab the user will be able to open the shop and view what each product they can buy does for them and how much it will cost, etc.
 

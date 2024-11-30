@@ -57,11 +57,11 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 
 ### 🤖 State Diagram
 
-> [!note]
-> Remember that you'll need diagrams for not only game states but entity states as well.
+Player State Diagram
+![Player State Diagram](./assets/images/StateDiagram.png)
 
-![State Diagram](./assets/images/StateDiagram.png)
-
+Block State Diagram
+![Block State Diagram](./assets/images/BlockStateDiagram.png)
 ### 🗺️ Class Diagram
 
 ![Class Diagram](./assets/images/ClassDiagram.png)

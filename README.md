@@ -29,7 +29,6 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 15. The user shall be able to use a health potion which is bought from the shop.
 16. The user is able to buy an item which ends the game (user wins).
 17. The system decides how much hp the explosive ore does upon explosion.
-18. 
 ### 🤖 State Diagram
 
 Player State Diagram

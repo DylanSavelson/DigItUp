@@ -52,12 +52,6 @@ export default class Room {
 	constructor(player, isShifting = false) {
 		this.player = player;
 		this.dimensions = new Vector(Room.WIDTH, Room.HEIGHT);
-		this.sprites = Sprite.generateSpritesFromSpriteSheet(
-			images.get(ImageName.Tiles),
-			Tile.TILE_SIZE,
-			Tile.TILE_SIZE
-		);
-		this.tiles = this.generateWallsAndFloors();
 		this.entities = this.generateEntities();
 		this.objects = this.generateObjects();
 		this.renderQueue = this.buildRenderQueue();
@@ -76,7 +70,6 @@ export default class Room {
 	}
 
 	render() {
-		this.renderTiles();
 
 		this.renderQueue.forEach((elementToRender) => {
 			elementToRender.render(this.adjacentOffset);
@@ -141,32 +134,11 @@ export default class Room {
 						object.onCollision(entity);
 					}
 				}
-				if(true)
-				{
-					if(object.thrown && (object.position.x <= Room.LEFT_EDGE || object.position.x + object.hitbox.dimensions.x >= Room.RIGHT_EDGE ||
-						object.position.y <= Room.TOP_EDGE || object.position.y + object.hitbox.dimensions.y >= Room.BOTTOM_EDGE))
-					{
-						object.breakPot();
-					}
-				}
 			});
 
 			// Since the player is technically always colliding with itself, skip it.
 			if (entity === this.player) {
 				return;
-			}
-
-			if (entity.didCollideWithEntity(this.player.swordHitbox)) {
-				entity.receiveDamage(this.player.damage, this);
-			}
-
-			if (
-				!entity.isDead &&
-				this.player.didCollideWithEntity(entity.hitbox) &&
-				!this.player.isInvulnerable
-			) {
-				this.player.receiveDamage(entity.damage);
-				this.player.becomeInvulnerable();
 			}
 		});
 	}
@@ -183,139 +155,18 @@ export default class Room {
 		});
 	}
 
-	renderTiles() {
-		this.tiles.forEach((tileRow) => {
-			tileRow.forEach((tile) => {
-				tile.render(this.adjacentOffset);
-			});
-		});
-	}
 
-	/**
-	 * Uses the constants defined at the top of the class and determines which
-	 * sprites to use for the walls and floor. Since there are several potential
-	 * tiles to use for a piece of wall or floor, we can have a slightly different
-	 * look each time we create a new room.
-	 *
-	 * @returns An array containing the walls and floors of the room, randomizing the tiles for visual variety.
-	 */
-	generateWallsAndFloors() {
-		const tiles = new Array();
-
-		for (let y = 0; y < this.dimensions.y; y++) {
-			tiles.push([]);
-
-			for (let x = 0; x < this.dimensions.x; x++) {
-				let tileId = Room.TILE_EMPTY;
-
-				if (x === 0 && y === 0) {
-					tileId = Room.TILE_TOP_LEFT_CORNER;
-				} else if (x === 0 && y === this.dimensions.y - 1) {
-					tileId = Room.TILE_BOTTOM_LEFT_CORNER;
-				} else if (x === this.dimensions.x - 1 && y === 0) {
-					tileId = Room.TILE_TOP_RIGHT_CORNER;
-				} else if (
-					x === this.dimensions.x - 1 &&
-					y === this.dimensions.y - 1
-				) {
-					tileId = Room.TILE_BOTTOM_RIGHT_CORNER;
-				}
-				// Random left-hand walls, right walls, top, bottom, and floors.
-				else if (x === 0) {
-					if (
-						y === Math.floor(this.dimensions.y / 2) ||
-						y === Math.floor(this.dimensions.y / 2) + 1
-					) {
-						tileId = Room.TILE_EMPTY;
-					} else {
-						tileId =
-							Room.TILE_LEFT_WALLS[
-								Math.floor(
-									Math.random() * Room.TILE_LEFT_WALLS.length
-								)
-							];
-					}
-				} else if (x === this.dimensions.x - 1) {
-					if (
-						y === Math.floor(this.dimensions.y / 2) ||
-						y === Math.floor(this.dimensions.y / 2) + 1
-					) {
-						tileId = Room.TILE_EMPTY;
-					} else {
-						tileId =
-							Room.TILE_RIGHT_WALLS[
-								Math.floor(
-									Math.random() * Room.TILE_RIGHT_WALLS.length
-								)
-							];
-					}
-				} else if (y === 0) {
-					if (
-						x === this.dimensions.x / 2 ||
-						x === this.dimensions.x / 2 - 1
-					) {
-						tileId = Room.TILE_EMPTY;
-					} else {
-						tileId =
-							Room.TILE_TOP_WALLS[
-								Math.floor(
-									Math.random() * Room.TILE_TOP_WALLS.length
-								)
-							];
-					}
-				} else if (y === this.dimensions.y - 1) {
-					if (
-						x === this.dimensions.x / 2 ||
-						x === this.dimensions.x / 2 - 1
-					) {
-						tileId = Room.TILE_EMPTY;
-					} else {
-						tileId =
-							Room.TILE_BOTTOM_WALLS[
-								Math.floor(
-									Math.random() *
-										Room.TILE_BOTTOM_WALLS.length
-								)
-							];
-					}
-				} else {
-					tileId =
-						Room.TILE_FLOORS[
-							Math.floor(Math.random() * Room.TILE_FLOORS.length)
-						];
-				}
-
-				tiles[y].push(
-					new Tile(
-						x,
-						y,
-						Room.RENDER_OFFSET_X,
-						Room.RENDER_OFFSET_Y,
-						this.sprites[tileId]
-					)
-				);
-			}
-		}
-
-		return tiles;
-	}
 
 	/**
 	 * @returns An array of enemies for the player to fight.
 	 */
 	generateEntities() {
 		const entities = new Array();
-		const sprites = Sprite.generateSpritesFromSpriteSheet(
-			images.get(ImageName.Enemies),
-			Tile.TILE_SIZE,
-			Tile.TILE_SIZE
-		);
-
+		
 		entities.push(this.player);
 
 		return entities;
 	}
-
 	/**
 	 * @returns An array of objects for the player to interact with.
 	 */

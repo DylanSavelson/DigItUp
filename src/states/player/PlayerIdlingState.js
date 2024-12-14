@@ -1,10 +1,10 @@
-import Animation from '../../../../lib/Animation.js';
-import State from '../../../../lib/State.js';
-import Player from '../../../entities/Player.js';
-import Direction from '../../../enums/Direction.js';
-import PlayerStateName from '../../../enums/PlayerStateName.js';
-import { input } from '../../../globals.js';
-import Input from '../../../../lib/Input.js';
+import Animation from '../../../lib/Animation.js';
+import State from '../../../lib/State.js';
+import Player from '../../entities/Player.js';
+import Direction from '../../enums/Direction.js';
+import PlayerStateName from '../../enums/PlayerStateName.js';
+import { input } from '../../globals.js';
+import Input from '../../../lib/Input.js';
 
 export default class PlayerIdlingState extends State {
 	/**
@@ -17,23 +17,16 @@ export default class PlayerIdlingState extends State {
 		super();
 
 		this.player = player;
-		this.animation = {
-			[Direction.Up]: new Animation([8], 1),
-			[Direction.Down]: new Animation([0], 1),
-			[Direction.Left]: new Animation([12], 1),
-			[Direction.Right]: new Animation([4], 1),
-		};
+		this.animation = new Animation([0,1,2,3,4,5,6,7 ], 0.2)
 	}
 
 	enter() {
-		this.player.sprites = this.player.walkingSprites;
-		this.player.currentAnimation = this.animation[this.player.direction];
+		this.player.sprites = this.player.idleSprites;
+		this.player.currentAnimation = this.animation;
 	}
 
 	update() {
 		this.checkForMovement();
-		this.checkForSwordSwing();
-		this.checkPotPickup();
 	}
 
 	checkForMovement() {
@@ -49,19 +42,6 @@ export default class PlayerIdlingState extends State {
 		} else if (input.isKeyPressed(Input.KEYS.A)) {
 			this.player.direction = Direction.Left;
 			this.player.changeState(PlayerStateName.Walking);
-		}
-	}
-
-	checkForSwordSwing() {
-		if (input.isKeyPressed(Input.KEYS.SPACE)) {
-			this.player.changeState(PlayerStateName.SwordSwinging);
-		}
-	}
-
-	checkPotPickup() {
-		if (input.isKeyPressed(Input.KEYS.ENTER) && this.player.facing === true && this.player.carrying === false && this.player.facingPot.doNotPickUp === false) {
-			this.player.changeState(PlayerStateName.Lifting);
-			this.player.carrying = true;
 		}
 	}
 }

@@ -26,7 +26,7 @@ export default class GameEntity {
 		this.stateMachine = null;
 		this.currentAnimation = null;
 		this.sprites = [];
-		this.direction = Direction.Down;
+		this.direction = Direction.Right;
 		this.isDead = false;
 		this.cleanUp = false;
 		this.renderPriority = 0;

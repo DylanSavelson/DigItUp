@@ -1,6 +1,17 @@
 {
-	"images": [
-
+	"images": [		
+		{
+			"name": "player_wood_walk",
+			"path": "./assets/images/WoodPlayerPickaxeWalk.png",
+			"width": 512,
+			"height": 64
+		},
+        {
+            "name": "player_wood_idle",
+			"path": "./assets/images/WoodPlayerPickaxeIdle.png",
+			"width": 512,
+			"height": 32
+        }
 	],
 	"fonts": [
 

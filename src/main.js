@@ -1,7 +1,7 @@
 /**
- * Game Name
+ * Dig It Up
  *
- * Authors
+ * Dylan Savelson
  *
  * Brief description
  *
@@ -32,7 +32,7 @@ canvas.height = CANVAS_HEIGHT;
 canvas.setAttribute('tabindex', '1'); // Allows the canvas to receive user input.
 
 // Now that the canvas element has been prepared, we can add it to the DOM.
-document.body.appendChild(canvas);
+document.body.prepend(canvas);
 
 // Add all the states to the state machine.
 stateMachine.add(GameStateName.TitleScreen, new TitleScreenState());
@@ -40,7 +40,6 @@ stateMachine.add(GameStateName.GameOver, new GameOverState());
 stateMachine.add(GameStateName.Victory, new VictoryState());
 stateMachine.add(GameStateName.Play, new PlayState());
 
-stateMachine.change(GameStateName.Play);
 
 const game = new Game(
 	stateMachine,

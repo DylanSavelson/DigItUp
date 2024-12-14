@@ -1,11 +1,11 @@
-import Animation from '../../../../lib/Animation.js';
-import Input from '../../../../lib/Input.js';
-import State from '../../../../lib/State.js';
-import Player from '../../../entities/Player.js';
-import Direction from '../../../enums/Direction.js';
-import PlayerStateName from '../../../enums/PlayerStateName.js';
-import { input } from '../../../globals.js';
-import Room from '../../../objects/Room.js';
+import Animation from '../../../lib/Animation.js';
+import Input from '../../../lib/Input.js';
+import State from '../../../lib/State.js';
+import Player from '../../entities/Player.js';
+import Direction from '../../enums/Direction.js';
+import PlayerStateName from '../../enums/PlayerStateName.js';
+import { input } from '../../globals.js';
+import Room from '../../objects/Room.js';
 
 export default class PlayerWalkingState extends State {
 	/**
@@ -21,23 +21,20 @@ export default class PlayerWalkingState extends State {
 
 		this.player = player;
 		this.animation = {
-			[Direction.Up]: new Animation([8, 9, 10, 11], 0.2),
-			[Direction.Down]: new Animation([0, 1, 2, 3], 0.2),
-			[Direction.Left]: new Animation([12, 13, 14, 15], 0.2),
-			[Direction.Right]: new Animation([4, 5, 6, 7], 0.2),
-		};
+			[Direction.Up]: new Animation([8, 9, 10, 11, 12, 13, 14, 15], 0.2),
+			[Direction.Down]: new Animation([8, 9, 10, 11, 12, 13, 14, 15], 0.2),
+			[Direction.Left]: new Animation([8, 9, 10, 11, 12, 13, 14, 15], 0.2),
+			[Direction.Right]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2),
+		}
 	}
 
 	enter() {
 		this.player.sprites = this.player.walkingSprites;
 		this.player.currentAnimation = this.animation[this.player.direction];
-		this.player.facing = false;
 	}
 
 	update(dt) {
 		this.handleMovement(dt);
-		this.handleSwordSwing();
-		this.checkPotPickup();
 	}
 
 	handleMovement(dt) {
@@ -88,15 +85,4 @@ export default class PlayerWalkingState extends State {
 		}
 	}
 
-	handleSwordSwing() {
-		if (input.isKeyPressed(Input.KEYS.SPACE)) {
-			this.player.changeState(PlayerStateName.SwordSwinging);
-		}
-	}
-	checkPotPickup() {
-		if (input.isKeyPressed(Input.KEYS.ENTER) && this.player.facing === true && this.player.carrying === false && this.player.facingPot.doNotPickUp === false) {
-			this.player.changeState(PlayerStateName.Lifting);
-			this.player.carrying = true;
-		}
-	}
 }

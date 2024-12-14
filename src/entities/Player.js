@@ -54,7 +54,7 @@ export default class Player extends GameEntity {
 			},
 		};
 
-		this.pickLevel = "Wood"
+		this.pickLevel = "Diamond"
 		const currentSprites = this.PlayerSpritesByPickLevel[this.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
@@ -122,7 +122,7 @@ export default class Player extends GameEntity {
 			Player.PICKAXE_SWINGING_SPRITE_WIDTH,
 			Player.PICKAXE_SWINGING_SPRITE_HEIGHT
 		);
-		
+
 		context.globalAlpha = this.alpha;
 
 		super.render();

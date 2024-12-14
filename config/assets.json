@@ -35,6 +35,42 @@
 			"path": "./assets/images/IronPlayerPickaxeSwing.png",
 			"width": 512,
 			"height": 64
+        },
+		{
+			"name": "player_gold_walk",
+			"path": "./assets/images/GoldPlayerPickaxeWalk.png",
+			"width": 512,
+			"height": 64
+		},
+        {
+            "name": "player_gold_idle",
+			"path": "./assets/images/GoldPlayerPickaxeIdle.png",
+			"width": 512,
+			"height": 128
+        },
+		{
+            "name": "player_gold_swing",
+			"path": "./assets/images/GoldPlayerPickaxeSwing.png",
+			"width": 512,
+			"height": 64
+        },
+		{
+			"name": "player_diamond_walk",
+			"path": "./assets/images/DiamondPlayerPickaxeWalk.png",
+			"width": 512,
+			"height": 64
+		},
+        {
+            "name": "player_diamond_idle",
+			"path": "./assets/images/DiamondPlayerPickaxeIdle.png",
+			"width": 512,
+			"height": 128
+        },
+		{
+            "name": "player_diamond_swing",
+			"path": "./assets/images/DiamondPlayerPickaxeSwing.png",
+			"width": 512,
+			"height": 64
         }
 	],
 	"fonts": [

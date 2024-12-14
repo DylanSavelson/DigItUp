@@ -11,22 +11,22 @@ import ImageName from '../enums/ImageName.js';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, images } from '../globals.js';
 import Tile from './Tile.js';
 
-export default class Room {
+export default class MineShaft {
 	static WIDTH = CANVAS_WIDTH / Tile.TILE_SIZE - 2;
 	static HEIGHT = Math.floor(CANVAS_HEIGHT / Tile.TILE_SIZE) - 2;
-	static RENDER_OFFSET_X = (CANVAS_WIDTH - Room.WIDTH * Tile.TILE_SIZE) / 2;
-	static RENDER_OFFSET_Y = (CANVAS_HEIGHT - Room.HEIGHT * Tile.TILE_SIZE) / 2;
+	static RENDER_OFFSET_X = (CANVAS_WIDTH - MineShaft.WIDTH * Tile.TILE_SIZE) / 2;
+	static RENDER_OFFSET_Y = (CANVAS_HEIGHT - MineShaft.HEIGHT * Tile.TILE_SIZE) / 2;
 
-	static TOP_EDGE = Room.RENDER_OFFSET_Y + Tile.TILE_SIZE;
+	static TOP_EDGE = MineShaft.RENDER_OFFSET_Y + Tile.TILE_SIZE;
 	static BOTTOM_EDGE =
-		CANVAS_HEIGHT - Room.RENDER_OFFSET_Y - Tile.TILE_SIZE - 5;
-	static LEFT_EDGE = Room.RENDER_OFFSET_X + Tile.TILE_SIZE - 5;
+		CANVAS_HEIGHT - MineShaft.RENDER_OFFSET_Y - Tile.TILE_SIZE - 5;
+	static LEFT_EDGE = MineShaft.RENDER_OFFSET_X + Tile.TILE_SIZE - 5;
 	static RIGHT_EDGE = CANVAS_WIDTH - Tile.TILE_SIZE * 2 + 5;
 	static CENTER_X = Math.floor(
-		Room.LEFT_EDGE + (Room.RIGHT_EDGE - Room.LEFT_EDGE) / 2
+		MineShaft.LEFT_EDGE + (MineShaft.RIGHT_EDGE - MineShaft.LEFT_EDGE) / 2
 	);
 	static CENTER_Y = Math.floor(
-		Room.TOP_EDGE + (Room.BOTTOM_EDGE - Room.TOP_EDGE) / 2
+		MineShaft.TOP_EDGE + (MineShaft.BOTTOM_EDGE - MineShaft.TOP_EDGE) / 2
 	);
 
 	static TILE_TOP_LEFT_CORNER = 3;
@@ -51,12 +51,12 @@ export default class Room {
 	 */
 	constructor(player, isShifting = false) {
 		this.player = player;
-		this.dimensions = new Vector(Room.WIDTH, Room.HEIGHT);
+		this.dimensions = new Vector(MineShaft.WIDTH, MineShaft.HEIGHT);
 		this.entities = this.generateEntities();
 		this.objects = this.generateObjects();
 		this.renderQueue = this.buildRenderQueue();
 
-		// Used for drawing when this room is the next room, adjacent to the active.
+		// Used for drawing when this MineShaft is the next MineShaft, adjacent to the active.
 		this.adjacentOffset = new Vector();
 
 		this.isShifting = isShifting;

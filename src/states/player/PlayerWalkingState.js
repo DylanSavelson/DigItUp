@@ -5,7 +5,7 @@ import Player from '../../entities/Player.js';
 import Direction from '../../enums/Direction.js';
 import PlayerStateName from '../../enums/PlayerStateName.js';
 import { input } from '../../globals.js';
-import Room from '../../objects/Room.js';
+import MineShaft from '../../objects/MineShaft.js';
 
 export default class PlayerWalkingState extends State {
 	/**
@@ -52,10 +52,10 @@ export default class PlayerWalkingState extends State {
 
 			if (
 				this.player.position.y + this.player.dimensions.y >=
-				Room.BOTTOM_EDGE
+				MineShaft.BOTTOM_EDGE
 			) {
 				this.player.position.y =
-					Room.BOTTOM_EDGE - this.player.dimensions.y;
+					MineShaft.BOTTOM_EDGE - this.player.dimensions.y;
 			}
 		} else if (input.isKeyPressed(Input.KEYS.D)) {
 			this.player.direction = Direction.Right;
@@ -63,10 +63,10 @@ export default class PlayerWalkingState extends State {
 
 			if (
 				this.player.position.x + this.player.dimensions.x >=
-				Room.RIGHT_EDGE
+				MineShaft.RIGHT_EDGE
 			) {
 				this.player.position.x =
-					Room.RIGHT_EDGE - this.player.dimensions.x;
+					MineShaft.RIGHT_EDGE - this.player.dimensions.x;
 			}
 		} else if (input.isKeyPressed(Input.KEYS.W)) {
 			this.player.direction = Direction.Up;
@@ -74,17 +74,17 @@ export default class PlayerWalkingState extends State {
 
 			if (
 				this.player.position.y <=
-				Room.TOP_EDGE - this.player.dimensions.y
+				MineShaft.TOP_EDGE - this.player.dimensions.y
 			) {
 				this.player.position.y =
-					Room.TOP_EDGE - this.player.dimensions.y;
+					MineShaft.TOP_EDGE - this.player.dimensions.y;
 			}
 		} else if (input.isKeyPressed(Input.KEYS.A)) {
 			this.player.direction = Direction.Left;
 			this.player.position.x -= this.player.speed * dt;
 
-			if (this.player.position.x <= Room.LEFT_EDGE) {
-				this.player.position.x = Room.LEFT_EDGE;
+			if (this.player.position.x <= MineShaft.LEFT_EDGE) {
+				this.player.position.x = MineShaft.LEFT_EDGE;
 			}
 		} 
 		else if (input.isKeyPressed(Input.KEYS.SPACE)) {

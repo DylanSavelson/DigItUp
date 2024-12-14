@@ -8,9 +8,10 @@ import PlayerStateName from '../enums/PlayerStateName.js';
 import Hitbox from '../../lib/Hitbox.js';
 import ImageName from '../enums/ImageName.js';
 import Sprite from '../../lib/Sprite.js';
-import Room from '../objects/Room.js';
+import MineShaft from '../objects/MineShaft.js';
 import Direction from '../enums/Direction.js';
 import SoundName from '../enums/SoundName.js';
+import OreName from '../enums/OreName.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -31,7 +32,7 @@ export default class Player extends GameEntity {
 	 */
 	constructor() {
 		super();
-		this.PlayerSpritesByPickLevel = {
+		this.pickLevels = {
 			Wood: {
 				walk: ImageName.PlayerWoodWalk,
 				idle: ImageName.PlayerWoodIdle,
@@ -51,11 +52,11 @@ export default class Player extends GameEntity {
 				walk: ImageName.PlayerDiamondWalk,
 				idle: ImageName.PlayerDiamondIdle,
 				swing: ImageName.PlayerDiamondSwing,
-			},
+			}
 		};
 
 		this.pickLevel = "Diamond"
-		const currentSprites = this.PlayerSpritesByPickLevel[this.pickLevel];
+		const currentSprites = this.pickLevels[this.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(currentSprites.walk),
@@ -90,8 +91,8 @@ export default class Player extends GameEntity {
 			-12,
 			-Player.HEIGHT + 6
 		);
-		this.position.x = Room.CENTER_X - Player.WIDTH / 2;
-		this.position.y = Room.CENTER_Y - Player.HEIGHT / 2;
+		this.position.x = MineShaft.CENTER_X - Player.WIDTH / 2;
+		this.position.y = MineShaft.CENTER_Y - Player.HEIGHT / 2;
 		this.dimensions.x = Player.WIDTH;
 		this.dimensions.y = Player.HEIGHT;
 		this.speed = Player.MAX_SPEED;
@@ -105,7 +106,7 @@ export default class Player extends GameEntity {
 	render() {
 		context.save();
 
-		const currentSprites = this.PlayerSpritesByPickLevel[this.pickLevel];
+		const currentSprites = this.pickLevels[this.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(currentSprites.walk),
@@ -131,8 +132,8 @@ export default class Player extends GameEntity {
 	}
 
 	reset() {
-		this.position.x = Room.CENTER_X - Player.WIDTH / 2;
-		this.position.y = Room.CENTER_Y - Player.HEIGHT / 2;
+		this.position.x = MineShaft.CENTER_X - Player.WIDTH / 2;
+		this.position.y = MineShaft.CENTER_Y - Player.HEIGHT / 2;
 		this.health = Player.MAX_HEALTH;
 		this.isDead = false;
 		this.alpha = 1;

@@ -5,6 +5,7 @@ import Direction from '../../enums/Direction.js';
 import PlayerStateName from '../../enums/PlayerStateName.js';
 import { input } from '../../globals.js';
 import Input from '../../../lib/Input.js';
+import { getRandomPositiveInteger } from '../../../lib/Random.js';
 
 export default class PlayerIdlingState extends State {
 	/**
@@ -17,7 +18,8 @@ export default class PlayerIdlingState extends State {
 		super();
 
 		this.player = player;
-		this.animation = new Animation([0,1,2,3,4,5,6,7 ], 0.2)
+		this.animation = new Animation([0,1,2,3,4,5,6,7], 0.25)
+		this.yawnAnimation = new Animation([8,9,9,10,10,10,11,11,11], 0.4, 1)
 	}
 
 	enter() {
@@ -27,6 +29,7 @@ export default class PlayerIdlingState extends State {
 
 	update() {
 		this.checkForMovement();
+		this.characterYawn();
 	}
 
 	checkForMovement() {
@@ -42,6 +45,20 @@ export default class PlayerIdlingState extends State {
 		} else if (input.isKeyPressed(Input.KEYS.A)) {
 			this.player.direction = Direction.Left;
 			this.player.changeState(PlayerStateName.Walking);
+		}
+	}
+
+	characterYawn()
+	{
+		if(this.player.currentAnimation === this.yawnAnimation && this.player.currentAnimation.isDone())
+		{
+			this.player.currentAnimation.timesPlayed = 0;
+			this.player.currentAnimation = this.animation;
+
+		}
+		if(getRandomPositiveInteger(1,5000) === 5)
+		{
+			this.player.currentAnimation = this.yawnAnimation;
 		}
 	}
 }

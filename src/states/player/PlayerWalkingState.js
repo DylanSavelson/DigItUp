@@ -21,8 +21,8 @@ export default class PlayerWalkingState extends State {
 
 		this.player = player;
 		this.animation = {
-			[Direction.Up]: new Animation([8, 9, 10, 11, 12, 13, 14, 15], 0.2),
-			[Direction.Down]: new Animation([8, 9, 10, 11, 12, 13, 14, 15], 0.2),
+			[Direction.Up]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2),
+			[Direction.Down]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2),
 			[Direction.Left]: new Animation([8, 9, 10, 11, 12, 13, 14, 15], 0.2),
 			[Direction.Right]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2),
 		}
@@ -39,6 +39,12 @@ export default class PlayerWalkingState extends State {
 
 	handleMovement(dt) {
 		this.player.currentAnimation = this.animation[this.player.direction];
+
+
+		if (this.player.direction === Direction.Left || this.player.direction === Direction.Right) {
+			this.animation[Direction.Up] = this.animation[this.player.direction];
+			this.animation[Direction.Down] = this.animation[this.player.direction];
+		}
 
 		if (input.isKeyPressed(Input.KEYS.S)) {
 			this.player.direction = Direction.Down;

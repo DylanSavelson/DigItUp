@@ -18,13 +18,29 @@ export default class PlayerIdlingState extends State {
 		super();
 
 		this.player = player;
-		this.animation = new Animation([0,1,2,3,4,5,6,7], 0.25)
-		this.yawnAnimation = new Animation([8,9,9,10,10,10,11,11,11], 0.4, 1)
+
+		this.animation = {
+			[Direction.Up]: null,
+			[Direction.Down]: null,
+			[Direction.Left]: new Animation([16,17,18,19,20,21,22,23], 0.25),
+			[Direction.Right]: new Animation([0,1,2,3,4,5,6,7], 0.25),
+		}
+		this.animation[Direction.Up] = this.animation[this.player.direction]
+		this.animation[Direction.Down] = this.animation[this.player.direction]
+
+		this.yawnAnimation = {
+			[Direction.Up]: null,
+			[Direction.Down]: null,
+			[Direction.Left]: new Animation([24,25,25,26,26,27,27,27], 0.4, 1),
+			[Direction.Right]: new Animation([8,9,9,10,10,10,11,11,11], 0.4, 1),
+		}
+		this.yawnAnimation[Direction.Up] = this.yawnAnimation[this.player.direction]
+		this.yawnAnimation[Direction.Down] = this.yawnAnimation[this.player.direction]
 	}
 
 	enter() {
 		this.player.sprites = this.player.idleSprites;
-		this.player.currentAnimation = this.animation;
+		this.player.currentAnimation = this.animation[this.player.direction];
 	}
 
 	update() {
@@ -50,15 +66,15 @@ export default class PlayerIdlingState extends State {
 
 	characterYawn()
 	{
-		if(this.player.currentAnimation === this.yawnAnimation && this.player.currentAnimation.isDone())
+		if(this.player.currentAnimation === this.yawnAnimation[this.player.direction] && this.player.currentAnimation.isDone())
 		{
 			this.player.currentAnimation.timesPlayed = 0;
-			this.player.currentAnimation = this.animation;
+			this.player.currentAnimation = this.animation[this.player.direction];
 
 		}
 		if(getRandomPositiveInteger(1,5000) === 5)
 		{
-			this.player.currentAnimation = this.yawnAnimation;
+			this.player.currentAnimation = this.yawnAnimation[this.player.direction];
 		}
 	}
 }

@@ -4,7 +4,7 @@ import {
 } from '../../lib/Random.js';
 import Sprite from '../../lib/Sprite.js';
 import Vector from '../../lib/Vector.js';
-import EnemyFactory from '../services/EnemyFactory.js';
+import EnemyFactory from '../services/OreFactory.js';
 import Player from '../entities/Player.js';
 import Direction from '../enums/Direction.js';
 import ImageName from '../enums/ImageName.js';

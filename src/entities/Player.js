@@ -19,8 +19,8 @@ export default class Player extends GameEntity {
 	static WALKING_SPRITE_HEIGHT = 32;
 	static IDLE_SPRITE_WIDTH = 64;
 	static IDLE_SPRITE_HEIGHT = 32;
-	static PICKAXE_SWINGING_SPRITE_WIDTH = 29;
-	static PICKAXE_SWINGING_SPRITE_HEIGHT = 24;
+	static PICKAXE_SWINGING_SPRITE_WIDTH = 64;
+	static PICKAXE_SWINGING_SPRITE_HEIGHT = 32;
 	static MAX_SPEED = 100;
 	static MAX_HEALTH = 6;
 
@@ -41,11 +41,11 @@ export default class Player extends GameEntity {
 			Player.IDLE_SPRITE_WIDTH,
 			Player.IDLE_SPRITE_HEIGHT
 		);
-		// this.pickaxeSwingingSprites = Sprite.generateSpritesFromSpriteSheet(
-		// 	images.get(ImageName.PlayerWood),
-		// 	Player.PICKAXE_SWINGING_SPRITE_WIDTH,
-		// 	Player.PICKAXE_SWINGING_SPRITE_WIDTH
-		// );
+		this.pickaxeSwingingSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.PlayerWoodSwing),
+			Player.PICKAXE_SWINGING_SPRITE_WIDTH,
+			Player.PICKAXE_SWINGING_SPRITE_WIDTH
+		);
 
 		this.sprites = this.walkingSprites;
 		
@@ -100,11 +100,7 @@ export default class Player extends GameEntity {
 		const stateMachine = new StateMachine();
 
 		stateMachine.add(PlayerStateName.Walking, new PlayerWalkingState(this));
-		// stateMachine.add(
-		// 	PlayerStateName.PickaxeSwinging,
-		// 	new PlayerPickaxeSwingingState(this)
-		// );
-		
+		stateMachine.add(PlayerStateName.PickaxeSwinging,new PlayerPickaxeSwingingState(this));	
 		stateMachine.add(PlayerStateName.Idle, new PlayerIdlingState(this));
 
 		stateMachine.change(PlayerStateName.Idle);

@@ -62,6 +62,9 @@ export default class PlayerIdlingState extends State {
 			this.player.direction = Direction.Left;
 			this.player.changeState(PlayerStateName.Walking);
 		}
+		else if (input.isKeyPressed(Input.KEYS.SPACE)) {
+			this.player.changeState(PlayerStateName.PickaxeSwinging);
+		}
 	}
 
 	characterYawn()

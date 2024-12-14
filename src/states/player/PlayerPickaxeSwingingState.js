@@ -18,13 +18,20 @@ export default class PlayerPickaxeSwingingState extends State {
 
 		this.player = player;
 
-		this.animation = new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2, 1)
+		this.animation = {
+			[Direction.Up]: null,
+			[Direction.Down]: null,
+			[Direction.Left]: new Animation([15, 14, 13, 12, 11, 10, 9, 8], 0.2, 1),
+			[Direction.Right]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2, 1),
+		}
+		this.animation[Direction.Up] = this.animation[this.player.direction]
+		this.animation[Direction.Down] = this.animation[this.player.direction]
 	}
 
 	enter() {
 		// sounds.play(SoundName.Pickaxe);
 		this.player.sprites = this.player.pickaxeSwingingSprites;
-		this.player.currentAnimation = this.animation;
+		this.player.currentAnimation = this.animation[this.player.direction];
 	}
 
 	exit() {

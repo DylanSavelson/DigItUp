@@ -86,7 +86,10 @@ export default class PlayerWalkingState extends State {
 			if (this.player.position.x <= Room.LEFT_EDGE) {
 				this.player.position.x = Room.LEFT_EDGE;
 			}
-		} else {
+		} 
+		else if (input.isKeyPressed(Input.KEYS.SPACE)) {
+			this.player.changeState(PlayerStateName.PickaxeSwinging);
+		}else {
 			this.player.changeState(PlayerStateName.Idle);
 		}
 	}

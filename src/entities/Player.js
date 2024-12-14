@@ -44,7 +44,7 @@ export default class Player extends GameEntity {
 		this.pickaxeSwingingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(ImageName.PlayerWoodSwing),
 			Player.PICKAXE_SWINGING_SPRITE_WIDTH,
-			Player.PICKAXE_SWINGING_SPRITE_WIDTH
+			Player.PICKAXE_SWINGING_SPRITE_HEIGHT
 		);
 
 		this.sprites = this.walkingSprites;

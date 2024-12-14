@@ -17,6 +17,24 @@
 			"path": "./assets/images/WoodPlayerPickaxeSwing.png",
 			"width": 512,
 			"height": 64
+        },
+		{
+			"name": "player_iron_walk",
+			"path": "./assets/images/IronPlayerPickaxeWalk.png",
+			"width": 512,
+			"height": 64
+		},
+        {
+            "name": "player_iron_idle",
+			"path": "./assets/images/IronPlayerPickaxeIdle.png",
+			"width": 512,
+			"height": 128
+        },
+		{
+            "name": "player_iron_swing",
+			"path": "./assets/images/IronPlayerPickaxeSwing.png",
+			"width": 512,
+			"height": 64
         }
 	],
 	"fonts": [

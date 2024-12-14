@@ -31,24 +31,49 @@ export default class Player extends GameEntity {
 	 */
 	constructor() {
 		super();
+		this.PlayerSpritesByPickLevel = {
+			Wood: {
+				walk: ImageName.PlayerWoodWalk,
+				idle: ImageName.PlayerWoodIdle,
+				swing: ImageName.PlayerWoodSwing,
+			},
+			Iron: {
+				walk: ImageName.PlayerIronWalk,
+				idle: ImageName.PlayerIronIdle,
+				swing: ImageName.PlayerIronSwing,
+			},
+			Gold: {
+				walk: ImageName.PlayerGoldWalk,
+				idle: ImageName.PlayerGoldIdle,
+				swing: ImageName.PlayerGoldSwing,
+			},
+			Diamond: {
+				walk: ImageName.PlayerDiamondWalk,
+				idle: ImageName.PlayerDiamondIdle,
+				swing: ImageName.PlayerDiamondSwing,
+			},
+		};
+
+		this.pickLevel = "Wood"
+		const currentSprites = this.PlayerSpritesByPickLevel[this.pickLevel];
+
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
-			images.get(ImageName.PlayerWoodWalk),
+			images.get(currentSprites.walk),
 			Player.WALKING_SPRITE_WIDTH,
 			Player.WALKING_SPRITE_HEIGHT
 		);
 		this.idleSprites = Sprite.generateSpritesFromSpriteSheet(
-			images.get(ImageName.PlayerWoodIdle),
+			images.get(currentSprites.idle),
 			Player.IDLE_SPRITE_WIDTH,
 			Player.IDLE_SPRITE_HEIGHT
 		);
 		this.pickaxeSwingingSprites = Sprite.generateSpritesFromSpriteSheet(
-			images.get(ImageName.PlayerWoodSwing),
+			images.get(currentSprites.swing),
 			Player.PICKAXE_SWINGING_SPRITE_WIDTH,
 			Player.PICKAXE_SWINGING_SPRITE_HEIGHT
 		);
 
 		this.sprites = this.walkingSprites;
-		
 		/**
 		 * Since the regular sprite and sword-swinging sprite are different dimensions,
 		 * we need a position offset to make it look like one smooth animation when rendering.
@@ -76,9 +101,28 @@ export default class Player extends GameEntity {
 		this.stateMachine = this.initializeStateMachine();
 	}
 
+
 	render() {
 		context.save();
 
+		const currentSprites = this.PlayerSpritesByPickLevel[this.pickLevel];
+
+		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(currentSprites.walk),
+			Player.WALKING_SPRITE_WIDTH,
+			Player.WALKING_SPRITE_HEIGHT
+		);
+		this.idleSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(currentSprites.idle),
+			Player.IDLE_SPRITE_WIDTH,
+			Player.IDLE_SPRITE_HEIGHT
+		);
+		this.pickaxeSwingingSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(currentSprites.swing),
+			Player.PICKAXE_SWINGING_SPRITE_WIDTH,
+			Player.PICKAXE_SWINGING_SPRITE_HEIGHT
+		);
+		
 		context.globalAlpha = this.alpha;
 
 		super.render();

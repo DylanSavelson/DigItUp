@@ -50,6 +50,8 @@ export default class Stone extends GameObject {
 			{
 				this.mined = true;
 				this.currentAnimation = this.explodeAnimation;
+				this.isCollidable = false;
+				this.isSolid = false;
 
 			}
 		}

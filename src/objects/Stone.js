@@ -42,7 +42,7 @@ export default class Stone extends GameObject {
 	}
 
 	getHit() {
-        if(this.player.targetedStone === this && this.player.swinging === true)
+        if(this.player.targetedStone === this && this.player.swinging === true && !this.mined)
 		{
 			this.currentFrame++;
 			this.player.swinging = false;
@@ -52,7 +52,6 @@ export default class Stone extends GameObject {
 				this.currentAnimation = this.explodeAnimation;
 				this.isCollidable = false;
 				this.isSolid = false;
-
 			}
 		}
     }

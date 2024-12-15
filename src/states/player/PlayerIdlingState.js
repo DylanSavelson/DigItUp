@@ -56,9 +56,6 @@ export default class PlayerIdlingState extends State {
 		} else if (input.isKeyPressed(Input.KEYS.D)) {
 			this.player.direction = Direction.Right;
 			this.player.changeState(PlayerStateName.Walking);
-		} else if (input.isKeyPressed(Input.KEYS.W)) {
-			this.player.direction = Direction.Up;
-			this.player.changeState(PlayerStateName.Walking);
 		} else if (input.isKeyPressed(Input.KEYS.A)) {
 			this.player.direction = Direction.Left;
 			this.player.changeState(PlayerStateName.Walking);

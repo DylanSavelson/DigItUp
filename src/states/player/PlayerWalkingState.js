@@ -68,17 +68,6 @@ export default class PlayerWalkingState extends State {
 				this.player.position.x =
 					MineShaft.RIGHT_EDGE - this.player.dimensions.x;
 			}
-		} else if (input.isKeyPressed(Input.KEYS.W)) {
-			this.player.direction = Direction.Up;
-			this.player.position.y -= this.player.speed * dt;
-
-			if (
-				this.player.position.y <=
-				MineShaft.TOP_EDGE - this.player.dimensions.y
-			) {
-				this.player.position.y =
-					MineShaft.TOP_EDGE - this.player.dimensions.y;
-			}
 		} else if (input.isKeyPressed(Input.KEYS.A)) {
 			this.player.direction = Direction.Left;
 			this.player.position.x -= this.player.speed * dt;

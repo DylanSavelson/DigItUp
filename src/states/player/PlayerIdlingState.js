@@ -39,6 +39,7 @@ export default class PlayerIdlingState extends State {
 	}
 
 	enter() {
+		//if you go up or down he always idles to right even if you were facing left
 		this.player.sprites = this.player.idleSprites;
 		this.player.currentAnimation = this.animation[this.player.direction];
 	}

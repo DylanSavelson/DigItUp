@@ -99,6 +99,7 @@ export default class Player extends GameEntity {
 		this.totalHealth = Player.MAX_HEALTH;
 		this.health = Player.MAX_HEALTH;
 		this.stateMachine = this.initializeStateMachine();
+		this.renderPriority = 100;
 	}
 
 

@@ -12,6 +12,7 @@ const ImageName = {
 	PlayerDiamondWalk: 'player_diamond_walk',
 	PlayerDiamondIdle: 'player_diamond_idle',
 	PlayerDiamondSwing: 'player_diamond_swing',
+	Stone: 'stone',
 };
 
 export default ImageName;

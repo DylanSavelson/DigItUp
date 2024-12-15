@@ -1,5 +1,4 @@
 import Vector from "../../lib/Vector.js";
-import { getCollisionDirection } from "../../lib/Collision.js";
 import Hitbox from "../../lib/Hitbox.js";
 import Direction from "../enums/Direction.js";
 import { context, DEBUG } from "../globals.js";
@@ -48,6 +47,10 @@ export default class GameObject {
 		if (DEBUG) {
 			this.hitbox.render(context);
 		}
+	}
+
+	onConsume(consumer) {
+		this.wasConsumed = true;
 	}
 
 	onCollision(collider) {

@@ -2,6 +2,7 @@ import Hitbox from "../../lib/Hitbox.js";
 import Vector from "../../lib/Vector.js";
 import Direction from "../enums/Direction.js";
 import { context, DEBUG } from "../globals.js";
+import Animation from "../../lib/Animation.js";
 
 export default class GameEntity {
 	/**
@@ -27,7 +28,6 @@ export default class GameEntity {
 		this.currentAnimation = null;
 		this.sprites = [];
 		this.direction = Direction.Right;
-		this.isDead = false;
 		this.cleanUp = false;
 		this.renderPriority = 0;
 	}

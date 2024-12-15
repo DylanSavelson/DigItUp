@@ -98,14 +98,11 @@ export default class Player extends GameEntity {
 		this.speed = Player.MAX_SPEED;
 		this.totalHealth = Player.MAX_HEALTH;
 		this.health = Player.MAX_HEALTH;
-		this.alpha = 1;
 		this.stateMachine = this.initializeStateMachine();
 	}
 
 
 	render() {
-		context.save();
-
 		const currentSprites = this.pickLevels[this.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
@@ -124,11 +121,7 @@ export default class Player extends GameEntity {
 			Player.PICKAXE_SWINGING_SPRITE_HEIGHT
 		);
 
-		context.globalAlpha = this.alpha;
-
 		super.render();
-
-		context.restore();
 	}
 
 	reset() {

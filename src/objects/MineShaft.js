@@ -10,6 +10,9 @@ import Direction from '../enums/Direction.js';
 import ImageName from '../enums/ImageName.js';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, images } from '../globals.js';
 import Tile from './Tile.js';
+import OreFactory from '../services/OreFactory.js';
+import Stone from './Stone.js';
+import OreName from '../enums/OreName.js';
 
 export default class MineShaft {
 	static WIDTH = CANVAS_WIDTH / Tile.TILE_SIZE - 2;
@@ -70,7 +73,6 @@ export default class MineShaft {
 	}
 
 	render() {
-
 		this.renderQueue.forEach((elementToRender) => {
 			elementToRender.render(this.adjacentOffset);
 		});
@@ -116,39 +118,25 @@ export default class MineShaft {
 	
 	updateEntities(dt) {
 		this.entities.forEach((entity) => {
-			if (entity.health <= 0) {
-				entity.isDead = true;
-			}
-
-			// Disallow the player to control the character while shifting.
-			if (
-				!this.isShifting ||
-				(this.isShifting && entity !== this.player)
-			) {
-				entity.update(dt);
-			}
-
 			this.objects.forEach((object) => {
-				if (object.didCollideWithEntity(entity.hitbox)) {
+				if (object && object.didCollideWithEntity(entity.hitbox)) {
 					if (object.isCollidable) {
 						object.onCollision(entity);
 					}
 				}
 			});
-
-			// Since the player is technically always colliding with itself, skip it.
-			if (entity === this.player) {
-				return;
-			}
+			entity.update(dt);
 		});
 	}
 
 	updateObjects(dt) {
 		let newObjects = [];
 		this.objects.forEach((object) => {
-			object.update(dt);
-
-			newObjects.push(object);
+			if(object)
+			{
+				object.update(dt);
+				newObjects.push(object);
+			}
 
 			this.objects = newObjects;
 
@@ -162,7 +150,9 @@ export default class MineShaft {
 	 */
 	generateEntities() {
 		const entities = new Array();
-		
+
+
+	
 		entities.push(this.player);
 
 		return entities;
@@ -172,7 +162,12 @@ export default class MineShaft {
 	 */
 	generateObjects() {
 		const objects = [];
-		
+		const sprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Stone),
+			Stone.HEIGHT,
+			Stone.WIDTH
+		);
+		objects.push(OreFactory.createInstance(OreName.Stone, sprites, new Vector(MineShaft.LEFT_EDGE + 50, MineShaft.BOTTOM_EDGE - 50)));
 		return objects;
 	}
 

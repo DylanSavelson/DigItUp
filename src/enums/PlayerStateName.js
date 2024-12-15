@@ -3,6 +3,7 @@ const PlayerStateName = {
 	Walking: 'walking',
 	PickaxeSwinging: 'pickaxe-swinging',
 	Falling: 'falling',
+	Backpack: "backpack"
 };
 
 export default PlayerStateName;

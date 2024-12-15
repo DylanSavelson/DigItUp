@@ -13,6 +13,7 @@ import Direction from '../enums/Direction.js';
 import SoundName from '../enums/SoundName.js';
 import OreName from '../enums/OreName.js';
 import PlayerFallingState from '../states/player/PlayerFallingState.js';
+import PlayerBackpackState from '../states/player/PlayerBackpackState.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -27,8 +28,8 @@ export default class Player extends GameEntity {
 	static MAX_HEALTH = 6;
 
 	/**
-	 * The hero character the player controls in the map.
-	 * Has the ability to swing a sword to kill enemies
+	 * The character the player controls in the map.
+	 * Has the ability to swing a pickaxe to mine ores
 	 * and will collide into objects that are collidable.
 	 */
 	constructor() {
@@ -93,7 +94,7 @@ export default class Player extends GameEntity {
 			-Player.HEIGHT + 6
 		);
 		this.position.x = MineShaft.CENTER_X - Player.WIDTH / 2;
-		this.position.y = MineShaft.CENTER_Y - Player.HEIGHT / 2;
+		this.position.y = MineShaft.TOP_EDGE - Player.HEIGHT / 2;
 		this.dimensions.x = Player.WIDTH;
 		this.dimensions.y = Player.HEIGHT;
 		this.speed = Player.MAX_SPEED;
@@ -152,7 +153,8 @@ export default class Player extends GameEntity {
 
 		stateMachine.add(PlayerStateName.Walking, new PlayerWalkingState(this));
 		stateMachine.add(PlayerStateName.PickaxeSwinging,new PlayerPickaxeSwingingState(this));
-		stateMachine.add(PlayerStateName.Falling,new PlayerFallingState(this));	
+		stateMachine.add(PlayerStateName.Falling, new PlayerFallingState(this));	
+		stateMachine.add(PlayerStateName.Backpack, new PlayerBackpackState(this));	
 		stateMachine.add(PlayerStateName.Idle, new PlayerIdlingState(this));
 
 		stateMachine.change(PlayerStateName.Idle);

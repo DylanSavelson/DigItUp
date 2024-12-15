@@ -34,7 +34,7 @@ export default class Stone extends GameObject {
 	
 	update(dt)
 	{
-		this.getHit()
+		this.getHit();
 		if (this.mined && this.currentFrame < 11)
 		{
 			this.currentAnimation?.update(dt);
@@ -71,12 +71,12 @@ export default class Stone extends GameObject {
 		{
 			this.player.stoneBelow = this;
 		}
-
 		if (this.dirNumber === this.player.direction)
 		{
 			this.player.targetedStone = this;
 		}
 
 	}
+
 
 }

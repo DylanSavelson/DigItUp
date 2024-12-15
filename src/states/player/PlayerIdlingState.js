@@ -47,13 +47,13 @@ export default class PlayerIdlingState extends State {
 	}
 
 	update() {
-		this.checkForMovement();
+		this.checkForKeys();
 		this.characterYawn();
 		this.checkforFall();
 		this.player.updateTargetedStone();
 	}
 
-	checkForMovement() {
+	checkForKeys() {
 		if (input.isKeyPressed(Input.KEYS.S)) {
 			this.player.direction = Direction.Down;
 			this.player.changeState(PlayerStateName.Walking);
@@ -66,6 +66,9 @@ export default class PlayerIdlingState extends State {
 		}
 		else if (input.isKeyPressed(Input.KEYS.SPACE)) {
 			this.player.changeState(PlayerStateName.PickaxeSwinging);
+		}
+		else if (input.isKeyPressed(Input.KEYS.B)) {
+			this.player.changeState(PlayerStateName.Backpack);
 		}
 	}
 

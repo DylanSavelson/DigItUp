@@ -163,16 +163,15 @@ export default class MineShaft {
 			Stone.WIDTH
 		);
 
-		for(let i = 0; i <= 10; i++)
+		for(let i = 1; i <= 11; i++)
 		{
-			let newOre = OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32))
-			let newOre1 = OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 64))
-			objects.push(newOre);
-			objects.push(newOre1);
+			for(let j = 1; j <= 5; j++)
+			{
+				let newOre = OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
+				objects.push(newOre);
+			}
 
 		}
-
-		//objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((64), MineShaft.BOTTOM_EDGE - 64)));
 
 		return objects;
 	}

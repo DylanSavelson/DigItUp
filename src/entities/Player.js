@@ -12,6 +12,7 @@ import MineShaft from '../objects/MineShaft.js';
 import Direction from '../enums/Direction.js';
 import SoundName from '../enums/SoundName.js';
 import OreName from '../enums/OreName.js';
+import PlayerFallingState from '../states/player/PlayerFallingState.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -55,7 +56,7 @@ export default class Player extends GameEntity {
 			}
 		};
 
-		this.pickLevel = "Diamond"
+		this.pickLevel = "Wood"
 		const currentSprites = this.pickLevels[this.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
@@ -103,6 +104,7 @@ export default class Player extends GameEntity {
 		this.targetedStone = null;
 		this.swinging = false;
 		this.swung = false;
+		this.stoneBelow = null;
 	}
 
 
@@ -142,7 +144,8 @@ export default class Player extends GameEntity {
 		const stateMachine = new StateMachine();
 
 		stateMachine.add(PlayerStateName.Walking, new PlayerWalkingState(this));
-		stateMachine.add(PlayerStateName.PickaxeSwinging,new PlayerPickaxeSwingingState(this));	
+		stateMachine.add(PlayerStateName.PickaxeSwinging,new PlayerPickaxeSwingingState(this));
+		stateMachine.add(PlayerStateName.Falling,new PlayerFallingState(this));	
 		stateMachine.add(PlayerStateName.Idle, new PlayerIdlingState(this));
 
 		stateMachine.change(PlayerStateName.Idle);

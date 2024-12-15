@@ -28,6 +28,7 @@ export default class Stone extends GameObject {
 		this.player = player;
 		this.explodeAnimation = new Animation([6,7,8,9,10,11], 0.1, 1);
 		this.mined = false;
+		this.dirNumber = null;
 	}
 
 	
@@ -59,13 +60,18 @@ export default class Stone extends GameObject {
 	onCollision(collider) {
 		super.onCollision(collider);
 		this.checkTargetedStone(collider);
+		
 	}
 
 	checkTargetedStone(collider) 
 	{
-		const dirNumber = getCollisionDirection(collider.position.x, collider.position.y, collider.dimensions.x, collider.dimensions.y, this.position.x,this.position.y,
-			Stone.WIDTH, Stone.HEIGHT)
-		if (dirNumber == this.player.direction)
+		this.dirNumber = getCollisionDirection(collider.position.x, collider.position.y, collider.dimensions.x, collider.dimensions.y, this.position.x,this.position.y,
+			Stone.WIDTH, Stone.HEIGHT);
+		if(this.dirNumber === 1)
+		{
+			this.player.stoneBelow = this;
+		}
+		if (this.dirNumber === this.player.direction)
 		{
 			this.player.targetedStone = this;
 		}

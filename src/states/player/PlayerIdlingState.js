@@ -6,6 +6,8 @@ import PlayerStateName from '../../enums/PlayerStateName.js';
 import { input } from '../../globals.js';
 import Input from '../../../lib/Input.js';
 import { getRandomPositiveInteger } from '../../../lib/Random.js';
+import Stone from '../../objects/Stone.js';
+import { getCollisionDirection, isAABBCollision } from '../../../lib/Collision.js';
 
 export default class PlayerIdlingState extends State {
 	/**
@@ -47,6 +49,7 @@ export default class PlayerIdlingState extends State {
 	update() {
 		this.checkForMovement();
 		this.characterYawn();
+		this.checkforFall();
 	}
 
 	checkForMovement() {
@@ -76,6 +79,14 @@ export default class PlayerIdlingState extends State {
 		if(getRandomPositiveInteger(1,5000) === 5)
 		{
 			this.player.currentAnimation = this.yawnAnimation[this.player.direction];
+		}
+	}
+
+	checkforFall()
+	{
+		if(this.player.stoneBelow === null || this.player.stoneBelow.mined)
+		{
+			this.player.changeState(PlayerStateName.Falling);
 		}
 	}
 }

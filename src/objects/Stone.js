@@ -71,10 +71,12 @@ export default class Stone extends GameObject {
 		{
 			this.player.stoneBelow = this;
 		}
+
 		if (this.dirNumber === this.player.direction)
 		{
 			this.player.targetedStone = this;
 		}
+
 	}
 
 }

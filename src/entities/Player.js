@@ -130,6 +130,13 @@ export default class Player extends GameEntity {
 		super.render();
 	}
 
+	updateTargetedStone()
+	{
+		if(this.targetedStone && this.direction != this.targetedStone.dirNumber)
+		{
+			this.targetedStone = null;  
+		}
+	}
 	reset() {
 		this.position.x = MineShaft.CENTER_X - Player.WIDTH / 2;
 		this.position.y = MineShaft.CENTER_Y - Player.HEIGHT / 2;

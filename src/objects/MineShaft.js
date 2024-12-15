@@ -20,11 +20,11 @@ export default class MineShaft {
 	static RENDER_OFFSET_X = (CANVAS_WIDTH - MineShaft.WIDTH * Tile.TILE_SIZE) / 2;
 	static RENDER_OFFSET_Y = (CANVAS_HEIGHT - MineShaft.HEIGHT * Tile.TILE_SIZE) / 2;
 
-	static TOP_EDGE = MineShaft.RENDER_OFFSET_Y + Tile.TILE_SIZE;
+	static TOP_EDGE = MineShaft.RENDER_OFFSET_Y;
 	static BOTTOM_EDGE =
-		CANVAS_HEIGHT - MineShaft.RENDER_OFFSET_Y - Tile.TILE_SIZE - 5;
-	static LEFT_EDGE = MineShaft.RENDER_OFFSET_X + Tile.TILE_SIZE - 5;
-	static RIGHT_EDGE = CANVAS_WIDTH - Tile.TILE_SIZE * 2 + 5;
+		CANVAS_HEIGHT - MineShaft.RENDER_OFFSET_Y
+	static LEFT_EDGE = MineShaft.RENDER_OFFSET_X - 40;
+	static RIGHT_EDGE = CANVAS_WIDTH;
 	static CENTER_X = Math.floor(
 		MineShaft.LEFT_EDGE + (MineShaft.RIGHT_EDGE - MineShaft.LEFT_EDGE) / 2
 	);
@@ -166,10 +166,13 @@ export default class MineShaft {
 		for(let i = 0; i <= 10; i++)
 		{
 			let newOre = OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32))
+			let newOre1 = OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 64))
 			objects.push(newOre);
+			objects.push(newOre1);
+
 		}
 
-		objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((64), MineShaft.BOTTOM_EDGE - 64)));
+		//objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((64), MineShaft.BOTTOM_EDGE - 64)));
 
 		return objects;
 	}

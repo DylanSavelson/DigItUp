@@ -50,6 +50,7 @@ export default class PlayerIdlingState extends State {
 		this.checkForMovement();
 		this.characterYawn();
 		this.checkforFall();
+		this.player.updateTargetedStone();
 	}
 
 	checkForMovement() {

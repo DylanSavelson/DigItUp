@@ -42,7 +42,6 @@ export default class PlayerWalkingState extends State {
 
 
 		if (this.player.direction === Direction.Left || this.player.direction === Direction.Right) {
-			this.animation[Direction.Up] = this.animation[this.player.direction];
 			this.animation[Direction.Down] = this.animation[this.player.direction];
 		}
 
@@ -77,6 +76,7 @@ export default class PlayerWalkingState extends State {
 			}
 		} 
 		else if (input.isKeyPressed(Input.KEYS.SPACE)) {
+			this.player.updateTargetedStone();
 			this.player.changeState(PlayerStateName.PickaxeSwinging);
 		}else {
 			this.player.changeState(PlayerStateName.Idle);

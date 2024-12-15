@@ -14,6 +14,7 @@ import SoundName from '../enums/SoundName.js';
 import OreName from '../enums/OreName.js';
 import PlayerFallingState from '../states/player/PlayerFallingState.js';
 import PlayerBackpackState from '../states/player/PlayerBackpackState.js';
+import Backpack from '../objects/Backpack.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -102,10 +103,12 @@ export default class Player extends GameEntity {
 		this.health = Player.MAX_HEALTH;
 		this.stateMachine = this.initializeStateMachine();
 		this.renderPriority = 100;
+		this.lastDirection = Direction.Right;
 		this.targetedStone = null;
 		this.swinging = false;
 		this.swung = false;
 		this.stoneBelow = null;
+		this.backpack = new Backpack();
 	}
 
 

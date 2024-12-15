@@ -1,7 +1,11 @@
 
+import { roundedRectangle } from '../../../lib/Drawing.js';
+import Input from '../../../lib/Input.js';
 import State from '../../../lib/State.js';
 import Player from '../../entities/Player.js';
 import PlayerStateName from '../../enums/PlayerStateName.js';
+import { context, input } from '../../globals.js';
+import Backpack from '../../objects/Backpack.js';
 
 
 export default class PlayerBackpackState extends State {
@@ -15,14 +19,24 @@ export default class PlayerBackpackState extends State {
 
 		this.player = player;
 	}
+
     enter()
     {
         
     }
-	update(dt) {
 
+	update(dt) {
+        this.checkForKeys();
 	}
-    
+
+    checkForKeys() {
+		if (input.isKeyPressed(Input.KEYS.ESCAPE)) {
+			this.player.changeState(PlayerStateName.Idle);
+		}
+		else if (input.isKeyPressed(Input.KEYS.B)) {
+			this.player.changeState(PlayerStateName.Idle);
+		}
+	}
 
 
 }

@@ -40,24 +40,12 @@ export default class PlayerWalkingState extends State {
 	handleMovement(dt) {
 		this.player.currentAnimation = this.animation[this.player.direction];
 
-
-		if (this.player.direction === Direction.Left || this.player.direction === Direction.Right) {
-			this.animation[Direction.Down] = this.animation[this.player.direction];
-		}
-
 		if (input.isKeyPressed(Input.KEYS.S)) {
 			this.player.direction = Direction.Down;
-			this.player.position.y += this.player.speed * dt;
-
-			if (
-				this.player.position.y + this.player.dimensions.y >=
-				MineShaft.BOTTOM_EDGE
-			) {
-				this.player.position.y =
-					MineShaft.BOTTOM_EDGE - this.player.dimensions.y;
-			}
+			this.animation[Direction.Down] = this.animation[this.player.lastDirection];
 		} else if (input.isKeyPressed(Input.KEYS.D)) {
 			this.player.direction = Direction.Right;
+			this.player.lastDirection = Direction.Right;
 			this.player.position.x += this.player.speed * dt;
 
 			if (
@@ -69,6 +57,7 @@ export default class PlayerWalkingState extends State {
 			}
 		} else if (input.isKeyPressed(Input.KEYS.A)) {
 			this.player.direction = Direction.Left;
+			this.player.lastDirection = Direction.Left;
 			this.player.position.x -= this.player.speed * dt;
 
 			if (this.player.position.x <= MineShaft.LEFT_EDGE) {
@@ -78,6 +67,9 @@ export default class PlayerWalkingState extends State {
 		else if (input.isKeyPressed(Input.KEYS.SPACE)) {
 			this.player.updateTargetedStone();
 			this.player.changeState(PlayerStateName.PickaxeSwinging);
+		}
+		else if (input.isKeyPressed(Input.KEYS.B)) {
+			this.player.changeState(PlayerStateName.Backpack);
 		}else {
 			this.player.changeState(PlayerStateName.Idle);
 		}

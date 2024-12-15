@@ -26,19 +26,32 @@ export default class Stone extends GameObject {
 		this.isSolid = true;
 		this.currentFrame = 0;
 		this.player = player;
+		this.explodeAnimation = new Animation([6,7,8,9,10,11], 0.1, 1);
+		this.mined = false;
 	}
 
 	
 	update(dt)
 	{
 		this.getHit()
+		if (this.mined && this.currentFrame < 11)
+		{
+			this.currentAnimation?.update(dt);
+			this.currentFrame = this.explodeAnimation.getCurrentFrame();
+		}
 	}
 
-	getHit(mineshaft) {
+	getHit() {
         if(this.player.targetedStone === this && this.player.swinging === true)
 		{
 			this.currentFrame++;
 			this.player.swinging = false;
+			if(this.currentFrame === 5)
+			{
+				this.mined = true;
+				this.currentAnimation = this.explodeAnimation;
+
+			}
 		}
     }
     

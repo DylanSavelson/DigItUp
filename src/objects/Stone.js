@@ -35,9 +35,10 @@ export default class Stone extends GameObject {
 	}
 
 	getHit(mineshaft) {
-        if(this.player.targetedStone === this && this.player.stateMachine.currentState === PlayerPickaxeSwingingState)
+        if(this.player.targetedStone === this && this.player.swinging === true)
 		{
 			this.currentFrame++;
+			this.player.swinging = false;
 		}
     }
     
@@ -48,8 +49,12 @@ export default class Stone extends GameObject {
 
 	checkTargetedStone(collider) 
 	{
-		this.directionCol = Direction[getCollisionDirection(collider.position.x, collider.position.y, collider.dimensions.x, collider.dimensions.y, this.position.x,this.position.y,
-			Stone.WIDTH, Stone.HEIGHT)]
+		const dirNumber = getCollisionDirection(collider.position.x, collider.position.y, collider.dimensions.x, collider.dimensions.y, this.position.x,this.position.y,
+			Stone.WIDTH, Stone.HEIGHT)
+		if (dirNumber == this.player.direction)
+		{
+			this.player.targetedStone = this;
+		}
 	}
 
 }

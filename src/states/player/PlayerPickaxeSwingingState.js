@@ -30,17 +30,24 @@ export default class PlayerPickaxeSwingingState extends State {
 
 	enter() {
 		// sounds.play(SoundName.Pickaxe);
-		
 		this.player.sprites = this.player.pickaxeSwingingSprites;
 		this.player.currentAnimation = this.animation[this.player.direction];
 	}
 
 	exit() {
+		this.player.swinging = false;
+		this.player.swung = false;
 	}
 
 	update() {
+		if(this.player.currentAnimation.currentFrame >= (this.player.currentAnimation.frames.length / 1.6) && this.player.swung === false)
+		{
+			this.player.swinging = true;
+			this.player.swung = true;
+		}
 		// Idle once one pickaxe swing animation cycle has been played.
 		if (this.player.currentAnimation.isDone()) {
+			this.player.swinging = true;
 			this.player.currentAnimation.refresh();
 			this.player.changeState(PlayerStateName.Idle);
 		}

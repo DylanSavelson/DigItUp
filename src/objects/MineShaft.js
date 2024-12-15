@@ -130,16 +130,11 @@ export default class MineShaft {
 	}
 
 	updateObjects(dt) {
-		let newObjects = [];
 		this.objects.forEach((object) => {
 			if(object)
 			{
 				object.update(dt);
-				newObjects.push(object);
 			}
-
-			this.objects = newObjects;
-
 		});
 	}
 
@@ -170,7 +165,8 @@ export default class MineShaft {
 
 		for(let i = 0; i <= 10; i++)
 		{
-			objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32)));
+			let newOre = OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32))
+			objects.push(newOre);
 		}
 
 		objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((64), MineShaft.BOTTOM_EDGE - 64)));

@@ -101,6 +101,8 @@ export default class Player extends GameEntity {
 		this.stateMachine = this.initializeStateMachine();
 		this.renderPriority = 100;
 		this.targetedStone = null;
+		this.swinging = false;
+		this.swung = false;
 	}
 
 

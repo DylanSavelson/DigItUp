@@ -22,7 +22,12 @@ export default class PlayerBackpackState extends State {
 
     enter()
     {
-        
+        this.player.backpack.display = true;
+    }
+
+    exit()
+    {
+        this.player.backpack.display = false;
     }
 
 	update(dt) {
@@ -31,9 +36,6 @@ export default class PlayerBackpackState extends State {
 
     checkForKeys() {
 		if (input.isKeyPressed(Input.KEYS.ESCAPE)) {
-			this.player.changeState(PlayerStateName.Idle);
-		}
-		else if (input.isKeyPressed(Input.KEYS.B)) {
 			this.player.changeState(PlayerStateName.Idle);
 		}
 	}

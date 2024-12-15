@@ -9,16 +9,16 @@ import Player from '../entities/Player.js';
 import Direction from '../enums/Direction.js';
 import ImageName from '../enums/ImageName.js';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, images } from '../globals.js';
-import Tile from './Tile.js';
 import OreFactory from '../services/OreFactory.js';
 import Stone from './Stone.js';
 import OreName from '../enums/OreName.js';
+import Backpack from './Backpack.js';
 
 export default class MineShaft {
-	static WIDTH = CANVAS_WIDTH / Tile.TILE_SIZE - 2;
-	static HEIGHT = Math.floor(CANVAS_HEIGHT / Tile.TILE_SIZE) - 2;
-	static RENDER_OFFSET_X = (CANVAS_WIDTH - MineShaft.WIDTH * Tile.TILE_SIZE) / 2;
-	static RENDER_OFFSET_Y = (CANVAS_HEIGHT - MineShaft.HEIGHT * Tile.TILE_SIZE) / 2;
+	static WIDTH = CANVAS_WIDTH / Stone.WIDTH - 2;
+	static HEIGHT = Math.floor(CANVAS_HEIGHT / Stone.WIDTH);
+	static RENDER_OFFSET_X = (CANVAS_WIDTH - MineShaft.WIDTH * Stone.WIDTH) / 2;
+	static RENDER_OFFSET_Y = (CANVAS_HEIGHT - MineShaft.HEIGHT * Stone.WIDTH) / 2;
 
 	static TOP_EDGE = MineShaft.RENDER_OFFSET_Y;
 	static BOTTOM_EDGE =
@@ -32,19 +32,6 @@ export default class MineShaft {
 		MineShaft.TOP_EDGE + (MineShaft.BOTTOM_EDGE - MineShaft.TOP_EDGE) / 2
 	);
 
-	static TILE_TOP_LEFT_CORNER = 3;
-	static TILE_TOP_RIGHT_CORNER = 4;
-	static TILE_BOTTOM_LEFT_CORNER = 22;
-	static TILE_BOTTOM_RIGHT_CORNER = 23;
-	static TILE_EMPTY = 18;
-	static TILE_TOP_WALLS = [57, 58, 59];
-	static TILE_BOTTOM_WALLS = [78, 79, 80];
-	static TILE_LEFT_WALLS = [76, 95, 114];
-	static TILE_RIGHT_WALLS = [77, 96, 115];
-	static TILE_FLOORS = [
-		6, 7, 8, 9, 10, 11, 12, 25, 26, 27, 28, 29, 30, 31, 44, 45, 46, 47, 48,
-		49, 50, 63, 64, 65, 66, 67, 68, 69, 87, 88, 106, 107,
-	];
 
 	/**
 	 * Represents one individual section of the dungeon complete
@@ -75,6 +62,7 @@ export default class MineShaft {
 	render() {
 		this.renderQueue.forEach((elementToRender) => {
 			elementToRender.render(this.adjacentOffset);
+
 		});
 	}
 
@@ -147,7 +135,6 @@ export default class MineShaft {
 		const entities = new Array();
 
 
-	
 		entities.push(this.player);
 
 		return entities;
@@ -157,6 +144,7 @@ export default class MineShaft {
 	 */
 	generateObjects() {
 		const objects = [];
+		objects.push(this.player.backpack);
 		const sprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(ImageName.Stone),
 			Stone.HEIGHT,

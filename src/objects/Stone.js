@@ -1,15 +1,6 @@
-import { getRandomPositiveInteger } from '../../lib/Random.js';
-import StateMachine from '../../lib/StateMachine.js';
-import OreName from '../enums/OreName.js';
-import SoundName from '../enums/SoundName.js';
-import { context, sounds } from '../globals.js';
-import MineShaft from './MineShaft.js';
-import Tile from './Tile.js';
 import Animation from '../../lib/Animation.js';
 import GameObject from './GameObject.js';
 import Vector from '../../lib/Vector.js';
-import Direction from '../enums/Direction.js';
-import PlayerPickaxeSwingingState from '../states/player/PlayerPickaxeSwingingState.js';
 import { getCollisionDirection } from '../../lib/Collision.js';
 
 export default class Stone extends GameObject {

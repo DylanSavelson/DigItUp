@@ -11,10 +11,10 @@ export default class OreFactory {
 	 * @param {array} sprites The sprites to be used for the ore.
 	 * @returns An instance of an ore specified by oreType.
 	 */
-	static createInstance(type, sprites, position = new Vector(0, 0) ) {
+	static createInstance(type, sprites, player, position = new Vector(0, 0)) {
 		switch (type) {
 			case OreName.Stone:
-				return new Stone(sprites, position);
+				return new Stone(sprites, position, player);
 		}
 	}
 }

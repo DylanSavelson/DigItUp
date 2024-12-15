@@ -75,7 +75,7 @@
 		{
             "name": "stone",
 			"path": "./assets/images/Stone.png",
-			"width": 32,
+			"width": 352,
 			"height": 32
         }
 	],

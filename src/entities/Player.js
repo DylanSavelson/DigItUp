@@ -100,6 +100,7 @@ export default class Player extends GameEntity {
 		this.health = Player.MAX_HEALTH;
 		this.stateMachine = this.initializeStateMachine();
 		this.renderPriority = 100;
+		this.targetedStone = null;
 	}
 
 
@@ -147,8 +148,4 @@ export default class Player extends GameEntity {
 		return stateMachine;
 	}
 
-	receiveDamage(damage) {
-		this.health -= damage;
-		sounds.play(SoundName.HitPlayer);
-	}
 }

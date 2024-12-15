@@ -167,7 +167,14 @@ export default class MineShaft {
 			Stone.HEIGHT,
 			Stone.WIDTH
 		);
-		objects.push(OreFactory.createInstance(OreName.Stone, sprites, new Vector(MineShaft.LEFT_EDGE + 50, MineShaft.BOTTOM_EDGE - 50)));
+
+		for(let i = 0; i <= 10; i++)
+		{
+			objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32)));
+		}
+
+		objects.push(OreFactory.createInstance(OreName.Stone, sprites, this.player, new Vector((64), MineShaft.BOTTOM_EDGE - 64)));
+
 		return objects;
 	}
 

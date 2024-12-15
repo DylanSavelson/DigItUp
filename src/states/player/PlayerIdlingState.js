@@ -38,12 +38,16 @@ export default class PlayerIdlingState extends State {
 		}
 		this.yawnAnimation[Direction.Up] = this.yawnAnimation[this.player.direction]
 		this.yawnAnimation[Direction.Down] = this.yawnAnimation[this.player.direction]
+
 	}
 
 	enter() {
-		//if you go up or down he always idles to right even if you were facing left
 		this.player.sprites = this.player.idleSprites;
-		this.player.currentAnimation = this.animation[this.player.direction];
+		if(this.player.lastDirection)
+			this.player.currentAnimation = this.animation[this.player.lastDirection];
+		else
+			this.player.currentAnimation = this.animation[this.player.direction];
+
 	}
 
 	update() {

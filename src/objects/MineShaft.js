@@ -12,10 +12,9 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH, images } from '../globals.js';
 import OreFactory from '../services/OreFactory.js';
 import Stone from '../objects/Stone.js';
 import OreName from '../enums/OreName.js';
-import Backpack from './Backpack.js';
 import Elevator from './Elevator.js';
 import ShopKeeper from './ShopKeeper.js';
-
+import Pickaxe from '../entities/Pickaxe.js'
 export default class MineShaft {
 	static WIDTH = CANVAS_WIDTH / Stone.WIDTH - 2;
 	static HEIGHT = Math.floor(CANVAS_HEIGHT / Stone.WIDTH);
@@ -60,7 +59,14 @@ export default class MineShaft {
 
 	render() {
 		this.renderQueue.forEach((elementToRender) => {
-			elementToRender.render(this.adjacentOffset);
+			if(elementToRender instanceof Pickaxe)
+			{
+				
+			}
+			else
+			{
+				elementToRender.render(this.adjacentOffset);
+			}
 
 		});
 	}
@@ -133,7 +139,7 @@ export default class MineShaft {
 	generateEntities() {
 		const entities = new Array();
 
-
+		entities.push(this.player.pickaxe);
 		entities.push(this.player);
 
 		return entities;

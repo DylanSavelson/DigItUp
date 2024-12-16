@@ -14,6 +14,8 @@ export default class Stone extends GameObject{
 	static OREWIDTH = 16;
 	static OREHEIGHT = 16;
 	static dimensions = new Vector(this.WIDTH,this.HEIGHT)
+	static baseValue = 5;
+
 	/**
 	 * The base ore, can contain other ores or just a stone.
 	 */
@@ -36,6 +38,10 @@ export default class Stone extends GameObject{
 		this.shouldCallSetPositionsAfterMined = true;
 	}
 
+	static sellValue(pickaxe)
+	{
+		return Math.floor(pickaxe.coinMultiplier * Stone.baseValue);
+	}
 	
 	update(dt)
 	{

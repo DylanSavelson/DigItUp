@@ -4,6 +4,8 @@ export default class Gold extends Stone {
     /**
      * The second tier ore strong enough to help cultivate more rare ores worth more.
      */
+    static baseValue = 15;
+
     constructor(sprites, position, player) {
         super(sprites, position, player); 
     }
@@ -15,7 +17,10 @@ export default class Gold extends Stone {
         super.update(dt);
         this.setPositionsAfterMined(2);
     }
-
+	static sellValue(pickaxe)
+	{
+		return Math.floor(pickaxe.coinMultiplier * Gold.baseValue);
+	}
     onCollision(collider)
     {
         super.onCollision(collider)

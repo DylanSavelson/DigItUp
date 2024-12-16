@@ -6,7 +6,6 @@ import PlayerPickaxeSwingingState from '../states/player/PlayerPickaxeSwingingSt
 import PlayerIdlingState from '../states/player/PlayerIdlingState.js';
 import PlayerStateName from '../enums/PlayerStateName.js';
 import Hitbox from '../../lib/Hitbox.js';
-import ImageName from '../enums/ImageName.js';
 import Sprite from '../../lib/Sprite.js';
 import MineShaft from '../objects/MineShaft.js';
 import Direction from '../enums/Direction.js';
@@ -16,6 +15,8 @@ import PlayerFallingState from '../states/player/PlayerFallingState.js';
 import PlayerBackpackState from '../states/player/PlayerBackpackState.js';
 import Backpack from '../objects/Backpack.js';
 import PlayerShopState from '../states/player/PlayerShopState.js';
+import Pickaxe from './Pickaxe.js';
+import ImageName from '../enums/ImageName.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -36,31 +37,8 @@ export default class Player extends GameEntity {
 	 */
 	constructor() {
 		super();
-		this.pickLevels = {
-			Wood: {
-				walk: ImageName.PlayerWoodWalk,
-				idle: ImageName.PlayerWoodIdle,
-				swing: ImageName.PlayerWoodSwing,
-			},
-			Iron: {
-				walk: ImageName.PlayerIronWalk,
-				idle: ImageName.PlayerIronIdle,
-				swing: ImageName.PlayerIronSwing,
-			},
-			Gold: {
-				walk: ImageName.PlayerGoldWalk,
-				idle: ImageName.PlayerGoldIdle,
-				swing: ImageName.PlayerGoldSwing,
-			},
-			Diamond: {
-				walk: ImageName.PlayerDiamondWalk,
-				idle: ImageName.PlayerDiamondIdle,
-				swing: ImageName.PlayerDiamondSwing,
-			}
-		};
-
-		this.pickLevel = "Wood"
-		const currentSprites = this.pickLevels[this.pickLevel];
+		this.pickaxe = new Pickaxe();
+		const currentSprites = this.pickaxe.pickLevels[this.pickaxe.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(currentSprites.walk),
@@ -117,7 +95,7 @@ export default class Player extends GameEntity {
 
 
 	render() {
-		const currentSprites = this.pickLevels[this.pickLevel];
+		const currentSprites = this.pickaxe.pickLevels[this.pickaxe.pickLevel];
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(currentSprites.walk),

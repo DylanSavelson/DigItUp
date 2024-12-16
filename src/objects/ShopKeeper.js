@@ -7,6 +7,9 @@ import PlayerStateName from '../enums/PlayerStateName.js';
 import Input from '../../lib/Input.js';
 import Stone from './Stone.js';
 import { roundedRectangle } from '../../lib/Drawing.js';
+import Iron from './IronOre.js';
+import Gold from './GoldOre.js';
+import Diamond from './DiamondOre.js';
 
 export default class ShopKeeper extends GameObject {
 	static WIDTH = 64;
@@ -54,6 +57,7 @@ export default class ShopKeeper extends GameObject {
 			18
         );
         this.options = null;
+        this.stoneSellValue = Stone.sellValue(this.player.pickaxe)
 	}
 
 	
@@ -153,10 +157,10 @@ export default class ShopKeeper extends GameObject {
             context.font = '10px small';
 
             this.options = [
-                { sprite: this.oreSprites[0], x: CANVAS_WIDTH / 4 - 40, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 20, sellPrice: 5 },
-                { sprite: this.oreSprites[1], x: CANVAS_WIDTH / 4 + 10, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 30, sellPrice: 10 },
-                { sprite: this.oreSprites[2], x: CANVAS_WIDTH / 4 + 60, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 40, sellPrice: 20 },
-                { sprite: this.oreSprites[3], x: CANVAS_WIDTH / 4 + 110, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 50, sellPrice: 30 }
+                { sprite: this.oreSprites[0], x: CANVAS_WIDTH / 4 - 40, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 50, sellPrice: Stone.sellValue(this.player.pickaxe)},
+                { sprite: this.oreSprites[1], x: CANVAS_WIDTH / 4 + 10, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 75, sellPrice: Iron.sellValue(this.player.pickaxe)},
+                { sprite: this.oreSprites[2], x: CANVAS_WIDTH / 4 + 60, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 100, sellPrice: Gold.sellValue(this.player.pickaxe)},
+                { sprite: this.oreSprites[3], x: CANVAS_WIDTH / 4 + 110, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 125, sellPrice: Diamond.sellValue(this.player.pickaxe) }
             ];
     
             this.options.forEach((option) => {
@@ -173,11 +177,11 @@ export default class ShopKeeper extends GameObject {
                 CANVAS_HEIGHT / 1.5 + 40
             );
 
-            this.options = this.options.map(option => ({
+            this.options = this.options.map((option, index) => ({
                 x: option.x,
                 y: option.y,
                 buyZone: {
-                    x: option.x - 8, 
+                    x: option.x - 10, 
                     y: option.y + 18, 
                     width: 44,
                     height: 8, 
@@ -188,6 +192,7 @@ export default class ShopKeeper extends GameObject {
                     width: 44,
                     height: 8, 
                 },
+                itemType: 0 + index,
                 buyPrice: option.buyPrice,
                 sellPrice: option.sellPrice
             }));
@@ -228,22 +233,25 @@ export default class ShopKeeper extends GameObject {
 	}
 
     checkForKeys() {
-        if (input.isKeyPressed(Input.KEYS.F)) {
+        if (input.isKeyPressed(Input.KEYS.F)) 
+        {
             this.player.changeState(PlayerStateName.Shop);
         }
 	}
 
     handleBuy(option) {
-        if (this.player.backpack.coins >= option.buyPrice) {
+        if (this.player.backpack.coins >= option.buyPrice) 
+        {
             this.player.backpack.coins -= option.buyPrice;
             console.log(`Bought item for ${option.buyPrice}¢`);
-        } else {
+        } 
+        else 
+        {
             console.log('Not enough coins to buy this item.');
         }
     }
     
     handleSell(option) {
-        this.player.backpack.coins += option.sellPrice;
         console.log(`Sold item for ${option.sellPrice}¢`);
     }
 

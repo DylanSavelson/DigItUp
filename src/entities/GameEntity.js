@@ -2,7 +2,6 @@ import Hitbox from "../../lib/Hitbox.js";
 import Vector from "../../lib/Vector.js";
 import Direction from "../enums/Direction.js";
 import { context, DEBUG } from "../globals.js";
-import Animation from "../../lib/Animation.js";
 
 export default class GameEntity {
 	/**

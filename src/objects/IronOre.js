@@ -4,6 +4,7 @@ export default class Iron extends Stone {
     /**
      * The first tier ore strong enough to help cultivate more rare ores worth more.
      */
+    static baseValue = 10;
     constructor(sprites, position, player) {
         super(sprites, position, player); 
         this.player = player;
@@ -17,6 +18,11 @@ export default class Iron extends Stone {
         this.setPositionsAfterMined(1);
     }
 
+	static sellValue(pickaxe)
+	{
+		return Math.floor(pickaxe.coinMultiplier * Iron.baseValue);
+	}
+	
     onCollision(collider)
     {
         super.onCollision(collider)

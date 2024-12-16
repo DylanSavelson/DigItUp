@@ -31,9 +31,6 @@ export default class GameObject {
 		// If an entity should detect if it's overlapping this game object.
 		this.isCollidable = false;
 
-		// If the game object was collided with already.
-		this.wasCollided = false;
-
 	}
 
 	update(dt) { }
@@ -47,10 +44,6 @@ export default class GameObject {
 		if (DEBUG) {
 			this.hitbox.render(context);
 		}
-	}
-
-	onConsume(consumer) {
-		this.wasConsumed = true;
 	}
 
 	onCollision(collider) {

@@ -15,7 +15,6 @@ export default class GameEntity {
 		this.dimensions = entityDefinition.dimensions ?? new Vector();
 		this.speed = entityDefinition.speed ?? 1;
 		this.totalHealth = entityDefinition.health ?? 1;
-		this.damage = entityDefinition.damage ?? 1;
 		this.hitboxOffsets = entityDefinition.hitboxOffsets ?? new Hitbox();
 		this.hitbox = new Hitbox(
 			this.position.x + this.hitboxOffsets.position.x,

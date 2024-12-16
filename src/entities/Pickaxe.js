@@ -10,4 +10,9 @@ export default class Pickaxe {
 
     }
 
+    update(dt)
+    {
+
+    }
+
 }

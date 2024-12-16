@@ -2,7 +2,7 @@ import GameObject from './GameObject.js';
 import Vector from '../../lib/Vector.js';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images } from '../globals.js';
 import { roundedRectangle } from '../../lib/Drawing.js';
-import Stone from './Stone.js';
+import Stone from '../objects/Stone.js';
 import Sprite from '../../lib/Sprite.js';
 import ImageName from '../enums/ImageName.js';
 

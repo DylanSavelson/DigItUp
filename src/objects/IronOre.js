@@ -1,4 +1,4 @@
-import Stone from './Stone.js';
+import Stone from '../objects/Stone.js';
 
 export default class Iron extends Stone {
     /**

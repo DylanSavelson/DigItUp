@@ -1,4 +1,4 @@
-import Stone from "../objects/Stone.js";
+import Stone from '../objects/Stone.js';
 import OreName from "../enums/OreName.js";
 import Vector from "../../lib/Vector.js";
 import Iron from "../objects/IronOre.js";

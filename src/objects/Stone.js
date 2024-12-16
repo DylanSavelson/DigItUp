@@ -1,5 +1,5 @@
 import Animation from '../../lib/Animation.js';
-import GameObject from './GameObject.js';
+import GameObject from '../objects/GameObject.js';
 import Vector from '../../lib/Vector.js';
 import { getCollisionDirection } from '../../lib/Collision.js';
 import Sprite from '../../lib/Sprite.js';
@@ -8,7 +8,7 @@ import ImageName from '../enums/ImageName.js';
 import Easing from '../../lib/Easing.js';
 import Hitbox from '../../lib/Hitbox.js';
 
-export default class Stone extends GameObject {
+export default class Stone extends GameObject{
 	static WIDTH = 32;
 	static HEIGHT = 32;
 	static OREWIDTH = 16;
@@ -18,11 +18,11 @@ export default class Stone extends GameObject {
 	 * The base ore, can contain other ores or just a stone.
 	 */
 	constructor(sprites, position, player) {
-		super(Stone.dimensions, position);
+		super(Stone.dimensions,position);
 		this.sprites = sprites;
         this.isCollidable = true;
 		this.isSolid = true;
-		this.currentFrame = 4;
+		this.currentFrame = 0;
 		this.player = player;
 		this.mined = false;
 		this.dirNumber = null;
@@ -98,8 +98,8 @@ export default class Stone extends GameObject {
 	}
 
 	delayPickup() {
-		const interval = 1.5;
-		const duration = 1.5;
+		const interval = 0.75;
+		const duration = 0.75;
 		return timer.addTask(() => {}, interval, duration,() => {
 			this.isCollidable = true;
 		});

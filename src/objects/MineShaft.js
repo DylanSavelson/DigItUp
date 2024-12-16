@@ -10,7 +10,7 @@ import Direction from '../enums/Direction.js';
 import ImageName from '../enums/ImageName.js';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, images } from '../globals.js';
 import OreFactory from '../services/OreFactory.js';
-import Stone from './Stone.js';
+import Stone from '../objects/Stone.js';
 import OreName from '../enums/OreName.js';
 import Backpack from './Backpack.js';
 import Elevator from './Elevator.js';

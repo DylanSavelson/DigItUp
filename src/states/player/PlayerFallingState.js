@@ -19,28 +19,29 @@ export default class PlayerFallingState extends State {
 		super();
 
 		this.player = player;
-        this.originalPlayerSpeed = this.player.speed *1.2;
+		this.originalPlayerSpeed = this.player.speed*1.4;
 	}
 
 	enter() {
-
 	}
 
 	update(dt) {
+		this.updateLocation(dt);
         this.checkforGroundHit();
-        this.updateLocation(dt);
 	}
     
     
     updateLocation(dt)
     {
-        this.originalPlayerSpeed *= 1.04;
         this.player.position.y += this.originalPlayerSpeed * dt;
     }
 
 	checkforGroundHit()
 	{
-        this.player.changeState(PlayerStateName.Idle);
+		if(!this.player.stoneBelow || !this.player.stoneBelow.mined)
+		{
+			this.player.changeState(PlayerStateName.Idle);
+		}
 	}
 
 

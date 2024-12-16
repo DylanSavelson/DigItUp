@@ -15,7 +15,16 @@ export default class Diamond extends Stone {
         super.update(dt);
         this.setPositionsAfterMined(3);
     }
+    onCollision(collider)
+    {
+        super.onCollision(collider)
+        if(this.mined)
+        {
+            this.player.backpack.diamonds++;
+            this.cleanUp = true;
+        }
 
+    }
 
 
 }

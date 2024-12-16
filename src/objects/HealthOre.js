@@ -16,4 +16,18 @@ export default class Health extends Stone {
         this.setPositionsAfterMined(5);
     }
 
+    onCollision(collider)
+    {
+        super.onCollision(collider)
+        if(this.mined)
+        {
+            if(this.player.health + 2 >= this.player.totalHealth)
+            {
+                this.player.health+=2;
+            }
+            this.cleanUp = true;
+        }
+
+    }
+
 }

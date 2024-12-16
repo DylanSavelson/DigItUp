@@ -54,7 +54,7 @@ export default class MineShaft {
 
 	update(dt) {
 		this.renderQueue = this.buildRenderQueue();
-		this.cleanUpEntities();
+		this.cleanUpObjects();
 		this.updateEntities(dt);
 		this.updateObjects(dt);
 	}
@@ -100,8 +100,8 @@ export default class MineShaft {
 		});
 	}
 
-	cleanUpEntities() {
-		this.entities = this.entities.filter((entity) => !entity.isDead);
+	cleanUpObjects() {
+		this.objects = this.objects.filter((object) => !object?.cleanUp);
 	}
 	
 	updateEntities(dt) {
@@ -129,7 +129,7 @@ export default class MineShaft {
 
 
 	/**
-	 * @returns An array of enemies for the player to fight.
+	 * @returns An array of entities which only holds player for now
 	 */
 	generateEntities() {
 		const entities = new Array();
@@ -155,6 +155,8 @@ export default class MineShaft {
 		{
 			for(let j = 1; j <= 5; j++)
 			{
+				//for now randomize cause i wanna see but will fix with equation later
+				let oreType = OreName[pickRandomElement(Object.keys(OreName))];
 				let newOre = OreFactory.createInstance(OreName.Iron, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
 				objects.push(newOre);
 			}

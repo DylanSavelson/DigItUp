@@ -16,6 +16,16 @@ export default class Gold extends Stone {
         this.setPositionsAfterMined(2);
     }
 
+    onCollision(collider)
+    {
+        super.onCollision(collider)
+        if(this.mined)
+        {
+            this.player.backpack.gold++;
+            this.cleanUp = true;
+        }
+
+    }
 
 
 }

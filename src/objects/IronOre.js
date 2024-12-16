@@ -6,6 +6,7 @@ export default class Iron extends Stone {
      */
     constructor(sprites, position, player) {
         super(sprites, position, player); 
+        this.player = player;
     }
 
     
@@ -14,6 +15,17 @@ export default class Iron extends Stone {
         this.shouldCallSetPositionsAfterMined = false; 
         super.update(dt);
         this.setPositionsAfterMined(1);
+    }
+
+    onCollision(collider)
+    {
+        super.onCollision(collider)
+        if(this.mined)
+        {
+            this.player.backpack.iron++;
+            this.cleanUp = true;
+        }
+
     }
 
 }

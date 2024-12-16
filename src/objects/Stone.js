@@ -34,7 +34,7 @@ export default class Stone extends GameObject {
 		);
 		this.hovering = false;
 		this.positionChanged = true;
-		this.shouldCallSetPositionsAfterMined = false;
+		this.shouldCallSetPositionsAfterMined = true;
 	}
 
 	
@@ -56,7 +56,9 @@ export default class Stone extends GameObject {
 			{
 				this.mined = true;
 				this.currentAnimation = this.explodeAnimation;
+				this.isCollidable = false;
 				this.isSolid = false;
+				this.delayPickup()
 			}
 		}
 		if (this.mined)
@@ -101,7 +103,15 @@ export default class Stone extends GameObject {
 		this.checkTargetedStone(collider);
 		
 	}
-	
+
+	delayPickup() {
+		const interval = 1.5;
+		const duration = 1.5;
+		return timer.addTask(() => {}, interval, duration,() => {
+			this.isCollidable = true;
+		});
+	}
+
     async hoverOre()
     {
         const movement = 5;

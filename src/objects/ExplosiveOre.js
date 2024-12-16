@@ -2,7 +2,7 @@ import Stone from './Stone.js';
 
 export default class Explosive extends Stone {
     /**
-     * The stronger ore strong enough to help cultivate more rare ores worth more.
+     * The explodes and does damage to user unless they have a defuse kit
      */
     constructor(sprites, position, player) {
         super(sprites, position, player); 
@@ -13,7 +13,7 @@ export default class Explosive extends Stone {
     {
         this.shouldCallSetPositionsAfterMined = false; 
         super.update(dt);
-        this.setPositionsAfterMined(3);
+        this.setPositionsAfterMined(4);
     }
 
 

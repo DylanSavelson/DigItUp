@@ -35,6 +35,7 @@ export default class PlayerPickaxeSwingingState extends State {
 	exit() {
 		this.player.swinging = false;
 		this.player.swung = false;
+		this.player.targetedStone = null;
 	}
 
 	update() {

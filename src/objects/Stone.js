@@ -24,7 +24,6 @@ export default class Stone extends GameObject {
 		this.isSolid = true;
 		this.currentFrame = 0;
 		this.player = player;
-		this.explodeAnimation = new Animation([6,7,8,9,10,11], 0.05, 1);
 		this.mined = false;
 		this.dirNumber = null;
 		this.oreSprites = Sprite.generateSpritesFromSpriteSheet(
@@ -55,7 +54,6 @@ export default class Stone extends GameObject {
 			if(this.currentFrame === 5)
 			{
 				this.mined = true;
-				this.currentAnimation = this.explodeAnimation;
 				this.isCollidable = false;
 				this.isSolid = false;
 				this.delayPickup()
@@ -74,17 +72,12 @@ export default class Stone extends GameObject {
 				this.hovering = true;
 				this.hoverOre();
 			}
-			if(this.currentFrame < 11)
-			{
-				this.currentAnimation?.update(dt);
-				this.currentFrame = this.explodeAnimation.getCurrentFrame();
-			}
 		}
     }
 
 	setPositionsAfterMined(frame)
     {
-        if (this.mined && this.currentFrame === 11)
+        if (this.mined)
             {
                 this.sprites = this.oreSprites
                 this.currentFrame = frame;

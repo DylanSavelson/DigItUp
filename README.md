@@ -63,15 +63,17 @@ After pressing tab the user will be able to open the shop and view what each pro
 
 #### 🖼️ Images
 
--   Most images will be used from various Itch.io projects and possibly hand made:
--   [Itch](https://shield-arc.itch.io/free-16x16-pickaxes)
--   [Itch](https://verysmallsquares.itch.io/free-16-bit-ores-sprite-sheet)
+-   Most images will be used from various Itch.io projects and some have been hand made:
+-   [Ores](https://verysmallsquares.itch.io/free-16-bit-ores-sprite-sheet)
+-   [Miner](https://elthen.itch.io/2d-pixel-art-dwarf-miner)
+-   [Coin](https://uaeuzai.itch.io/coin-sprite)
+-   [Cave Background](https://stock.adobe.com/ca/images/Pixel-art-stone%2C-gravel-with-dark-background.-Dungeon-texture-tile-pattern%2C-/940486312?as_campaign=TinEye&as_content=tineye_match&continue-checkout=1&token=EC-8JE79745U9011701M)
 
 #### ✏️ Fonts
 
-For fonts, a simple sans-serif like Roboto will look quite nice. It's a font that is legible, light on storage size, and fun to keep with the theme we're going for.
+For fonts, I searched for a dwarven mines type of font, but then once I tried it I realized how small the pixels were and so I just went with the one that looked the nicest.
 
--   [Roboto](https://fonts.google.com/specimen/Roboto)
+-   [yoster](https://www.1001fonts.com/yoster-island-font.html)
 
 #### 🔊 Sounds
 

@@ -6,6 +6,7 @@ import Sprite from '../../lib/Sprite.js';
 import { images, timer } from '../globals.js';
 import ImageName from '../enums/ImageName.js';
 import Easing from '../../lib/Easing.js';
+import Hitbox from '../../lib/Hitbox.js';
 
 export default class Stone extends GameObject {
 	static WIDTH = 32;
@@ -23,7 +24,7 @@ export default class Stone extends GameObject {
 		this.isSolid = true;
 		this.currentFrame = 0;
 		this.player = player;
-		this.explodeAnimation = new Animation([6,7,8,9,10,11], 0.1, 1);
+		this.explodeAnimation = new Animation([6,7,8,9,10,11], 0.05, 1);
 		this.mined = false;
 		this.dirNumber = null;
 		this.oreSprites = Sprite.generateSpritesFromSpriteSheet(
@@ -33,14 +34,17 @@ export default class Stone extends GameObject {
 		);
 		this.hovering = false;
 		this.positionChanged = true;
-
+		this.shouldCallSetPositionsAfterMined = false;
 	}
 
 	
 	update(dt)
 	{
 		this.getHit(dt);
-
+		if (this.shouldCallSetPositionsAfterMined) 
+		{
+			this.setPositionsAfterMined(0);
+		}
 	}
 
 	getHit(dt) {
@@ -52,7 +56,6 @@ export default class Stone extends GameObject {
 			{
 				this.mined = true;
 				this.currentAnimation = this.explodeAnimation;
-				this.isCollidable = false;
 				this.isSolid = false;
 			}
 		}
@@ -76,7 +79,23 @@ export default class Stone extends GameObject {
 			}
 		}
     }
-    
+
+	setPositionsAfterMined(frame)
+    {
+        if (this.mined && this.currentFrame === 11)
+            {
+                this.sprites = this.oreSprites
+                this.currentFrame = frame;
+                this.dimensions = new Vector(Stone.OREHEIGHT, Stone.OREWIDTH);
+                this.hitbox = new Hitbox(
+                    this.position.x + this.hitboxOffsets.position.x,
+                    this.position.y + this.hitboxOffsets.position.y,
+                    this.dimensions.x + this.hitboxOffsets.dimensions.x,
+                    this.dimensions.y + this.hitboxOffsets.dimensions.y,
+                );
+            }
+    }
+	
 	onCollision(collider) {
 		super.onCollision(collider);
 		this.checkTargetedStone(collider);

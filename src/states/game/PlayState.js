@@ -40,8 +40,8 @@ export default class PlayState extends State {
 	render() {
 		this.mineShaft.render();
 
-		if(this.player.targetedStone)
-			this.renderTargetedStone();
+		//if(this.player.targetedStone)
+			//this.renderTargetedStone();
 
 	}
 }

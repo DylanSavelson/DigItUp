@@ -5,6 +5,7 @@ import MineShaft from '../../objects/MineShaft.js';
 import { roundedRectangle } from '../../../lib/Drawing.js';
 import Stone from '../../objects/Stone.js';
 import ImageName from '../../enums/ImageName.js';
+import Elevator from '../../objects/Elevator.js';
 
 export default class PlayState extends State {
 	constructor() {
@@ -38,10 +39,69 @@ export default class PlayState extends State {
 		context.restore();
 	}
 	
+	renderFloor()
+	{
+		context.save();
+		context.fillStyle = 'rgb(0, 0, 0)';
+		roundedRectangle(
+			context,
+			MineShaft.LEFT_EDGE,
+			MineShaft.BOTTOM_EDGE,
+			400,
+			10,
+			10,
+			true,
+			false
+		);
+		context.restore();
+	}
+
+	renderElevatorShaft()
+	{
+		context.save();
+		context.fillStyle = 'rgb(0, 0, 0)';
+		roundedRectangle(
+			context,
+			MineShaft.LEFT_EDGE + 15,
+			MineShaft.TOP_EDGE + 32,
+			3,
+			208,
+			0,
+			true,
+			false
+		);
+
+		context.fillStyle = 'rgb(0, 0, 0)';
+		roundedRectangle(
+			context,
+			MineShaft.LEFT_EDGE + 30,
+			MineShaft.TOP_EDGE + 32,
+			3,
+			208,
+			0,
+			true,
+			false
+		);
+
+		context.fillStyle = 'rgb(0, 0, 0)';
+		roundedRectangle(
+			context,
+			MineShaft.LEFT_EDGE + 8,
+			MineShaft.TOP_EDGE + 32,
+			32,
+			3,
+			0,
+			true,
+			false
+		);
+		context.restore();
+	}
+
 	render() {
 		images.render(ImageName.Background, 0, 0);
+		this.renderElevatorShaft();
 		this.mineShaft.render();
-
+		this.renderFloor();
 		//if(this.player.targetedStone)
 			//this.renderTargetedStone();
 

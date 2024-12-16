@@ -5,6 +5,7 @@ import Iron from "../objects/IronOre.js";
 import Gold from "../objects/GoldOre.js";
 import Diamond from "../objects/DiamondOre.js";
 import Health from "../objects/HealthOre.js";
+import Explosive from "../objects/ExplosiveOre.js";
 
 /**
  * Encapsulates all definitions for instantiating new ores.
@@ -27,6 +28,8 @@ export default class OreFactory {
 				return new Diamond(sprites, position, player);
 			case OreName.Health:
 				return new Health(sprites, position, player);
+			case OreName.Explosive:
+				return new Explosive(sprites, position, player);
 		}
 	}
 }

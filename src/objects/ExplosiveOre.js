@@ -1,8 +1,8 @@
 import Stone from './Stone.js';
 
-export default class Diamond extends Stone {
+export default class Explosive extends Stone {
     /**
-     * The strongest ore strong enough to help cultivate more rare ores worth more.
+     * The stronger ore strong enough to help cultivate more rare ores worth more.
      */
     constructor(sprites, position, player) {
         super(sprites, position, player); 

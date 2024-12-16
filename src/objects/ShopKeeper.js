@@ -44,7 +44,7 @@ export default class ShopKeeper extends GameObject {
         this.isCollidable = true;
         this.isSolid = true;
         this.player.shopKeeper = this;
-        this.display = true;
+        this.display = false;
         this.updatingFrame = false;
         this.oreSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(ImageName.Ores),
@@ -57,7 +57,7 @@ export default class ShopKeeper extends GameObject {
 			18
         );
         this.options = null;
-        this.stoneSellValue = Stone.sellValue(this.player.pickaxe)
+        this.saleText = "";
 	}
 
 	
@@ -198,7 +198,8 @@ export default class ShopKeeper extends GameObject {
             }));
 
             this.checkForHover();
-
+            context.font = '16px small';
+            context.fillText(this.saleText, CANVAS_WIDTH / 4 + 90, CANVAS_HEIGHT / 2 + 40);
             context.restore();
             
         }
@@ -229,7 +230,6 @@ export default class ShopKeeper extends GameObject {
 	onCollision(collider) {
 		super.onCollision(collider);
         this.checkForKeys();
-
 	}
 
     checkForKeys() {
@@ -240,19 +240,131 @@ export default class ShopKeeper extends GameObject {
 	}
 
     handleBuy(option) {
-        if (this.player.backpack.coins >= option.buyPrice) 
-        {
-            this.player.backpack.coins -= option.buyPrice;
-            console.log(`Bought item for ${option.buyPrice}¢`);
-        } 
-        else 
-        {
-            console.log('Not enough coins to buy this item.');
+        switch (option.itemType) {
+            case 0: 
+                if (this.player.backpack.coins >= option.buyPrice) 
+                {
+                    this.player.backpack.coins -= option.buyPrice;
+                    this.player.backpack.stone += 1;
+                    this.saleText =  `Bought 1 stone for ${option.buyPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText = "Not enough coins to buy 1 stone.";
+                }
+                break;
+            case 1: 
+                if (this.player.backpack.coins >= option.buyPrice) 
+                {
+                    this.player.backpack.coins -= option.buyPrice;
+                    this.saleText = `Bought 1 iron for ${option.buyPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText = 'Not enough coins to buy 1 iron.';
+                }
+                break;
+            case 2: 
+                if (this.player.backpack.coins >= option.buyPrice) 
+                {
+                    this.player.backpack.coins -= option.buyPrice;
+                    this.saleText = `Bought 1 gold for ${option.buyPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText ='Not enough coins to buy 1 gold.';
+                }
+                break;
+            case 3:
+                if (this.player.backpack.coins >= option.buyPrice)
+                {
+                    this.player.backpack.coins -= option.buyPrice;
+                    this.saleText =`Bought 1 diamond for ${option.buyPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText ='Not enough coins to buy 1 diamond.';
+                }
+                break;
+            case 4: 
+                if (this.player.backpack.coins >= option.buyPrice) {
+                    this.player.backpack.coins -= option.buyPrice;
+                    this.saleText = `Bought 1 defuse kit for ${option.buyPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText ='Not enough coins to buy 1 defuse kit.';
+                }
+                break;
+            default:
+                break;
         }
     }
     
     handleSell(option) {
-        console.log(`Sold item for ${option.sellPrice}¢`);
+        switch (option.itemType) {
+            case 0: 
+                if (this.player.backpack.stone > 0) 
+                {
+                    this.player.backpack.coins += option.sellPrice;
+                    this.player.backpack.stone -= 1;
+                    this.saleText =  `Sold 1 stone for ${option.sellPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText = "No stone to sell.";
+                }
+                break;
+            case 1: 
+                if (this.player.backpack.iron > 0) 
+                {
+                    this.player.backpack.coins += option.sellPrice;
+                    this.player.backpack.iron -= 1;
+                    this.saleText = `Sold 1 iron for ${option.sellPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText = 'No iron to sell.';
+                }
+                break;
+            case 2: 
+                if (this.player.backpack.gold > 0) 
+                {
+                    this.player.backpack.coins += option.sellPrice;
+                    this.player.backpack.gold -= 1;
+                    this.saleText = `Sold 1 gold for ${option.sellPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText ='No gold to sell';
+                }
+                break;
+            case 3:
+                if (this.player.backpack.diamonds > 0)
+                {
+                    this.player.backpack.coins += option.sellPrice;
+                    this.player.backpack.diamonds -= 1;
+                    this.saleText =`Sold 1 diamond for ${option.sellPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText ='No diamond  to sell.';
+                }
+                break;
+            case 4: 
+                if (this.player.backpack.defuseKits > 0) {
+                    this.player.backpack.coins += option.sellPrice;
+                    this.player.backpack.defuseKits -= 1;
+                    this.saleText = `Sold 1 defuse kit for ${option.sellPrice}¢`;
+                } 
+                else 
+                {
+                    this.saleText ='No defuse kits to sell.';
+                }
+                break;
+            default:
+                break;
+        }
     }
 
 

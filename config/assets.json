@@ -111,8 +111,13 @@
 	],
 	"fonts": [
 		{
-			"name": "daydream",
-			"path": "./assets/fonts/Daydream.ttf"
+			"name": "canterbury",
+			"path": "./assets/fonts/Canterbury.ttf"
+		}
+		,
+		{
+			"name": "small",
+			"path": "./assets/fonts/5₧5.ttf"
 		}
 	],
 	"sounds": [

@@ -95,14 +95,14 @@ export default class Elevator extends GameObject {
             timer.tweenAsync(
                 elevatorOrPlayer.position,
                 {  y: elevatorOrPlayer.position.y - movement },
-                3,
-                Easing.easeInQuad
+                4,
+                Easing.easeInOutQuad
             ),
             timer.tweenAsync(
                 elevatorOrPlayer.hitbox.position,
                 {  y: elevatorOrPlayer.hitbox.position.y - movement },
-                3,
-                Easing.easeInQuad
+                4,
+                Easing.easeInOutQuad
             )
         ]);
         this.moving = false;
@@ -117,13 +117,13 @@ export default class Elevator extends GameObject {
             timer.tweenAsync(
                 elevatorOrPlayer.position,
                 {  y: elevatorOrPlayer.position.y + movement },
-                3,
+                4,
                 Easing.easeOutQuad
             ),
             timer.tweenAsync(
                 elevatorOrPlayer.hitbox.position,
                 {  y: elevatorOrPlayer.hitbox.position.y + movement },
-                3,
+                4,
                 Easing.easeOutQuad
             )
         ]);

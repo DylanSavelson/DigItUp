@@ -64,7 +64,7 @@ export default class PlayState extends State {
 		roundedRectangle(
 			context,
 			MineShaft.LEFT_EDGE + 15,
-			MineShaft.TOP_EDGE + 32,
+			MineShaft.TOP_EDGE,
 			3,
 			208,
 			0,
@@ -76,7 +76,7 @@ export default class PlayState extends State {
 		roundedRectangle(
 			context,
 			MineShaft.LEFT_EDGE + 30,
-			MineShaft.TOP_EDGE + 32,
+			MineShaft.TOP_EDGE,
 			3,
 			208,
 			0,
@@ -89,6 +89,18 @@ export default class PlayState extends State {
 			context,
 			MineShaft.LEFT_EDGE + 8,
 			MineShaft.TOP_EDGE + 32,
+			32,
+			3,
+			0,
+			true,
+			false
+		);
+
+		context.fillStyle = 'rgb(34, 34, 36)';
+		roundedRectangle(
+			context,
+			MineShaft.LEFT_EDGE + 8,
+			MineShaft.TOP_EDGE,
 			32,
 			3,
 			0,

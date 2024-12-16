@@ -82,38 +82,39 @@ export default class Backpack extends GameObject {
                 true 
             );
 
-            context.font = '20px daydream';
+            context.font = '30px canterbury';
             context.fillStyle = 'black';
             context.textBaseline = 'middle';
             context.textAlign = 'center';
             context.fillText('Backpack', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 60);
 
-            context.font = '5px daydream';
+            context.font = '10px small';
             context.fillText('Stone', CANVAS_WIDTH / 4 + 13, CANVAS_HEIGHT / 2 - 30)
             context.fillText('Iron', CANVAS_WIDTH / 4 + 53, CANVAS_HEIGHT / 2 - 30);
             context.fillText('Gold', CANVAS_WIDTH / 4 + 93, CANVAS_HEIGHT / 2 - 30);
             context.fillText('Diamond', CANVAS_WIDTH / 4 + 133, CANVAS_HEIGHT / 2 - 30);
-            context.fillText('Defuse', CANVAS_WIDTH / 4  + 173, CANVAS_HEIGHT / 2 - 30);
+            context.fillText('Defuse', CANVAS_WIDTH / 4  + 176, CANVAS_HEIGHT / 2 - 30);
          
             context.fillText(this.stone.toString(), CANVAS_WIDTH / 4 + 13, CANVAS_HEIGHT / 2 )
             context.fillText(this.iron.toString(), CANVAS_WIDTH / 4 + 53, CANVAS_HEIGHT / 2 );
             context.fillText(this.gold.toString(), CANVAS_WIDTH / 4 + 93, CANVAS_HEIGHT / 2);
             context.fillText(this.diamonds.toString(), CANVAS_WIDTH / 4 + 133, CANVAS_HEIGHT / 2);
-            context.fillText(this.defuseKits.toString(), CANVAS_WIDTH / 4 + 173, CANVAS_HEIGHT / 2);
+            context.fillText(this.defuseKits.toString(), CANVAS_WIDTH / 4 + 176, CANVAS_HEIGHT / 2);
 
             this.sprites[0].render( CANVAS_WIDTH / 4 + 5, CANVAS_HEIGHT / 2 - 20);
             this.sprites[1].render( CANVAS_WIDTH / 4 + 45, CANVAS_HEIGHT / 2 - 20);
             this.sprites[2].render( CANVAS_WIDTH / 4 + 85, CANVAS_HEIGHT / 2 - 20);
             this.sprites[3].render( CANVAS_WIDTH / 4 + 125, CANVAS_HEIGHT / 2 - 20);
             //placeholder for defuse
-            this.sprites[3].render( CANVAS_WIDTH / 4 + 165, CANVAS_HEIGHT / 2 - 20);
+            this.sprites[3].render( CANVAS_WIDTH / 4 + 168, CANVAS_HEIGHT / 2 - 20);
 
             this.coin[0].render(CANVAS_WIDTH / 2 - 15 - (2* this.coins.toString().length), CANVAS_HEIGHT / 2 + 25);
+            context.font = '10px small';
 
             context.fillText(
                 this.coins.toString(),
                 CANVAS_WIDTH / 2,
-                CANVAS_HEIGHT / 1.5
+                CANVAS_HEIGHT / 1.5 - 3
             );
 
             context.restore();

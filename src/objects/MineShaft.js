@@ -47,7 +47,6 @@ export default class MineShaft {
 		this.objects = this.generateObjects();
 		this.renderQueue = this.buildRenderQueue();
 
-		// Used for drawing when this MineShaft is the next MineShaft, adjacent to the active.
 		this.adjacentOffset = new Vector();
 
 		this.isShifting = isShifting;

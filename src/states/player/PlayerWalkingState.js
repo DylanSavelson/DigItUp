@@ -60,8 +60,8 @@ export default class PlayerWalkingState extends State {
 			this.player.lastDirection = Direction.Left;
 			this.player.position.x -= this.player.speed * dt;
 
-			if (this.player.position.x <= MineShaft.LEFT_EDGE) {
-				this.player.position.x = MineShaft.LEFT_EDGE;
+			if (this.player.position.x <= MineShaft.LEFT_EDGE - 15) {
+				this.player.position.x = MineShaft.LEFT_EDGE - 15;
 			}
 		} 
 		else if (input.isKeyPressed(Input.KEYS.SPACE)) {

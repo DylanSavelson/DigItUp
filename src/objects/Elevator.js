@@ -19,8 +19,6 @@ export default class Elevator extends GameObject {
 	 */
 	constructor(position, player) {
 		super(Elevator.dimensions, position);
-        this.isCollidable = true;
-		this.isSolid = false;
 		this.currentFrame = 0;
 		this.player = player;
 		this.sprites = Sprite.generateSpritesFromSpriteSheet(
@@ -29,54 +27,83 @@ export default class Elevator extends GameObject {
 			Elevator.HEIGHT
 		);
         this.renderPriority = 102
+        this.isCollidable = true;
+        this.isSolid = true;
         this.playerInside = false;
         this.move = false;
         this.player.elevator = this;
         this.lastDirection = Direction.Up;
         this.moving = false;
+        this.hitbox.dimensions.y = 1;
+        this.hitbox.position.y += 32;
 	}
 
 	
 	update(dt)
 	{
-        if (this.move && !this.moving)
-        {
-            this.moving = true;
-            if(this.lastDirection === Direction.Up)
-            {
-                this.moveDown(this);
-                if (this.playerInside)
-                {
-                    this.moveDown(this.player)
-                }
-            }
-            else
-            {
-                this.moveUp(this);
-                if (this.playerInside)
-                {
-                    this.moveUp(this.player)
-                }
-            }
-
-        }
+        this.moveUpAndDown();
+        this.checkIfPlayerInside();
 	}
 
 
 	
 	onCollision(collider) {
-		super.onCollision(collider);		
+		super.onCollision(collider);
+
 	}
 
+    checkIfPlayerInside()
+    {
+        if(this.player.hitbox.position.x - 14 < this.hitbox.position.x)
+        {
+            this.playerInside = true;
+        }
+        else
+        {
+            this.playerInside = false;
+        }
+    }
+    moveUpAndDown()
+    {
+        if (this.move && !this.moving)
+            {
+                this.moving = true;
+                if(this.lastDirection === Direction.Up)
+                {
+                    this.moveDown(this);
+                    if (this.playerInside)
+                    {
+                        this.moveDown(this.player)
+                    }
+                }
+                else
+                {
+                    this.moveUp(this);
+                    if (this.playerInside)
+                    {
+                        this.moveUp(this.player)
+                    }
+                }
+    
+            }
+    }
     async moveUp(elevatorOrPlayer)
     {
         const movement = Elevator.HEIGHT*5;
-        await timer.tweenAsync(
-            elevatorOrPlayer.position,
-            {  y: elevatorOrPlayer.position.y - movement },
-            0.4,
-            Easing.easeInOutQuad
-        );
+        await Promise.all([
+            timer.tweenAsync(
+                elevatorOrPlayer.position,
+                {  y: elevatorOrPlayer.position.y - movement },
+                3,
+                Easing.easeInQuad
+            ),
+            timer.tweenAsync(
+                elevatorOrPlayer.hitbox.position,
+                {  y: elevatorOrPlayer.hitbox.position.y - movement },
+                3,
+                Easing.easeInQuad
+            )
+        ]);
         this.moving = false;
         this.move = false;
         this.lastDirection = Direction.Up;
@@ -85,12 +112,20 @@ export default class Elevator extends GameObject {
     async moveDown(elevatorOrPlayer)
     {
         const movement = Elevator.HEIGHT*5;
-        await timer.tweenAsync(
-            elevatorOrPlayer.position,
-            {  y: elevatorOrPlayer.position.y + movement },
-            0.4,
-            Easing.easeInOutQuad
-        );
+        await Promise.all([
+            timer.tweenAsync(
+                elevatorOrPlayer.position,
+                {  y: elevatorOrPlayer.position.y + movement },
+                3,
+                Easing.easeOutQuad
+            ),
+            timer.tweenAsync(
+                elevatorOrPlayer.hitbox.position,
+                {  y: elevatorOrPlayer.hitbox.position.y + movement },
+                3,
+                Easing.easeOutQuad
+            )
+        ]);
         this.moving = false;
         this.move = false;
         this.lastDirection = Direction.Down;

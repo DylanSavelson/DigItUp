@@ -73,7 +73,7 @@ After pressing tab the user will be able to open the shop and view what each pro
 
 For fonts, I searched for a dwarven mines type of font, but then once I tried it I realized how small the pixels were and so I just went with the one that looked the nicest.
 
--   [yoster](https://www.1001fonts.com/yoster-island-font.html)
+-   [Daydream]([https://www.1001fonts.com/yoster-island-font.html](https://www.dafont.com/daydream-3.font))
 
 #### 🔊 Sounds
 

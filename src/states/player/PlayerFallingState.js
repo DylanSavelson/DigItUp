@@ -7,6 +7,7 @@ import { input } from '../../globals.js';
 import Input from '../../../lib/Input.js';
 import { getRandomPositiveInteger } from '../../../lib/Random.js';
 import { getCollisionDirection } from '../../../lib/Collision.js';
+import MineShaft from '../../objects/MineShaft.js';
 
 export default class PlayerFallingState extends State {
 	/**
@@ -34,11 +35,14 @@ export default class PlayerFallingState extends State {
     updateLocation(dt)
     {
         this.player.position.y += this.originalPlayerSpeed * dt;
+		console.log('Player y Hitbox position:', this.player.hitbox.position.y);
+		console.log('bottom:', MineShaft.BOTTOM_EDGE - 32);
+		console.log('Stone below:', this.player.stoneBelow ? 'Present' : 'None');
     }
 
 	checkforGroundHit()
 	{
-		if(!this.player.stoneBelow || !this.player.stoneBelow.mined)
+		if (this.player.position.y >= MineShaft.BOTTOM_EDGE - 29 || (this.player.stoneBelow && !this.player.stoneBelow.mined)) 
 		{
 			this.player.changeState(PlayerStateName.Idle);
 		}

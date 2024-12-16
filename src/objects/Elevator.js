@@ -82,6 +82,7 @@ export default class Elevator extends GameObject {
                     if (this.playerInside)
                     {
                         this.moveUp(this.player)
+                        this.player.resetMine();
                     }
                 }
     

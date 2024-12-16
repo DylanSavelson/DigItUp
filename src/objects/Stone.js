@@ -22,7 +22,7 @@ export default class Stone extends GameObject {
 		this.sprites = sprites;
         this.isCollidable = true;
 		this.isSolid = true;
-		this.currentFrame = 0;
+		this.currentFrame = 4;
 		this.player = player;
 		this.mined = false;
 		this.dirNumber = null;

@@ -8,6 +8,7 @@ import Input from '../../../lib/Input.js';
 import { getRandomPositiveInteger } from '../../../lib/Random.js';
 import Stone from '../../objects/Stone.js';
 import { getCollisionDirection, isAABBCollision } from '../../../lib/Collision.js';
+import MineShaft from '../../objects/MineShaft.js';
 
 export default class PlayerIdlingState extends State {
 	/**
@@ -47,6 +48,7 @@ export default class PlayerIdlingState extends State {
 			this.player.currentAnimation = this.animation[this.player.lastDirection];
 		else
 			this.player.currentAnimation = this.animation[this.player.direction];
+		this.checkFalling = true;
 
 	}
 
@@ -94,7 +96,7 @@ export default class PlayerIdlingState extends State {
 
 	checkforFall()
 	{
-		if(this.player.stoneBelow === null || this.player.stoneBelow.mined)
+		if((this.player.stoneBelow === null || this.player.stoneBelow.mined) && this.player.hitbox.position.y <= MineShaft.BOTTOM_EDGE - 29 && !this.player.elevator.playerInside)
 		{
 			this.player.changeState(PlayerStateName.Falling);
 		}

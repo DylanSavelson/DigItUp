@@ -12,6 +12,7 @@ export default class PlayState extends State {
 		super();
 		this.player = new Player();
 		this.mineShaft = new MineShaft(this.player);
+		this.player.mineShaft = this.mineShaft;
 		
 	}
 
@@ -102,8 +103,8 @@ export default class PlayState extends State {
 		this.renderElevatorShaft();
 		this.mineShaft.render();
 		this.renderFloor();
-		//if(this.player.targetedStone)
-			//this.renderTargetedStone();
+		if(this.player.targetedStone)
+			this.renderTargetedStone();
 
 	}
 }

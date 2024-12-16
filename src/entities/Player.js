@@ -110,6 +110,7 @@ export default class Player extends GameEntity {
 		this.stoneBelow = null;
 		this.backpack = new Backpack();
 		this.elevator = null;
+		this.mineShaft = null;
 	}
 
 
@@ -142,6 +143,7 @@ export default class Player extends GameEntity {
 			this.targetedStone = null;  
 		}
 	}
+
 	reset() {
 		this.position.x = MineShaft.CENTER_X - Player.WIDTH / 2;
 		this.position.y = MineShaft.CENTER_Y - Player.HEIGHT / 2;
@@ -164,6 +166,11 @@ export default class Player extends GameEntity {
 		stateMachine.change(PlayerStateName.Idle);
 
 		return stateMachine;
+	}
+
+	resetMine()
+	{
+		this.mineShaft.resetMine();
 	}
 
 }

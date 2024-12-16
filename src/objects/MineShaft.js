@@ -40,7 +40,7 @@ export default class MineShaft {
 	 *
 	 * @param {Player} player
 	 */
-	constructor(player, isShifting = false) {
+	constructor(player) {
 		this.player = player;
 		this.dimensions = new Vector(MineShaft.WIDTH, MineShaft.HEIGHT);
 		this.entities = this.generateEntities();
@@ -48,8 +48,6 @@ export default class MineShaft {
 		this.renderQueue = this.buildRenderQueue();
 
 		this.adjacentOffset = new Vector();
-
-		this.isShifting = isShifting;
 	}
 
 	update(dt) {
@@ -145,26 +143,42 @@ export default class MineShaft {
 	generateObjects() {
 		const objects = [];
 		objects.push(this.player.backpack);
-		const sprites = Sprite.generateSpritesFromSpriteSheet(
+		const stoneSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(ImageName.Stone),
 			Stone.HEIGHT,
 			Stone.WIDTH
 		);
+		this.generateOres(objects,stoneSprites);
 
-		for(let i = 1; i <= 11; i++)
-		{
-			for(let j = 1; j <= 5; j++)
-			{
-				//for now randomize cause i wanna see but will fix with equation later
-				let oreType = OreName[pickRandomElement(Object.keys(OreName))];
-				let newOre = OreFactory.createInstance(OreName.Iron, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
-				objects.push(newOre);
-			}
-
-		}
 		objects.push(new Elevator(new Vector(MineShaft.LEFT_EDGE + 8, MineShaft.TOP_EDGE),this.player))
 
 		return objects;
+	}
+
+	generateOres(objects,sprites)
+	{
+		for(let i = 1; i <= 11; i++)
+			{
+				for(let j = 1; j <= 5; j++)
+				{
+					//for now randomize cause i wanna see but will fix with equation later
+					let oreType = OreName[pickRandomElement(Object.keys(OreName))];
+					let newOre = OreFactory.createInstance(OreName.Iron, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
+					objects.push(newOre);
+				}
+	
+			}
+	}
+
+	resetMine()
+	{
+		const stoneSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Stone),
+			Stone.HEIGHT,
+			Stone.WIDTH
+		);
+		this.objects = this.objects.filter((object) => !(object instanceof Stone));
+		this.generateOres(this.objects, stoneSprites);
 	}
 
 

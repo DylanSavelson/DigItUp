@@ -60,7 +60,7 @@ export default class PlayState extends State {
 	renderElevatorShaft()
 	{
 		context.save();
-		context.fillStyle = 'rgb(0, 0, 0)';
+		context.fillStyle = 'rgb(34, 34, 36)';
 		roundedRectangle(
 			context,
 			MineShaft.LEFT_EDGE + 15,
@@ -72,7 +72,7 @@ export default class PlayState extends State {
 			false
 		);
 
-		context.fillStyle = 'rgb(0, 0, 0)';
+		context.fillStyle = 'rgb(34, 34, 36)';
 		roundedRectangle(
 			context,
 			MineShaft.LEFT_EDGE + 30,
@@ -84,7 +84,7 @@ export default class PlayState extends State {
 			false
 		);
 
-		context.fillStyle = 'rgb(0, 0, 0)';
+		context.fillStyle = 'rgb(34, 34, 36)';
 		roundedRectangle(
 			context,
 			MineShaft.LEFT_EDGE + 8,
@@ -98,9 +98,38 @@ export default class PlayState extends State {
 		context.restore();
 	}
 
+	renderShopSupports()
+	{
+		context.save();
+		context.fillStyle = 'rgb(34, 34, 36)';
+		roundedRectangle(
+			context,
+			MineShaft.RIGHT_EDGE - 12,
+			MineShaft.TOP_EDGE + 32,
+			4,
+			208,
+			0,
+			true,
+			false
+		);
+
+		context.fillStyle = 'rgb(34, 34, 36)';
+		roundedRectangle(
+			context,
+			MineShaft.RIGHT_EDGE - 56,
+			MineShaft.TOP_EDGE + 32,
+			4,
+			208,
+			0,
+			true,
+			false
+		);
+		context.restore();
+	}
 	render() {
 		images.render(ImageName.Background, 0, 0);
 		this.renderElevatorShaft();
+		this.renderShopSupports();
 		this.mineShaft.render();
 		this.renderFloor();
 		if(this.player.targetedStone)

@@ -44,8 +44,10 @@ export default class Stone extends GameObject{
 		{
 			this.setPositionsAfterMined(0);
 		}
+		this.checkStoneBelowNotMined();
 	}
 
+	
 	getHit(dt) {
         if(this.player.targetedStone === this && this.player.swinging === true && !this.mined)
 		{
@@ -94,12 +96,11 @@ export default class Stone extends GameObject{
 	onCollision(collider) {
 		super.onCollision(collider);
 		this.checkTargetedStone(collider);
-		
 	}
 
 	delayPickup() {
-		const interval = 0.75;
-		const duration = 0.75;
+		const interval = .75;
+		const duration = .75;
 		return timer.addTask(() => {}, interval, duration,() => {
 			this.isCollidable = true;
 		});
@@ -123,6 +124,13 @@ export default class Stone extends GameObject{
         this.hovering = false;
     }
 
+	checkStoneBelowNotMined()
+	{
+		if(this.player.stoneBelow === this && this.player.stoneBelow.mined)
+		{
+			this.player.stoneBelow = null;
+		}
+	}
 	checkTargetedStone(collider) 
 	{
 		this.dirNumber = getCollisionDirection(collider.position.x, collider.position.y, collider.dimensions.x, collider.dimensions.y, this.position.x,this.position.y,

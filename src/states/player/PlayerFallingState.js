@@ -35,9 +35,6 @@ export default class PlayerFallingState extends State {
     updateLocation(dt)
     {
         this.player.position.y += this.originalPlayerSpeed * dt;
-		console.log('Player y Hitbox position:', this.player.hitbox.position.y);
-		console.log('bottom:', MineShaft.BOTTOM_EDGE - 32);
-		console.log('Stone below:', this.player.stoneBelow ? 'Present' : 'None');
     }
 
 	checkforGroundHit()

@@ -62,32 +62,56 @@ export default class ShopKeeper extends GameObject {
         this.updateFrame();
         this.checkForBuyOrSell();
 
-
 	}
     checkForBuyOrSell()
     {
         if (this.display && input.isMouseButtonPressed(Input.MOUSE.LEFT)) {
-            const mousePos = input.getMousePosition();
-    
+            let mousePos = input.getMousePosition();
             this.options.forEach(option => {
-                if (
-                    mousePos.x > option.buyZone.x &&
+                if (mousePos.x > option.buyZone.x &&
                     mousePos.x < option.buyZone.x + option.buyZone.width &&
                     mousePos.y > option.buyZone.y &&
-                    mousePos.y < option.buyZone.y + option.buyZone.height
-                ) {
+                    mousePos.y < option.buyZone.y + option.buyZone.height) 
+                {
                     this.handleBuy(option);
-                } else if (
-                    mousePos.x > option.sellZone.x &&
+                } 
+                else if (mousePos.x > option.sellZone.x &&
                     mousePos.x < option.sellZone.x + option.sellZone.width &&
                     mousePos.y > option.sellZone.y &&
-                    mousePos.y < option.sellZone.y + option.sellZone.height
-                ) {
+                    mousePos.y < option.sellZone.y + option.sellZone.height) 
+                {
                     this.handleSell(option);
                 }
             });
         }
     }
+
+    checkForHover()
+    {
+        if (this.display && this.options) {
+            let mousePos = input.getMousePosition();
+            this.options.forEach(option => {
+                if (mousePos.x > option.buyZone.x &&
+                    mousePos.x < option.buyZone.x + option.buyZone.width &&
+                    mousePos.y > option.buyZone.y &&
+                    mousePos.y < option.buyZone.y + option.buyZone.height) 
+                {
+                    context.fillStyle = 'rgba(255, 255, 255, 0.4)'
+                    context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
+
+                } 
+                else if (mousePos.x > option.sellZone.x &&
+                    mousePos.x < option.sellZone.x + option.sellZone.width &&
+                    mousePos.y > option.sellZone.y &&
+                    mousePos.y < option.sellZone.y + option.sellZone.height) 
+                {
+                    context.fillStyle = 'rgba(255, 255, 255, 0.4)'
+                    context.fillRect(option.sellZone.x, option.sellZone.y, option.sellZone.width, option.sellZone.height);
+                }
+            });
+        }
+    }
+
     render()
     {
         super.render();
@@ -152,13 +176,24 @@ export default class ShopKeeper extends GameObject {
             this.options = this.options.map(option => ({
                 x: option.x,
                 y: option.y,
-                width: 32,
-                height: 32,
-                buyZone: { x: option.x, y: option.y, width: 32, height: 16 },
-                sellZone: { x: option.x, y: option.y + 16, width: 32, height: 16 },
+                buyZone: {
+                    x: option.x - 8, 
+                    y: option.y + 18, 
+                    width: 44,
+                    height: 8, 
+                },
+                sellZone: {
+                    x: option.x - 10, 
+                    y: option.y + 28, 
+                    width: 44,
+                    height: 8, 
+                },
                 buyPrice: option.buyPrice,
                 sellPrice: option.sellPrice
             }));
+
+            this.checkForHover();
+
             context.restore();
             
         }

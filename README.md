@@ -68,6 +68,7 @@ After pressing tab the user will be able to open the shop and view what each pro
 -   [Miner](https://elthen.itch.io/2d-pixel-art-dwarf-miner)
 -   [Coin](https://uaeuzai.itch.io/coin-sprite)
 -   [Cave Background](https://stock.adobe.com/ca/images/Pixel-art-stone%2C-gravel-with-dark-background.-Dungeon-texture-tile-pattern%2C-/940486312?as_campaign=TinEye&as_content=tineye_match&continue-checkout=1&token=EC-8JE79745U9011701M)
+-   [Shop Keeper](https://slowdevelopment.itch.io/shop-with-shopkeeper)
 
 #### ✏️ Fonts
 

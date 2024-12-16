@@ -199,6 +199,7 @@ export default class ShopKeeper extends GameObject {
 
             this.checkForHover();
             context.font = '16px small';
+            context.fillStyle = 'black';
             context.fillText(this.saleText, CANVAS_WIDTH / 4 + 90, CANVAS_HEIGHT / 2 + 40);
             context.restore();
             

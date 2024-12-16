@@ -28,6 +28,7 @@ export default class PlayerBackpackState extends State {
     exit()
     {
         this.player.shopKeeper.display = false;
+		this.player.shopKeeper.saleText = ""
     }
 
 	update(dt) {

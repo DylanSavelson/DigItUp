@@ -66,6 +66,7 @@ After pressing tab the user will be able to open the shop and view what each pro
 -   Most images will be used from various Itch.io projects and some have been hand made:
 -   [Ores](https://verysmallsquares.itch.io/free-16-bit-ores-sprite-sheet)
 -   [Miner](https://elthen.itch.io/2d-pixel-art-dwarf-miner)
+-   [Coin](https://uaeuzai.itch.io/coin-sprite)
 
 #### ✏️ Fonts
 

@@ -1,9 +1,10 @@
 import Stone from "../objects/Stone.js";
 import OreName from "../enums/OreName.js";
 import Vector from "../../lib/Vector.js";
-import Iron from "../objects/Iron.js";
-import Gold from "../objects/Gold.js";
-import Diamond from "../objects/Diamond.js";
+import Iron from "../objects/IronOre.js";
+import Gold from "../objects/GoldOre.js";
+import Diamond from "../objects/DiamondOre.js";
+import Health from "../objects/HealthOre.js";
 
 /**
  * Encapsulates all definitions for instantiating new ores.
@@ -24,6 +25,8 @@ export default class OreFactory {
 				return new Gold(sprites, position, player);
 			case OreName.Diamond:
 				return new Diamond(sprites, position, player);
+			case OreName.Health:
+				return new Health(sprites, position, player);
 		}
 	}
 }

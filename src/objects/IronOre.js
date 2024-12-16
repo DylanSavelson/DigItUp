@@ -1,6 +1,4 @@
-import Vector from '../../lib/Vector.js';
 import Stone from './Stone.js';
-import Hitbox from '../../lib/Hitbox.js';
 
 export default class Iron extends Stone {
     /**

@@ -1,8 +1,10 @@
 import GameObject from './GameObject.js';
 import Vector from '../../lib/Vector.js';
-import { CANVAS_HEIGHT, CANVAS_WIDTH, context } from '../globals.js';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images } from '../globals.js';
 import { roundedRectangle } from '../../lib/Drawing.js';
 import Stone from './Stone.js';
+import Sprite from '../../lib/Sprite.js';
+import ImageName from '../enums/ImageName.js';
 
 
 export default class Backpack extends GameObject {
@@ -23,9 +25,14 @@ export default class Backpack extends GameObject {
     /**
      * The backpack, where all ores, defuse kits and coins are stored
      */
-    constructor(sprites, player) {
+    constructor(player) {
         super(Backpack.dimensions, Backpack.position);
-        this.sprites = sprites;
+        this.oreSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Ores),
+			Stone.OREWIDTH,
+			Stone.OREHEIGHT
+		);
+        this.sprites = this.oreSprites;
         this.isCollidable = false;
         this.isSolid = false;
         this.player = player;
@@ -69,7 +76,39 @@ export default class Backpack extends GameObject {
                 false, 
                 true 
             );
-            
+
+            context.font = '20px yoster';
+            context.fillStyle = 'black';
+            context.textBaseline = 'middle';
+            context.textAlign = 'center';
+            context.fillText('Backpack', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 60);
+
+            context.font = '8px yoster';
+            context.fillText('Stone', CANVAS_WIDTH / 3.75 + 10, CANVAS_HEIGHT / 2 - 30)
+            context.fillText('Iron', CANVAS_WIDTH / 3.75 + 49, CANVAS_HEIGHT / 2 - 30);
+            context.fillText('Gold', CANVAS_WIDTH / 3.75 + 89, CANVAS_HEIGHT / 2 - 30);
+            context.fillText('Diamond', CANVAS_WIDTH / 3.75 + 129, CANVAS_HEIGHT / 2 - 30);
+            context.fillText('Defuse', CANVAS_WIDTH / 3.75 + 169, CANVAS_HEIGHT / 2 - 30);
+         
+            context.fillText(this.stone.toString(), CANVAS_WIDTH / 3.75 + 10, CANVAS_HEIGHT / 2 )
+            context.fillText(this.iron.toString(), CANVAS_WIDTH / 3.75 + 49, CANVAS_HEIGHT / 2 );
+            context.fillText(this.gold.toString(), CANVAS_WIDTH / 3.75 + 89, CANVAS_HEIGHT / 2);
+            context.fillText(this.diamonds.toString(), CANVAS_WIDTH / 3.75 + 129, CANVAS_HEIGHT / 2);
+            context.fillText(this.defuseKits.toString(), CANVAS_WIDTH / 3.75 + 169, CANVAS_HEIGHT / 2);
+
+            this.sprites[0].render( CANVAS_WIDTH / 3.75, CANVAS_HEIGHT / 2 - 20);
+            this.sprites[1].render( CANVAS_WIDTH / 3.75 + 40, CANVAS_HEIGHT / 2 - 20);
+            this.sprites[2].render( CANVAS_WIDTH / 3.75 + 80, CANVAS_HEIGHT / 2 - 20);
+            this.sprites[3].render( CANVAS_WIDTH / 3.75 + 120, CANVAS_HEIGHT / 2 - 20);
+            //placeholder for defuse
+            this.sprites[3].render( CANVAS_WIDTH / 3.75 + 160, CANVAS_HEIGHT / 2 - 20);
+
+            context.fillText(
+                `Coins: ${this.coins}`,
+                CANVAS_WIDTH / 2,
+                CANVAS_HEIGHT / 1.7
+            );
+
             context.restore();
             
         }

@@ -86,6 +86,14 @@
         }
 	],
 	"fonts": [
+		{
+			"name": "yoster",
+			"path": "./assets/fonts/yoster.ttf"
+		},
+		{
+			"name": "MINER",
+			"path": "./assets/fonts/MINER.ttf"
+		}
 	],
 	"sounds": [
 		

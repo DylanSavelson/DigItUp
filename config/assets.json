@@ -77,6 +77,12 @@
 			"path": "./assets/images/Stone.png",
 			"width": 384,
 			"height": 32
+        },
+		{
+            "name": "ores",
+			"path": "./assets/images/ores.png",
+			"width": 99,
+			"height": 16
         }
 	],
 	"fonts": [

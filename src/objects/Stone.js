@@ -2,10 +2,15 @@ import Animation from '../../lib/Animation.js';
 import GameObject from './GameObject.js';
 import Vector from '../../lib/Vector.js';
 import { getCollisionDirection } from '../../lib/Collision.js';
+import Sprite from '../../lib/Sprite.js';
+import { images } from '../globals.js';
+import ImageName from '../enums/ImageName.js';
 
 export default class Stone extends GameObject {
 	static WIDTH = 32;
 	static HEIGHT = 32;
+	static OREWIDTH = 16;
+	static OREHEIGHT = 16;
 	static dimensions = new Vector(this.WIDTH,this.HEIGHT)
 	/**
 	 * The base ore, can contain other ores or just a stone.
@@ -20,20 +25,21 @@ export default class Stone extends GameObject {
 		this.explodeAnimation = new Animation([6,7,8,9,10,11], 0.1, 1);
 		this.mined = false;
 		this.dirNumber = null;
+		this.oreSprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Ores),
+			Stone.OREWIDTH,
+			Stone.OREHEIGHT
+		);
 	}
 
 	
 	update(dt)
 	{
-		this.getHit();
-		if (this.mined && this.currentFrame < 11)
-		{
-			this.currentAnimation?.update(dt);
-			this.currentFrame = this.explodeAnimation.getCurrentFrame();
-		}
+		this.getHit(dt);
+
 	}
 
-	getHit() {
+	getHit(dt) {
         if(this.player.targetedStone === this && this.player.swinging === true && !this.mined)
 		{
 			this.currentFrame++;
@@ -46,6 +52,11 @@ export default class Stone extends GameObject {
 				this.isSolid = false;
 			}
 		}
+		if (this.mined && this.currentFrame < 11)
+			{
+				this.currentAnimation?.update(dt);
+				this.currentFrame = this.explodeAnimation.getCurrentFrame();
+			}
     }
     
 	onCollision(collider) {

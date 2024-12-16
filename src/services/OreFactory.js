@@ -1,6 +1,7 @@
 import Stone from "../objects/Stone.js";
 import OreName from "../enums/OreName.js";
 import Vector from "../../lib/Vector.js";
+import Iron from "../objects/Iron.js";
 
 /**
  * Encapsulates all definitions for instantiating new ores.
@@ -15,6 +16,8 @@ export default class OreFactory {
 		switch (type) {
 			case OreName.Stone:
 				return new Stone(sprites, position, player);
+			case OreName.Iron:
+				return new Iron(sprites, position, player);
 		}
 	}
 }

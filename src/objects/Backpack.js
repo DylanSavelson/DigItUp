@@ -29,7 +29,6 @@ export default class Backpack extends GameObject {
         this.isCollidable = false;
         this.isSolid = false;
         this.player = player;
-        this.maxOre = 5;
         this.stone = 0;
         this.iron = 0;
         this.gold = 0;

@@ -111,6 +111,7 @@ export default class Player extends GameEntity {
 		this.backpack = new Backpack();
 		this.elevator = null;
 		this.mineShaft = null;
+		this.shopKeeper = null;
 	}
 
 

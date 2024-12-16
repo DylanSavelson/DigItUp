@@ -15,7 +15,8 @@ const ImageName = {
 	Stone: 'stone',
 	Ores: 'ores',
 	Coin: 'coin',
-	Elevator: 'elevator'
+	Elevator: 'elevator',
+	ShopKeeper: 'shopkeeper'
 };
 
 export default ImageName;

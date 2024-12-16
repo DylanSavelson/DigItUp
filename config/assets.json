@@ -101,6 +101,12 @@
 			"path": "./assets/images/elevator.png",
 			"width": 32,
 			"height": 32
+        },
+		{
+            "name": "shopkeeper",
+			"path": "./assets/images/ShopKeeper.png",
+			"width": 64,
+			"height": 32
         }
 	],
 	"fonts": [

@@ -14,6 +14,7 @@ import Stone from '../objects/Stone.js';
 import OreName from '../enums/OreName.js';
 import Backpack from './Backpack.js';
 import Elevator from './Elevator.js';
+import ShopKeeper from './ShopKeeper.js';
 
 export default class MineShaft {
 	static WIDTH = CANVAS_WIDTH / Stone.WIDTH - 2;
@@ -151,6 +152,7 @@ export default class MineShaft {
 		this.generateOres(objects,stoneSprites);
 
 		objects.push(new Elevator(new Vector(MineShaft.LEFT_EDGE + 8, MineShaft.TOP_EDGE),this.player))
+		objects.push(new ShopKeeper(new Vector(MineShaft.RIGHT_EDGE - 64, MineShaft.TOP_EDGE),this.player))
 
 		return objects;
 	}

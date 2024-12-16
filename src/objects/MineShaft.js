@@ -13,6 +13,7 @@ import OreFactory from '../services/OreFactory.js';
 import Stone from './Stone.js';
 import OreName from '../enums/OreName.js';
 import Backpack from './Backpack.js';
+import Elevator from './Elevator.js';
 
 export default class MineShaft {
 	static WIDTH = CANVAS_WIDTH / Stone.WIDTH - 2;
@@ -162,6 +163,7 @@ export default class MineShaft {
 			}
 
 		}
+		objects.push(new Elevator(new Vector(MineShaft.LEFT_EDGE + 8, MineShaft.TOP_EDGE),this.player))
 
 		return objects;
 	}

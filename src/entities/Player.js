@@ -109,6 +109,7 @@ export default class Player extends GameEntity {
 		this.swung = false;
 		this.stoneBelow = null;
 		this.backpack = new Backpack();
+		this.elevator = null;
 	}
 
 

@@ -70,7 +70,12 @@ export default class PlayerWalkingState extends State {
 		}
 		else if (input.isKeyPressed(Input.KEYS.B)) {
 			this.player.changeState(PlayerStateName.Backpack);
-		}else {
+		}
+		else if (input.isKeyPressed(Input.KEYS.E)) 
+		{
+			this.player.elevator.move = true;
+		}
+		else {
 			this.player.changeState(PlayerStateName.Idle);
 		}
 	}

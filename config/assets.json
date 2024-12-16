@@ -95,6 +95,12 @@
 			"path": "./assets/images/Background.png",
 			"width": 384,
 			"height": 208
+        },
+		{
+            "name": "elevator",
+			"path": "./assets/images/elevator.png",
+			"width": 32,
+			"height": 32
         }
 	],
 	"fonts": [

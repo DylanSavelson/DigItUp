@@ -73,6 +73,9 @@ export default class PlayerIdlingState extends State {
 		else if (input.isKeyPressed(Input.KEYS.B)) {
 			this.player.changeState(PlayerStateName.Backpack);
 		}
+		else if (input.isKeyPressed(Input.KEYS.E)) {
+			this.player.elevator.move = true;
+		}
 	}
 
 	characterYawn()

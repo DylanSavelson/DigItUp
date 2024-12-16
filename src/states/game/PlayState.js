@@ -1,9 +1,10 @@
-import { context, debug, sounds, stateMachine, timer } from '../../globals.js';
+import { context, debug, images, sounds, stateMachine, timer } from '../../globals.js';
 import State from "../../../lib/State.js";
 import Player from "../../entities/Player.js";
 import MineShaft from '../../objects/MineShaft.js';
 import { roundedRectangle } from '../../../lib/Drawing.js';
 import Stone from '../../objects/Stone.js';
+import ImageName from '../../enums/ImageName.js';
 
 export default class PlayState extends State {
 	constructor() {
@@ -38,6 +39,7 @@ export default class PlayState extends State {
 	}
 	
 	render() {
+		images.render(ImageName.Background, 0, 0);
 		this.mineShaft.render();
 
 		//if(this.player.targetedStone)

@@ -89,6 +89,12 @@
 			"path": "./assets/images/Coin.png",
 			"width": 99,
 			"height": 16
+        },
+		{
+            "name": "background",
+			"path": "./assets/images/Background.png",
+			"width": 384,
+			"height": 208
         }
 	],
 	"fonts": [

@@ -14,7 +14,7 @@ const ImageName = {
 	PlayerDiamondSwing: 'player_diamond_swing',
 	Stone: 'stone',
 	Ores: 'ores',
-	Coin: 'coin'
+	Coin: 'coin',
 };
 
 export default ImageName;

@@ -83,16 +83,18 @@
 			"path": "./assets/images/ores.png",
 			"width": 99,
 			"height": 16
+        },
+		{
+            "name": "coin",
+			"path": "./assets/images/Coin.png",
+			"width": 99,
+			"height": 16
         }
 	],
 	"fonts": [
 		{
-			"name": "yoster",
-			"path": "./assets/fonts/yoster.ttf"
-		},
-		{
-			"name": "MINER",
-			"path": "./assets/fonts/MINER.ttf"
+			"name": "daydream",
+			"path": "./assets/fonts/Daydream.ttf"
 		}
 	],
 	"sounds": [

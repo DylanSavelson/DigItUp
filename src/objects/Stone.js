@@ -3,8 +3,9 @@ import GameObject from './GameObject.js';
 import Vector from '../../lib/Vector.js';
 import { getCollisionDirection } from '../../lib/Collision.js';
 import Sprite from '../../lib/Sprite.js';
-import { images } from '../globals.js';
+import { images, timer } from '../globals.js';
 import ImageName from '../enums/ImageName.js';
+import Easing from '../../lib/Easing.js';
 
 export default class Stone extends GameObject {
 	static WIDTH = 32;
@@ -30,6 +31,9 @@ export default class Stone extends GameObject {
 			Stone.OREWIDTH,
 			Stone.OREHEIGHT
 		);
+		this.hovering = false;
+		this.positionChanged = true;
+
 	}
 
 	
@@ -52,11 +56,25 @@ export default class Stone extends GameObject {
 				this.isSolid = false;
 			}
 		}
-		if (this.mined && this.currentFrame < 11)
+		if (this.mined)
+		{
+			if (this.positionChanged)
+			{
+				this.position.x += 8;
+				this.position.y += 11;
+				this.positionChanged = false;
+			}
+			if(!this.hovering)
+			{
+				this.hovering = true;
+				this.hoverOre();
+			}
+			if(this.currentFrame < 11)
 			{
 				this.currentAnimation?.update(dt);
 				this.currentFrame = this.explodeAnimation.getCurrentFrame();
 			}
+		}
     }
     
 	onCollision(collider) {
@@ -64,6 +82,24 @@ export default class Stone extends GameObject {
 		this.checkTargetedStone(collider);
 		
 	}
+	
+    async hoverOre()
+    {
+        const movement = 5;
+        await timer.tweenAsync(
+			this.position,
+			{  y: this.position.y + movement },
+			1.2,
+            Easing.easeInOutQuad
+		);
+        await timer.tweenAsync(
+			this.position,
+			{  y: this.position.y - movement },
+			1.2,
+            Easing.easeInOutQuad
+		);
+        this.hovering = false;
+    }
 
 	checkTargetedStone(collider) 
 	{

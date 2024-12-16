@@ -3,7 +3,8 @@ const PlayerStateName = {
 	Walking: 'walking',
 	PickaxeSwinging: 'pickaxe-swinging',
 	Falling: 'falling',
-	Backpack: "backpack"
+	Backpack: "backpack",
+	Shop: "shop"
 };
 
 export default PlayerStateName;

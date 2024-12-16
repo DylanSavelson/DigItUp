@@ -15,6 +15,7 @@ import OreName from '../enums/OreName.js';
 import PlayerFallingState from '../states/player/PlayerFallingState.js';
 import PlayerBackpackState from '../states/player/PlayerBackpackState.js';
 import Backpack from '../objects/Backpack.js';
+import PlayerShopState from '../states/player/PlayerShopState.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -162,6 +163,7 @@ export default class Player extends GameEntity {
 		stateMachine.add(PlayerStateName.PickaxeSwinging,new PlayerPickaxeSwingingState(this));
 		stateMachine.add(PlayerStateName.Falling, new PlayerFallingState(this));	
 		stateMachine.add(PlayerStateName.Backpack, new PlayerBackpackState(this));	
+		stateMachine.add(PlayerStateName.Shop, new PlayerShopState(this));
 		stateMachine.add(PlayerStateName.Idle, new PlayerIdlingState(this));
 
 		stateMachine.change(PlayerStateName.Idle);

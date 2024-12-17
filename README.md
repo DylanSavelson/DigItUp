@@ -72,9 +72,10 @@ After pressing tab the user will be able to open the shop and view what each pro
 
 #### ✏️ Fonts
 
-For fonts, I searched for a dwarven mines type of font, but then once I tried it I realized how small the pixels were and so I just went with the one that looked the nicest.
+For fonts, I searched for a dwarven mines type of font, but then once I tried it I realized how small the pixels were and so I just went with the ones that looked the nicest.
 
--   [Daydream]([https://www.1001fonts.com/yoster-island-font.html](https://www.dafont.com/daydream-3.font))
+-   [Canterbury](https://www.1001fonts.com/canterbury-font.html)
+-   [5x5 font](https://www.dafont.com/5x5.font)
 
 #### 🔊 Sounds
 

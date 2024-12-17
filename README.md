@@ -69,12 +69,14 @@ After pressing tab the user will be able to open the shop and view what each pro
 -   [Coin](https://uaeuzai.itch.io/coin-sprite)
 -   [Cave Background](https://stock.adobe.com/ca/images/Pixel-art-stone%2C-gravel-with-dark-background.-Dungeon-texture-tile-pattern%2C-/940486312?as_campaign=TinEye&as_content=tineye_match&continue-checkout=1&token=EC-8JE79745U9011701M)
 -   [Shop Keeper](https://slowdevelopment.itch.io/shop-with-shopkeeper)
+-   [Pickaxes](https://shield-arc.itch.io/free-16x16-pickaxes)
 
 #### ✏️ Fonts
 
-For fonts, I searched for a dwarven mines type of font, but then once I tried it I realized how small the pixels were and so I just went with the one that looked the nicest.
+For fonts, I searched for a dwarven mines type of font, but then once I tried it I realized how small the pixels were and so I just went with the ones that looked the nicest.
 
--   [Daydream]([https://www.1001fonts.com/yoster-island-font.html](https://www.dafont.com/daydream-3.font))
+-   [Canterbury](https://www.1001fonts.com/canterbury-font.html)
+-   [5x5 font](https://www.dafont.com/5x5.font)
 
 #### 🔊 Sounds
 

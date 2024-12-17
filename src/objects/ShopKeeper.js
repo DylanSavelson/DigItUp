@@ -1,7 +1,7 @@
 import GameObject from '../objects/GameObject.js';
 import Vector from '../../lib/Vector.js';
 import Sprite from '../../lib/Sprite.js';
-import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, timer } from '../globals.js';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, sounds, timer } from '../globals.js';
 import ImageName from '../enums/ImageName.js'
 import PlayerStateName from '../enums/PlayerStateName.js';
 import Input from '../../lib/Input.js';
@@ -10,6 +10,7 @@ import { roundedRectangle } from '../../lib/Drawing.js';
 import Iron from './IronOre.js';
 import Gold from './GoldOre.js';
 import Diamond from './DiamondOre.js';
+import SoundName from '../enums/SoundName.js';
 
 export default class ShopKeeper extends GameObject {
 	static WIDTH = 64;
@@ -282,6 +283,7 @@ export default class ShopKeeper extends GameObject {
             case 0: 
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
+                    sounds.play(SoundName.Coin);
                     this.player.backpack.coins -= option.buyPrice;
                     this.player.backpack.stone++;
                     this.saleText =  `Bought 1 stone for ${option.buyPrice}¢`;
@@ -294,6 +296,7 @@ export default class ShopKeeper extends GameObject {
             case 1: 
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
+                    sounds.play(SoundName.Coin);
                     this.player.backpack.coins -= option.buyPrice;
                     this.player.backpack.iron++;
                     this.saleText = `Bought 1 iron for ${option.buyPrice}¢`;
@@ -306,6 +309,7 @@ export default class ShopKeeper extends GameObject {
             case 2: 
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
+                    sounds.play(SoundName.Coin);
                     this.player.backpack.coins -= option.buyPrice;
                     this.player.backpack.gold++;
                     this.saleText = `Bought 1 gold for ${option.buyPrice}¢`;
@@ -318,6 +322,7 @@ export default class ShopKeeper extends GameObject {
             case 3:
                 if (this.player.backpack.coins >= option.buyPrice)
                 {
+                    sounds.play(SoundName.Coin);
                     this.player.backpack.coins -= option.buyPrice;
                     this.player.backpack.diamonds++;
                     this.saleText =`Bought 1 diamond for ${option.buyPrice}¢`;
@@ -330,6 +335,7 @@ export default class ShopKeeper extends GameObject {
             case 4: 
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
+                    sounds.play(SoundName.Coin);
                     this.player.backpack.coins -= option.buyPrice;
                     this.player.backpack.defuseKits++;
                     this.saleText = `Bought 1 defuse kit for ${option.buyPrice}¢`;
@@ -344,6 +350,7 @@ export default class ShopKeeper extends GameObject {
             {
                 if (this.player.pickaxe.upgrade()) 
                 {
+                    sounds.play(SoundName.Coin);
                     this.saleText = `Upgraded Pickaxe`;
                 } 
                 else 
@@ -365,6 +372,7 @@ export default class ShopKeeper extends GameObject {
                     this.player.backpack.coins += option.sellPrice;
                     this.player.backpack.stone -= 1;
                     this.saleText =  `Sold 1 stone for ${option.sellPrice}¢`;
+                    sounds.play(SoundName.Coin);
                 } 
                 else 
                 {
@@ -377,6 +385,7 @@ export default class ShopKeeper extends GameObject {
                     this.player.backpack.coins += option.sellPrice;
                     this.player.backpack.iron -= 1;
                     this.saleText = `Sold 1 iron for ${option.sellPrice}¢`;
+                    sounds.play(SoundName.Coin);
                 } 
                 else 
                 {
@@ -389,6 +398,7 @@ export default class ShopKeeper extends GameObject {
                     this.player.backpack.coins += option.sellPrice;
                     this.player.backpack.gold -= 1;
                     this.saleText = `Sold 1 gold for ${option.sellPrice}¢`;
+                    sounds.play(SoundName.Coin);
                 } 
                 else 
                 {
@@ -401,6 +411,7 @@ export default class ShopKeeper extends GameObject {
                     this.player.backpack.coins += option.sellPrice;
                     this.player.backpack.diamonds -= 1;
                     this.saleText =`Sold 1 diamond for ${option.sellPrice}¢`;
+                    sounds.play(SoundName.Coin);
                 } 
                 else 
                 {
@@ -412,6 +423,7 @@ export default class ShopKeeper extends GameObject {
                     this.player.backpack.coins += option.sellPrice;
                     this.player.backpack.defuseKits -= 1;
                     this.saleText = `Sold 1 defuse kit for ${option.sellPrice}¢`;
+                    sounds.play(SoundName.Coin);
                 } 
                 else 
                 {

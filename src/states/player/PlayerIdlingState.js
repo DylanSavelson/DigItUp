@@ -92,6 +92,7 @@ export default class PlayerIdlingState extends State {
             {
                 this.player.explodingOre.defused = true;
                 this.player.backpack.defuseKits--;
+				this.player.explodingOre = null;
             }
 		} 
 	}

@@ -3,11 +3,12 @@ import GameObject from './GameObject.js';
 import Vector from '../../lib/Vector.js';
 import { getCollisionDirection } from '../../lib/Collision.js';
 import Sprite from '../../lib/Sprite.js';
-import { images, timer } from '../globals.js';
+import { images, sounds, timer } from '../globals.js';
 import ImageName from '../enums/ImageName.js';
 import Easing from '../../lib/Easing.js';
 import Hitbox from '../../lib/Hitbox.js';
 import Direction from '../enums/Direction.js';
+import SoundName from '../enums/SoundName.js';
 
 export default class Elevator extends GameObject {
 	static WIDTH = 32;
@@ -43,14 +44,15 @@ export default class Elevator extends GameObject {
 	{
         this.moveUpAndDown();
         this.checkIfPlayerInside();
+        this.playSound();
 	}
 
 
 	
 	onCollision(collider) {
-		super.onCollision(collider);
-
+		super.onCollision(collider);  
 	}
+
 
     checkIfPlayerInside()
     {
@@ -64,30 +66,42 @@ export default class Elevator extends GameObject {
             this.playerInside = false;
         }
     }
+    
+    playSound()
+    {
+        if(this.moving)
+        {
+            sounds.play(SoundName.Elevator);
+        }
+        else
+        {
+            sounds.stop(SoundName.Elevator);
+        }
+    }
     moveUpAndDown()
     {
         if (this.move && !this.moving)
+        {
+            this.moving = true;
+            if(this.lastDirection === Direction.Up)
             {
-                this.moving = true;
-                if(this.lastDirection === Direction.Up)
+                this.moveDown(this);
+                if (this.playerInside)
                 {
-                    this.moveDown(this);
-                    if (this.playerInside)
-                    {
-                        this.moveDown(this.player)
-                    }
+                    this.moveDown(this.player)
                 }
-                else
-                {
-                    this.moveUp(this);
-                    if (this.playerInside)
-                    {
-                        this.moveUp(this.player)
-                        this.player.resetMine();
-                    }
-                }
-    
             }
+            else
+            {
+                this.moveUp(this);
+                if (this.playerInside)
+                {
+                    this.moveUp(this.player)
+                    this.player.resetMine();
+                }
+            }
+
+        }
     }
     async moveUp(elevatorOrPlayer)
     {

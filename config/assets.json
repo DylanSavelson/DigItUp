@@ -145,6 +145,48 @@
 		}
 	],
 	"sounds": [
-		
+		{
+			"name": "pickaxe",
+			"path": "./assets/sounds/pickaxe.ogg",
+			"size": 1,
+			"volume": 0.1
+		},
+		{
+			"name": "swing",
+			"path": "./assets/sounds/swing.wav",
+			"size": 1,
+			"volume": 0.5
+		},
+		{
+			"name": "explosion",
+			"path": "./assets/sounds/explosion.wav",
+			"size": 1,
+			"volume": 1
+		},
+		{
+			"name": "beeping",
+			"path": "./assets/sounds/beeping.ogg",
+			"size": 1,
+			"volume": 0.1
+		},
+		{
+			"name": "elevator",
+			"path": "./assets/sounds/elevator.wav",
+			"size": 1,
+			"volume": 0.1
+		},
+		{
+			"name": "coin",
+			"path": "./assets/sounds/coin.wav",
+			"size": 1,
+			"volume": 0.5
+		}
+		,
+		{
+			"name": "pickup",
+			"path": "./assets/sounds/pickup.wav",
+			"size": 1,
+			"volume": 0.5
+		}
 	]
 }

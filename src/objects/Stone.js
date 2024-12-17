@@ -3,10 +3,11 @@ import GameObject from '../objects/GameObject.js';
 import Vector from '../../lib/Vector.js';
 import { getCollisionDirection } from '../../lib/Collision.js';
 import Sprite from '../../lib/Sprite.js';
-import { images, timer } from '../globals.js';
+import { images, sounds, timer } from '../globals.js';
 import ImageName from '../enums/ImageName.js';
 import Easing from '../../lib/Easing.js';
 import Hitbox from '../../lib/Hitbox.js';
+import SoundName from '../enums/SoundName.js';
 
 export default class Stone extends GameObject{
 	static WIDTH = 32;
@@ -24,7 +25,7 @@ export default class Stone extends GameObject{
 		this.sprites = sprites;
         this.isCollidable = true;
 		this.isSolid = true;
-		this.currentFrame = 4;
+		this.currentFrame = 0;
 		this.player = player;
 		this.mined = false;
 		this.dirNumber = null;
@@ -39,6 +40,7 @@ export default class Stone extends GameObject{
 		this.exploded = false;
 		this.stopHovering = false;
 		this.stone = true;
+		this.explosive = false;
 	}
 
 	static sellValue(pickaxe)
@@ -48,7 +50,7 @@ export default class Stone extends GameObject{
 	
 	update(dt)
 	{
-		this.getHit(dt);
+		this.getHit();
 		if(!this.exploded)
 			this.checkHover();
 		if (this.shouldCallSetPositionsAfterMined) 
@@ -59,11 +61,12 @@ export default class Stone extends GameObject{
 	}
 
 	
-	getHit(dt) {
+	getHit() {
         if(this.player.targetedStone === this && this.player.swinging === true && !this.mined)
 		{
 			this.currentFrame++;
 			this.player.swinging = false;
+			sounds.play(SoundName.Pickaxe);
 			if(this.currentFrame === 5)
 			{
 				this.mined = true;
@@ -112,6 +115,10 @@ export default class Stone extends GameObject{
 	onCollision(collider) {
 		super.onCollision(collider);
 		this.checkTargetedStone(collider);
+		if(this.mined && !this.explosive)
+		{
+			sounds.play(SoundName.Pickup)
+		}
 		if(this.mined && this.stone)
 		{
 			this.player.backpack.stone++;

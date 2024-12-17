@@ -1,7 +1,8 @@
 import Input from '../../lib/Input.js';
 import Sprite from '../../lib/Sprite.js';
 import ImageName from '../enums/ImageName.js';
-import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, timer } from '../globals.js';
+import SoundName from '../enums/SoundName.js';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, sounds, timer } from '../globals.js';
 import Stone from '../objects/Stone.js';
 
 export default class Explosive extends Stone {
@@ -25,7 +26,7 @@ export default class Explosive extends Stone {
         this.defused = false;
         this.updatingFrame = false;
         this.stone = false;
-
+        this.explosive = true;
     }
 
     
@@ -62,11 +63,11 @@ export default class Explosive extends Stone {
             this.currentFrame = 0;
             this.sprites = this.explosionSprites;
             await timer.addTask(()=> {
-                if (this.currentFrame < 7)
+                if (this.currentFrame < 6)
                 {
                     this.currentFrame++;
                 }
-            },0.2,1.4, () =>{
+            },0.2,1.6, () =>{
                 this.cleanUp = true;
             });
         }
@@ -94,6 +95,7 @@ export default class Explosive extends Stone {
             context.textAlign = 'center';
             context.fillText(`Defused!`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 60);
             context.restore();
+            this.player.explodingOre = null;
         }
     }
 
@@ -104,8 +106,19 @@ export default class Explosive extends Stone {
         await timer.addTask(()=>
         {
             this.color = this.color === "red" ? "black" : "red";
+
         },
         0.3
+        ,6);
+        await timer.addTask(()=>
+        {
+            if(!this.defused)
+            {
+                sounds.play(SoundName.Beeping);
+
+            }
+        },
+        0.1
         ,6);
         await timer.addTask(()=> {
             if(this.defused === false)
@@ -119,14 +132,16 @@ export default class Explosive extends Stone {
         6, 
         () =>{
             this.counting = false;
-            if(this.defused === false)
+            if(this.defused === false && !this.exploded)
             {
+                sounds.play(SoundName.Explosion);
                 this.exploded = true;
                 this.player.health-=2;
             }
             else
             {
                 this.cleanUp = true;
+                this.player.explodingOre = null;
             }
         });
     }

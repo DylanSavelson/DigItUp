@@ -73,7 +73,7 @@ export default class MineShaft {
 		});
 		this.explosives?.forEach((explosive) =>
 		{
-			if(explosive.mined)
+			if(explosive.mined && !explosive.cleanUp)
 			{
 				explosive.renderCountdown();
 			}
@@ -83,6 +83,7 @@ export default class MineShaft {
 	updateExplosive()
 	{
 		this.explosives = this.objects.filter((object) => object instanceof Explosive);
+		this.explosives = this.explosives.filter((object) => !object?.cleanUp);
 	}
 	/**
 	 * Order the entities by their renderPriority fields. If the renderPriority

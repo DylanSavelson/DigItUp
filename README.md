@@ -82,7 +82,7 @@ For fonts, I searched for a dwarven mines type of font, but then once I tried it
 All sounds were taken from [freesound.org](https://freesound.org) for the actions of mining blocks, purchasing items and everything else.
 
 -   [Pickaxe](https://freesound.org/people/NoisyRedFox/sounds/760567/)
--   [Coins](https://freesound.org/people/DominikBraun/sounds/483507/)
+-   [Transaction](https://freesound.org/people/DominikBraun/sounds/483507/)
 -   [Explosion](https://freesound.org/people/Joao_Janz/sounds/478278/)
 -   [Swing](https://freesound.org/people/InspectorJ/sounds/394426/)
 -   [Beeping](https://freesound.org/people/SamsterBirdies/sounds/467882/)

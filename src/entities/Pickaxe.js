@@ -1,5 +1,6 @@
 import Sprite from "../../lib/Sprite.js";
 import ImageName from "../enums/ImageName.js";
+import PickaxeLevel from "../enums/PickaxeLevel.js";
 import { images } from "../globals.js";
 import GameEntity from "./GameEntity.js";
 
@@ -40,7 +41,7 @@ export default class Pickaxe extends GameEntity {
                 swing: ImageName.PlayerDiamondSwing,
             }
         };
-        this.pickLevel = "Wood"
+        this.pickLevel = PickaxeLevel.Wood;
         this.pickLevelInt = 0;
         this.levelUpCoins = 100;
         this.levelUpOres = 10;
@@ -61,7 +62,7 @@ export default class Pickaxe extends GameEntity {
     changePickMulties()
     {
         switch (this.pickLevel) {
-            case "Iron":
+            case PickaxeLevel.Iron:
                 this.coinMultiplier = 1.5;
                 this.stone = 15;
                 this.iron = 11;
@@ -70,7 +71,7 @@ export default class Pickaxe extends GameEntity {
                 this.explosive = 5;
                 this.health = 4;  
                 break;
-            case "Gold":
+            case PickaxeLevel.Gold:
                 this.coinMultiplier = 2.0;
                 this.stone = 10;
                 this.iron = 12;
@@ -79,7 +80,7 @@ export default class Pickaxe extends GameEntity {
                 this.explosive = 4;
                 this.health = 6; 
                 break;
-            case "Diamond":
+            case PickaxeLevel.Diamond:
                 this.coinMultiplier = 2.5;
                 this.stone = 0;
                 this.iron = 14;
@@ -96,7 +97,7 @@ export default class Pickaxe extends GameEntity {
     upgrade()
     {
         switch (this.pickLevel) {
-            case "Wood":
+            case PickaxeLevel.Wood:
                 if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.iron)
                 {
                     this.pickLevelInt++;
@@ -104,14 +105,14 @@ export default class Pickaxe extends GameEntity {
                     this.player.backpack.coins-= this.levelUpCoins;
                     this.levelUpCoins = 200;
                     this.levelUpMessage = "10x Gold";
-                    this.pickLevel = "Iron";
+                    this.pickLevel = PickaxeLevel.Iron;
                     return true;
                 }
                 else
                 {
                     return false;
                 }
-            case "Iron":
+            case PickaxeLevel.Iron:
                 if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.gold)
                 {
                     this.pickLevelInt++;
@@ -119,20 +120,20 @@ export default class Pickaxe extends GameEntity {
                     this.player.backpack.coins -= this.levelUpCoins;
                     this.levelUpCoins = 300;
                     this.levelUpMessage = "10x Diamond";
-                    this.pickLevel = "Gold";
+                    this.pickLevel = PickaxeLevel.Gold;
                     return true;
                 }
                 else
                 {
                     return false;
                 }
-            case "Gold":
+            case PickaxeLevel.Gold:
                 if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.diamonds)
                 {
                     this.player.backpack.diamonds -= 10;
                     this.player.backpack.coins -= this.levelUpCoins;
                     this.levelUpMessage = "Maxed!";
-                    this.pickLevel = "Diamond";
+                    this.pickLevel = PickaxeLevel.Diamond;
                     return true;
                 }
                 else

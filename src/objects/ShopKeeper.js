@@ -12,6 +12,7 @@ import Gold from './GoldOre.js';
 import Diamond from './DiamondOre.js';
 import SoundName from '../enums/SoundName.js';
 import GameStateName from '../enums/GameStateName.js';
+import PickaxeLevel from '../enums/PickaxeLevel.js';
 
 export default class ShopKeeper extends GameObject {
 	static WIDTH = 64;
@@ -112,7 +113,7 @@ export default class ShopKeeper extends GameObject {
                     mousePos.y > option.buyZone.y &&
                     mousePos.y < option.buyZone.y + option.buyZone.height) 
                 {
-                    if(option.itemType === 5 && this.player.pickaxe.pickLevel !== "Diamond")
+                    if(option.itemType === 5 && this.player.pickaxe.pickLevel !== PickaxeLevel.Diamond)
                     {
                         context.fillStyle = 'rgba(255, 255, 255, 0.4)'
                         context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
@@ -203,7 +204,7 @@ export default class ShopKeeper extends GameObject {
                 }
                 else
                 {
-                    if(this.player.pickaxe.pickLevel === "Diamond")
+                    if(this.player.pickaxe.pickLevel === PickaxeLevel.Diamond)
                     {
                         context.fillText(`${this.player.pickaxe.levelUpMessage}`, option.x + 10, option.y + 20);
 
@@ -369,7 +370,7 @@ export default class ShopKeeper extends GameObject {
                 break;
 
             case 6: 
-            if(this.player.pickaxe.pickLevel !== "Diamond")
+            if(this.player.pickaxe.pickLevel !== PickaxeLevel.Diamond)
             {
                 if (this.player.pickaxe.upgrade()) 
                 {

@@ -61,7 +61,7 @@ export default class MineShaft {
 		this.renderQueue.forEach((elementToRender) => {
 			if(elementToRender instanceof Pickaxe)
 			{
-				
+
 			}
 			else
 			{
@@ -138,7 +138,7 @@ export default class MineShaft {
 	 */
 	generateEntities() {
 		const entities = new Array();
-
+		
 		entities.push(this.player.pickaxe);
 		entities.push(this.player);
 

@@ -114,8 +114,12 @@ export default class ShopKeeper extends GameObject {
                     mousePos.y > option.sellZone.y &&
                     mousePos.y < option.sellZone.y + option.sellZone.height) 
                 {
-                    context.fillStyle = 'rgba(255, 255, 255, 0.4)'
-                    context.fillRect(option.sellZone.x, option.sellZone.y, option.sellZone.width, option.sellZone.height);
+                    if(option.itemType !== 5)
+                    {
+                        context.fillStyle = 'rgba(255, 255, 255, 0.4)'
+                        context.fillRect(option.sellZone.x, option.sellZone.y, option.sellZone.width, option.sellZone.height);
+                    }
+
                 }
             });
         }
@@ -166,13 +170,24 @@ export default class ShopKeeper extends GameObject {
                 { sprite: this.oreSprites[1], x: CANVAS_WIDTH / 4 - 20, y: CANVAS_HEIGHT / 2, buyPrice: 75, sellPrice: Iron.sellValue(this.player.pickaxe)},
                 { sprite: this.oreSprites[2], x: CANVAS_WIDTH / 4 + 30, y: CANVAS_HEIGHT / 2 - 40, buyPrice: 100, sellPrice: Gold.sellValue(this.player.pickaxe)},
                 { sprite: this.oreSprites[3], x: CANVAS_WIDTH / 4 + 30, y: CANVAS_HEIGHT / 2, buyPrice: 125, sellPrice: Diamond.sellValue(this.player.pickaxe) },
-                { sprite: this.defuse[0], x: CANVAS_WIDTH / 4 + 80, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 20, sellPrice: 1}
+                { sprite: this.defuse[0], x: CANVAS_WIDTH / 4 + 80, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 20, sellPrice: 1},
+                { sprite :this.player.pickaxe.sprites[this.player.pickaxe.pickLevelInt], x: CANVAS_WIDTH / 4 + 170, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 100, sellPrice: 1, upgrade: true}
             ];
     
             this.options.forEach((option) => {
                 option.sprite.render(option.x, option.y);
-                context.fillText(`Buy ${option.buyPrice}¢`, option.x + 12, option.y + 20);
-                context.fillText(`Sell ${option.sellPrice}¢`, option.x + 12, option.y + 30);
+                if(!option.upgrade)
+                {
+                    context.fillText(`Buy ${option.buyPrice}¢`, option.x + 10, option.y + 20);
+                    context.fillText(`Sell ${option.sellPrice}¢`, option.x + 10, option.y + 30);
+                }
+                else
+                {
+                    context.fillText(`Upgrade`, option.x + 10, option.y + 20);
+                    context.fillText(`${this.player.pickaxe.levelUpCoins}¢`, option.x + 10, option.y + 30);
+                    context.fillText(`${this.player.pickaxe.levelUpMessage}`, option.x + 10, option.y + 40);
+                }
+
             });
 
             this.coin[0].render(CANVAS_WIDTH / 2 - 120 - (2.2* this.player.backpack.coins.toString().length), CANVAS_HEIGHT / 2 + 65);
@@ -187,13 +202,13 @@ export default class ShopKeeper extends GameObject {
                 x: option.x,
                 y: option.y,
                 buyZone: {
-                    x: option.x - 10, 
+                    x: option.x - 12, 
                     y: option.y + 18, 
                     width: 44,
                     height: 8, 
                 },
                 sellZone: {
-                    x: option.x - 10, 
+                    x: option.x - 12, 
                     y: option.y + 28, 
                     width: 44,
                     height: 8, 
@@ -297,7 +312,8 @@ export default class ShopKeeper extends GameObject {
                 }
                 break;
             case 4: 
-                if (this.player.backpack.coins >= option.buyPrice) {
+                if (this.player.backpack.coins >= option.buyPrice) 
+                {
                     this.player.backpack.coins -= option.buyPrice;
                     this.player.backpack.defuseKits++;
                     this.saleText = `Bought 1 defuse kit for ${option.buyPrice}¢`;
@@ -307,6 +323,16 @@ export default class ShopKeeper extends GameObject {
                     this.saleText ='Not enough coins to buy 1 defuse kit.';
                 }
                 break;
+            case 5: 
+            if (this.player.pickaxe.upgrade()) 
+            {
+                this.saleText = `Upgraded Pickaxe`;
+            } 
+            else 
+            {
+                this.saleText ='Missing materials';
+            }
+            break;
             default:
                 break;
         }

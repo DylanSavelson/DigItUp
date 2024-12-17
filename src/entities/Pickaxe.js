@@ -1,4 +1,6 @@
+import Sprite from "../../lib/Sprite.js";
 import ImageName from "../enums/ImageName.js";
+import { images } from "../globals.js";
 import GameEntity from "./GameEntity.js";
 
 export default class Pickaxe extends GameEntity {
@@ -11,6 +13,11 @@ export default class Pickaxe extends GameEntity {
         super();
         this.player = player;
         this.coinMultiplier = 1.0;
+        this.sprites = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Pickaxes),
+			16,
+			16
+        );
 		this.pickLevels = {
             Wood: {
                 walk: ImageName.PlayerWoodWalk,
@@ -33,7 +40,11 @@ export default class Pickaxe extends GameEntity {
                 swing: ImageName.PlayerDiamondSwing,
             }
         };
-        this.pickLevel = "Iron"
+        this.pickLevel = "Wood"
+        this.pickLevelInt = 0;
+        this.levelUpCoins = 100;
+        this.levelUpOres = 10;
+        this.levelUpMessage = "10x Iron";
     }
 
     update(dt)
@@ -55,6 +66,56 @@ export default class Pickaxe extends GameEntity {
                 break;
             default:
                 this.coinMultiplier = 1.0;
+        }
+    }
+
+    upgrade()
+    {
+        switch (this.pickLevel) {
+            case "Wood":
+                if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.iron)
+                {
+                    this.pickLevelInt++;
+                    this.player.backpack.iron-= 10;
+                    this.player.backpack.coins-= this.levelUpCoins;
+                    this.levelUpCoins = 200;
+                    this.levelUpMessage = "10x Gold";
+                    this.pickLevel = "Iron";
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "Iron":
+                if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.gold)
+                {
+                    this.pickLevelInt++;
+                    this.player.backpack.gold -= 10;
+                    this.player.backpack.coins -= this.levelUpCoins;
+                    this.levelUpCoins = 300;
+                    this.levelUpMessage = "10x Diamond";
+                    this.pickLevel = "Gold";
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "Gold":
+                if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.diamonds)
+                {
+                    this.pickLevelInt++;
+                    this.player.backpack.diamonds -= 10;
+                    this.player.backpack.coins -= this.levelUpCoins;
+                    this.levelUpMessage = "Maxed!";
+                    this.pickLevel = "Diamond";
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
         }
     }
 

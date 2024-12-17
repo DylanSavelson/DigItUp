@@ -113,6 +113,12 @@
 			"path": "./assets/images/DefuseKit.png",
 			"width": 16,
 			"height": 16
+		},
+		{
+			"name": "pickaxes",
+			"path": "./assets/images/Pickaxes.png",
+			"width": 48,
+			"height": 16
 		}
 	],
 	"fonts": [

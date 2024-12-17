@@ -5,7 +5,8 @@ const SoundName = {
     Beeping: 'beeping',
     Elevator: 'elevator',
     Coin: 'coin',
-    Pickup: 'pickup'
+    Pickup: 'pickup',
+    Music: 'music'
 };
 
 export default SoundName;

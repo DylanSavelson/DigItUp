@@ -155,31 +155,31 @@
 			"name": "pickaxe",
 			"path": "./assets/sounds/pickaxe.ogg",
 			"size": 1,
-			"volume": 0.1
+			"volume": 0.05
 		},
 		{
 			"name": "swing",
 			"path": "./assets/sounds/swing.wav",
 			"size": 1,
-			"volume": 0.5
+			"volume": 0.2
 		},
 		{
 			"name": "explosion",
 			"path": "./assets/sounds/explosion.wav",
 			"size": 1,
-			"volume": 1
+			"volume": 0.5
 		},
 		{
 			"name": "beeping",
 			"path": "./assets/sounds/beeping.ogg",
 			"size": 1,
-			"volume": 0.1
+			"volume": 0.05
 		},
 		{
 			"name": "elevator",
 			"path": "./assets/sounds/elevator.wav",
 			"size": 1,
-			"volume": 0.1
+			"volume": 0.01
 		},
 		{
 			"name": "coin",
@@ -192,7 +192,15 @@
 			"name": "pickup",
 			"path": "./assets/sounds/pickup.wav",
 			"size": 1,
-			"volume": 0.5
+			"volume": 0.3
+		}
+		,
+		{
+			"name": "music",
+			"path": "./assets/sounds/music.wav",
+			"size": 1,
+			"volume": 0.05,
+			"loop": true
 		}
 	]
 }

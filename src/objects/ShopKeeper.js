@@ -113,12 +113,12 @@ export default class ShopKeeper extends GameObject {
                     mousePos.y > option.buyZone.y &&
                     mousePos.y < option.buyZone.y + option.buyZone.height) 
                 {
-                    if(option.itemType === 5 && this.player.pickaxe.pickLevel !== PickaxeLevel.Diamond)
+                    if(option.itemType === 6 && this.player.pickaxe.pickLevel !== PickaxeLevel.Diamond)
                     {
                         context.fillStyle = 'rgba(255, 255, 255, 0.4)'
                         context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
                     }
-                    else if (option.itemType !== 5)
+                    else if (option.itemType !== 6)
                     {
                         context.fillStyle = 'rgba(255, 255, 255, 0.4)'
                         context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);

@@ -217,9 +217,8 @@ export default class MineShaft {
 					while (oreCounts[oreType] >= oreLimits[oreType]);
 		
 					oreCounts[oreType]++;
-							const newOre = OreFactory.createInstance(
-						//OreName[oreType],
-						OreName.Explosive,
+						const newOre = OreFactory.createInstance(
+						OreName[oreType],
 						sprites,
 						this.player,
 						new Vector(32 * i, MineShaft.BOTTOM_EDGE - 32 * j)

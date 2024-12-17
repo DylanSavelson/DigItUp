@@ -57,7 +57,8 @@ export default class Elevator extends GameObject {
     checkIfPlayerInside()
     {
         const distance = this.player.hitbox.position.y - this.hitbox.position.y;
-        if(this.player.hitbox.position.x - 14 < this.hitbox.position.x && ((distance > -7 && this.lastDirection == Direction.DOwn) || (distance < 153 && this.lastDirection == Direction.Up)))
+        const xDistance = this.player.hitbox.position.x - this.hitbox.position.x;
+        if( xDistance <= 18 && ((distance > -8 && this.lastDirection == Direction.Up) || (distance < 153 && this.lastDirection == Direction.Down)))
         {
             this.playerInside = true;
         }
@@ -103,9 +104,10 @@ export default class Elevator extends GameObject {
 
         }
     }
+
     async moveUp(elevatorOrPlayer)
     {
-        const movement = Elevator.HEIGHT*5;
+        const movement = Elevator.HEIGHT*5 + 1;
         await Promise.all([
             timer.tweenAsync(
                 elevatorOrPlayer.position,
@@ -127,7 +129,7 @@ export default class Elevator extends GameObject {
 
     async moveDown(elevatorOrPlayer)
     {
-        const movement = Elevator.HEIGHT*5;
+        const movement = Elevator.HEIGHT*5 + 1;
         await Promise.all([
             timer.tweenAsync(
                 elevatorOrPlayer.position,

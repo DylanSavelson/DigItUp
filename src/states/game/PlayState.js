@@ -33,7 +33,9 @@ export default class PlayState extends State {
 
 			this.player.pickaxe.pickLevel = playerData.pickaxe.pickLevel;
 			this.player.pickaxe.pickLevelInt = playerData.pickaxe.pickLevelInt;
-			this.player.totalTime = playerData.totalTime;
+
+			this.player.totalTime = playerData.time;
+			this.player.health = playerData.health;
 
 			this.player.resetMine();
 			this.player.position.x = 150;
@@ -68,6 +70,7 @@ export default class PlayState extends State {
 			timer.addTask(
 				() => {
 				  this.player.totalTime += 1; 
+				  console.log(this.player.totalTime)
 					if (this.player.win)
 					{
 						stateMachine.change(GameStateName.Victory, this.player.totalTime);
@@ -104,8 +107,8 @@ export default class PlayState extends State {
 				GameSaveManager.savePlayerData(this.player);
 				this.savingGame = true;
 			},
-			10,
-			10,
+			1.8,
+			1.8,
 			() =>
 			{
 				this.savingGame = false;

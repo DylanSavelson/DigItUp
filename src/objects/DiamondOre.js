@@ -21,6 +21,7 @@ export default class Diamond extends Stone {
 	{
 		return Math.floor(pickaxe.coinMultiplier * Diamond.baseValue);
 	}
+    
     onCollision(collider)
     {
         super.onCollision(collider)

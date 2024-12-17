@@ -105,7 +105,6 @@ export default class Pickaxe extends GameEntity {
             case "Gold":
                 if(this.levelUpCoins <= this.player.backpack.coins && this.levelUpOres <= this.player.backpack.diamonds)
                 {
-                    this.pickLevelInt++;
                     this.player.backpack.diamonds -= 10;
                     this.player.backpack.coins -= this.levelUpCoins;
                     this.levelUpMessage = "Maxed!";
@@ -116,6 +115,7 @@ export default class Pickaxe extends GameEntity {
                 {
                     return false;
                 }
+                
         }
     }
 

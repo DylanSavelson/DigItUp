@@ -47,9 +47,9 @@ export default class Backpack extends GameObject {
         this.isSolid = false;
         this.player = player;
         this.stone = 1;
-        this.iron = 2;
-        this.gold = 3;
-        this.diamonds = 4;
+        this.iron = 12;
+        this.gold = 13;
+        this.diamonds = 14;
         this.coins = 1000;
         this.defuseKits = 5;
         this.display = false;

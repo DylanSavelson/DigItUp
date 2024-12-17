@@ -105,8 +105,16 @@ export default class ShopKeeper extends GameObject {
                     mousePos.y > option.buyZone.y &&
                     mousePos.y < option.buyZone.y + option.buyZone.height) 
                 {
-                    context.fillStyle = 'rgba(255, 255, 255, 0.4)'
-                    context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
+                    if(option.itemType === 5 && this.player.pickaxe.pickLevel !== "Diamond")
+                    {
+                        context.fillStyle = 'rgba(255, 255, 255, 0.4)'
+                        context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
+                    }
+                    else if (option.itemType !== 5)
+                    {
+                        context.fillStyle = 'rgba(255, 255, 255, 0.4)'
+                        context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
+                    }
 
                 } 
                 else if (mousePos.x > option.sellZone.x &&
@@ -183,9 +191,17 @@ export default class ShopKeeper extends GameObject {
                 }
                 else
                 {
-                    context.fillText(`Upgrade`, option.x + 10, option.y + 20);
-                    context.fillText(`${this.player.pickaxe.levelUpCoins}¢`, option.x + 10, option.y + 30);
-                    context.fillText(`${this.player.pickaxe.levelUpMessage}`, option.x + 10, option.y + 40);
+                    if(this.player.pickaxe.pickLevel === "Diamond")
+                    {
+                        context.fillText(`${this.player.pickaxe.levelUpMessage}`, option.x + 10, option.y + 20);
+
+                    }
+                    else
+                    {
+                        context.fillText(`Upgrade`, option.x + 10, option.y + 20);
+                        context.fillText(`${this.player.pickaxe.levelUpCoins}¢`, option.x + 10, option.y + 30);
+                        context.fillText(`${this.player.pickaxe.levelUpMessage}`, option.x + 10, option.y + 40);
+                    }
                 }
 
             });
@@ -324,15 +340,18 @@ export default class ShopKeeper extends GameObject {
                 }
                 break;
             case 5: 
-            if (this.player.pickaxe.upgrade()) 
+            if(this.player.pickaxe.pickLevel !== "Diamond")
             {
-                this.saleText = `Upgraded Pickaxe`;
-            } 
-            else 
-            {
-                this.saleText ='Missing materials';
+                if (this.player.pickaxe.upgrade()) 
+                {
+                    this.saleText = `Upgraded Pickaxe`;
+                } 
+                else 
+                {
+                    this.saleText ='Missing materials';
+                }
+                break;
             }
-            break;
             default:
                 break;
         }

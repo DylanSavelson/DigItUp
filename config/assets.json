@@ -125,6 +125,12 @@
 			"path": "./assets/images/hearts.png",
 			"width": 96,
 			"height": 16
+		},
+		{
+			"name": "explosion",
+			"path": "./assets/images/explosion.png",
+			"width": 336,
+			"height": 48
 		}
 	],
 	"fonts": [

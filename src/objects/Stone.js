@@ -36,6 +36,8 @@ export default class Stone extends GameObject{
 		this.hovering = false;
 		this.positionChanged = true;
 		this.shouldCallSetPositionsAfterMined = true;
+		this.exploded = false;
+		this.stopHovering = false;
 	}
 
 	static sellValue(pickaxe)
@@ -46,6 +48,8 @@ export default class Stone extends GameObject{
 	update(dt)
 	{
 		this.getHit(dt);
+		if(!this.exploded)
+			this.checkHover();
 		if (this.shouldCallSetPositionsAfterMined) 
 		{
 			this.setPositionsAfterMined(0);
@@ -67,22 +71,27 @@ export default class Stone extends GameObject{
 				this.delayPickup()
 			}
 		}
-		if (this.mined)
-		{
-			if (this.positionChanged)
-			{
-				this.position.x += 8;
-				this.position.y += 11;
-				this.positionChanged = false;
-			}
-			if(!this.hovering)
-			{
-				this.hovering = true;
-				this.hoverOre();
-			}
-		}
+
     }
 
+	checkHover()
+	{
+		if (this.mined)
+			{
+				if (this.positionChanged)
+				{
+					this.position.x += 8;
+					this.position.y += 11;
+					this.positionChanged = false;
+				}
+				if(!this.hovering && !this.stopHovering)
+				{
+					this.hovering = true;
+					this.hoverOre();
+				}
+			}
+	}
+	
 	setPositionsAfterMined(frame)
     {
         if (this.mined)

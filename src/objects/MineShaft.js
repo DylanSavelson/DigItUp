@@ -15,6 +15,7 @@ import OreName from '../enums/OreName.js';
 import Elevator from './Elevator.js';
 import ShopKeeper from './ShopKeeper.js';
 import Pickaxe from '../entities/Pickaxe.js'
+import Explosive from './ExplosiveOre.js';
 export default class MineShaft {
 	static WIDTH = CANVAS_WIDTH / Stone.WIDTH - 2;
 	static HEIGHT = Math.floor(CANVAS_HEIGHT / Stone.WIDTH);
@@ -55,6 +56,7 @@ export default class MineShaft {
 		this.cleanUpObjects();
 		this.updateEntities(dt);
 		this.updateObjects(dt);
+		this.updateExplosive();
 	}
 
 	render() {
@@ -69,8 +71,19 @@ export default class MineShaft {
 			}
 
 		});
+		this.explosives?.forEach((explosive) =>
+		{
+			if(explosive.mined)
+			{
+				explosive.renderCountdown();
+			}
+		})
 	}
 
+	updateExplosive()
+	{
+		this.explosives = this.objects.filter((object) => object instanceof Explosive);
+	}
 	/**
 	 * Order the entities by their renderPriority fields. If the renderPriority
 	 * is the same, then sort the entities by their bottom positions. This will
@@ -171,7 +184,7 @@ export default class MineShaft {
 				{
 					//for now randomize cause i wanna see but will fix with equation later
 					let oreType = OreName[pickRandomElement(Object.keys(OreName))];
-					let newOre = OreFactory.createInstance(OreName.Health, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
+					let newOre = OreFactory.createInstance(OreName.Explosive, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
 					objects.push(newOre);
 				}
 	

@@ -87,6 +87,13 @@ export default class PlayerIdlingState extends State {
 		else if (input.isKeyPressed(Input.KEYS.E)) {
 			this.player.elevator.move = true;
 		}
+		else if (input.isKeyPressed(Input.KEYS.Z)) {
+			if(this.player.explodingOre && this.player.explodingOre.mined && !this.player.explodingOre.defused && this.player.backpack.defuseKits > 0)
+            {
+                this.player.explodingOre.defused = true;
+                this.player.backpack.defuseKits--;
+            }
+		} 
 	}
 
 	characterYawn()

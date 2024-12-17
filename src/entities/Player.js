@@ -39,7 +39,7 @@ export default class Player extends GameEntity {
 		super();
 		this.pickaxe = new Pickaxe();
 		const currentSprites = this.pickaxe.pickLevels[this.pickaxe.pickLevel];
-
+		this.explodingOre = null;
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(currentSprites.walk),
 			Player.WALKING_SPRITE_WIDTH,
@@ -79,7 +79,7 @@ export default class Player extends GameEntity {
 		this.dimensions.y = Player.HEIGHT;
 		this.speed = Player.MAX_SPEED;
 		this.totalHealth = Player.MAX_HEALTH;
-		this.health = Player.MAX_HEALTH - 2;
+		this.health = Player.MAX_HEALTH;
 		this.stateMachine = this.initializeStateMachine();
 		this.renderPriority = 100;
 		this.lastDirection = Direction.Right;

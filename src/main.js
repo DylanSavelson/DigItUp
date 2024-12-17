@@ -35,10 +35,11 @@ canvas.setAttribute('tabindex', '1'); // Allows the canvas to receive user input
 document.body.prepend(canvas);
 
 // Add all the states to the state machine.
-stateMachine.add(GameStateName.TitleScreen, new TitleScreenState());
 stateMachine.add(GameStateName.GameOver, new GameOverState());
 stateMachine.add(GameStateName.Victory, new VictoryState());
 stateMachine.add(GameStateName.Play, new PlayState());
+stateMachine.add(GameStateName.TitleScreen, new TitleScreenState());
+
 
 
 const game = new Game(

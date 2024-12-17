@@ -89,3 +89,5 @@ All sounds were taken from [freesound.org](https://freesound.org) for the action
 -   [Elevator](https://freesound.org/people/azumarill/sounds/528218/)
 -   [Item Pickup](https://freesound.org/people/el_boss/sounds/665182/)
 -   [Music](https://freesound.org/people/ZHR%C3%98/sounds/668879/)
+-   [Hit](https://freesound.org/people/xtrgamr/sounds/257780/)
+-   [Win](https://freesound.org/people/LittleRobotSoundFactory/sounds/270319/)

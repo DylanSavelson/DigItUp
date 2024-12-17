@@ -7,6 +7,7 @@ export default class Diamond extends Stone {
     static baseValue = 20;
     constructor(sprites, position, player) {
         super(sprites, position, player); 
+        this.stone = false;
     }
 
     
@@ -21,7 +22,7 @@ export default class Diamond extends Stone {
 	{
 		return Math.floor(pickaxe.coinMultiplier * Diamond.baseValue);
 	}
-    
+
     onCollision(collider)
     {
         super.onCollision(collider)

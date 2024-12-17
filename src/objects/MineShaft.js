@@ -178,16 +178,49 @@ export default class MineShaft {
 
 	generateOres(objects,sprites)
 	{
+		const oreCounts = {
+			Stone: 0,
+			Iron: 0,
+			Gold: 0,
+			Diamond: 0,
+			Explosive: 0,
+			Health: 0,
+		};
+
+		const pickaxe = this.player.pickaxe;
+		const oreLimits = {
+			Stone: pickaxe.stone,
+			Iron: pickaxe.iron,
+			Gold: pickaxe.gold,
+			Diamond: pickaxe.diamonds,
+			Explosive: pickaxe.explosive,
+			Health: pickaxe.health,
+		};
+
+		const validOresLeft = Object.keys(OreName).filter(ore => oreLimits[ore] > 0);
+
 		for(let i = 1; i <= 11; i++)
 			{
 				for(let j = 1; j <= 5; j++)
 				{
-					//for now randomize cause i wanna see but will fix with equation later
-					let oreType = OreName[pickRandomElement(Object.keys(OreName))];
-					let newOre = OreFactory.createInstance(OreName.Explosive, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
+					let oreType;
+
+					do 
+					{
+						oreType = pickRandomElement(validOresLeft);
+					} 
+					while (oreCounts[oreType] >= oreLimits[oreType]);
+		
+					oreCounts[oreType]++;
+							const newOre = OreFactory.createInstance(
+						OreName[oreType],
+						sprites,
+						this.player,
+						new Vector(32 * i, MineShaft.BOTTOM_EDGE - 32 * j)
+					);
 					objects.push(newOre);
 				}
-	
+				
 			}
 	}
 

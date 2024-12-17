@@ -6,6 +6,8 @@ export default class Health extends Stone {
      */
     constructor(sprites, position, player) {
         super(sprites, position, player); 
+        this.stone = false;
+
     }
 
     

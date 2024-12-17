@@ -24,6 +24,8 @@ export default class Explosive extends Stone {
         this.exploded = false;
         this.defused = false;
         this.updatingFrame = false;
+        this.stone = false;
+
     }
 
     

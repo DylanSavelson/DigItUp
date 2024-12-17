@@ -8,6 +8,7 @@ export default class Iron extends Stone {
     constructor(sprites, position, player) {
         super(sprites, position, player); 
         this.player = player;
+        this.stone = false;
     }
 
     

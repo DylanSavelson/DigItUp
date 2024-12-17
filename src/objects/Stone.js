@@ -38,6 +38,7 @@ export default class Stone extends GameObject{
 		this.shouldCallSetPositionsAfterMined = true;
 		this.exploded = false;
 		this.stopHovering = false;
+		this.stone = true;
 	}
 
 	static sellValue(pickaxe)
@@ -111,6 +112,11 @@ export default class Stone extends GameObject{
 	onCollision(collider) {
 		super.onCollision(collider);
 		this.checkTargetedStone(collider);
+		if(this.mined && this.stone)
+		{
+			this.player.backpack.stone++;
+			this.cleanUp = true;
+		}
 	}
 
 	delayPickup() {

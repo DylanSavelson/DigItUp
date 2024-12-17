@@ -45,24 +45,48 @@ export default class Pickaxe extends GameEntity {
         this.levelUpCoins = 100;
         this.levelUpOres = 10;
         this.levelUpMessage = "10x Iron";
+        this.stone = 20;
+        this.iron = 10;
+        this.gold = 10;
+        this.diamonds = 7;
+        this.explosive = 5;
+        this.health = 3;   
     }
 
     update(dt)
     {
-        this.changePickMulti();
+        this.changePickMulties();
     }
 
-    changePickMulti()
+    changePickMulties()
     {
         switch (this.pickLevel) {
             case "Iron":
                 this.coinMultiplier = 1.5;
+                this.stone = 15;
+                this.iron = 11;
+                this.gold = 11;
+                this.diamonds = 9;
+                this.explosive = 5;
+                this.health = 4;  
                 break;
             case "Gold":
                 this.coinMultiplier = 2.0;
+                this.stone = 10;
+                this.iron = 12;
+                this.gold = 12;
+                this.diamonds = 11;
+                this.explosive = 4;
+                this.health = 6; 
                 break;
             case "Diamond":
                 this.coinMultiplier = 2.5;
+                this.stone = 0;
+                this.iron = 14;
+                this.gold = 14;
+                this.diamonds = 17;
+                this.explosive = 3;
+                this.health = 7; 
                 break;
             default:
                 this.coinMultiplier = 1.0;

@@ -26,10 +26,9 @@ ores in the backpack with a limited amount of space per type of ore. If the user
 11. The system shall decide how many ore the user gets.
 13. The user shall lose a life when not being able to defuse an explosive ore.
 14. The system will end the game when user loses all lives.
-15. The user shall be able to use a health potion which is bought from the shop.
-16. The user is able to buy an item which ends the game (user wins).
-17. The system decides how much hp the explosive ore does upon explosion.
-18. The system decides how much health the user will get from a health ore.
+15. The user is able to buy an item which ends the game (user wins).
+16. The system decides how much hp the explosive ore does upon explosion.
+17. The system decides how much health the user will get from a health ore.
     
 
 ### 🤖 State Diagram

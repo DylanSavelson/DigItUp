@@ -36,7 +36,7 @@ export default class TitleScreenState extends State {
 	}
 
 	update(dt) {
-		//sounds.play(SoundName.Music);
+		sounds.play(SoundName.Music);
 		if (input.isKeyPressed(Input.KEYS.W)) 
 		{
 			this.highlighted = this.menuOptions.start;
@@ -47,7 +47,6 @@ export default class TitleScreenState extends State {
 
 		}
 		else if (input.isKeyPressed(Input.KEYS.ENTER)) {
-			console.log("START")
 			if (this.highlighted === this.menuOptions.start)
 				stateMachine.change(GameStateName.Play, false);
 			else

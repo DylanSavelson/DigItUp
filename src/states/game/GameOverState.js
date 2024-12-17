@@ -14,7 +14,7 @@ export default class GameOverState extends State {
 	}
 
 	update() {
-		if (input.isKeyPressed(Input.KEYS.ENTER)) {
+		if (input.isKeyPressed(Input.KEYS.SPACE)) {
 			stateMachine.change(GameStateName.TitleScreen);
 		}
 	}
@@ -29,7 +29,7 @@ export default class GameOverState extends State {
 		context.font = '30px small';
 		context.fillStyle = 'white';
 		context.fillText(
-			'press enter to continue',
+			'press space to continue',
 			CANVAS_WIDTH / 2,
 			CANVAS_HEIGHT - 40
 		);

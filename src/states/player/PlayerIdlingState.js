@@ -3,12 +3,13 @@ import State from '../../../lib/State.js';
 import Player from '../../entities/Player.js';
 import Direction from '../../enums/Direction.js';
 import PlayerStateName from '../../enums/PlayerStateName.js';
-import { input } from '../../globals.js';
+import { input, sounds } from '../../globals.js';
 import Input from '../../../lib/Input.js';
 import { getRandomPositiveInteger } from '../../../lib/Random.js';
 import Stone from '../../objects/Stone.js';
 import { getCollisionDirection, isAABBCollision } from '../../../lib/Collision.js';
 import MineShaft from '../../objects/MineShaft.js';
+import SoundName from '../../enums/SoundName.js';
 
 export default class PlayerIdlingState extends State {
 	/**
@@ -64,6 +65,7 @@ export default class PlayerIdlingState extends State {
 	{
 		if (this.player.position.y > MineShaft.BOTTOM_EDGE - 24)
 		{
+			sounds.play(SoundName.Hit);
 			this.player.health = 0;
 		}
 	}

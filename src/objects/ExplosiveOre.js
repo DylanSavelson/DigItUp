@@ -115,7 +115,14 @@ export default class Explosive extends Stone {
             if(!this.defused)
             {
                 sounds.play(SoundName.Beeping);
-
+            }
+            else
+            {
+                sounds.stop(SoundName.Beeping);
+                timer.addTask(()=>
+                {
+                    this.cleanUp = true;
+                },2)
             }
         },
         0.1
@@ -135,6 +142,7 @@ export default class Explosive extends Stone {
             if(this.defused === false && !this.exploded)
             {
                 sounds.play(SoundName.Explosion);
+                sounds.play(SoundName.Hit);
                 this.exploded = true;
                 this.player.health-=2;
             }

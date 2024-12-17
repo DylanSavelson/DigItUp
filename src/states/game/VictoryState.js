@@ -15,16 +15,17 @@ export default class VictoryState extends State {
 	}
 	enter(totalTime) {
 		sounds.stop(SoundName.Elevator);
-		this.dialogue = true;
+		sounds.play(SoundName.Win);
+		sounds.stop(SoundName.Music);
 		//https://stackoverflow.com/questions/1322732/convert-seconds-to-hh-mm-ss-with-javascript
 		this.displayTime = new Date(totalTime * 1000).toISOString().slice(11, 19);
 	}
 
+	exit()
+	{
+		sounds.stop(SoundName.Win);
+	}
 	update() {
-		if(this.dialogue === false)
-		{
-
-		}
 		if (input.isKeyPressed(Input.KEYS.SPACE)) {
 			if(this.opacity === 1)
 			{

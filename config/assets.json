@@ -202,5 +202,20 @@
 			"volume": 0.05,
 			"loop": true
 		}
+		,
+		{
+			"name": "win",
+			"path": "./assets/sounds/win.wav",
+			"size": 1,
+			"volume": 0.1,
+			"loop": true
+		}
+		,
+		{
+			"name": "hit",
+			"path": "./assets/sounds/hit.wav",
+			"size": 1,
+			"volume": 0.5
+		}
 	]
 }

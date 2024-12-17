@@ -7,16 +7,39 @@ import Stone from '../../objects/Stone.js';
 import ImageName from '../../enums/ImageName.js';
 import UserInterface from '../../services/UserInterface.js';
 import GameStateName from '../../enums/GameStateName.js';
+import GameSaveManager from '../../services/GameSaveManager.js';
 
 export default class PlayState extends State {
-	constructor() {
+	constructor(loadGame) {
 		super();
 		this.player = new Player();
 		this.mineShaft = new MineShaft(this.player);
 		this.player.mineShaft = this.mineShaft;
 		this.userInterface = new UserInterface(this.player);
+		this.savingGame = false;
 	}
 
+	enter(loadGame)
+	{
+		if(loadGame)
+		{
+			const playerData = GameSaveManager.loadPlayerData();
+			this.player.backpack.coins = playerData.backpack.coins;
+			this.player.backpack.stone = playerData.backpack.stone;
+			this.player.backpack.iron = playerData.backpack.iron;
+			this.player.backpack.gold = playerData.backpack.gold;
+			this.player.backpack.defuseKits = playerData.backpack.defuseKits;
+
+			this.player.pickaxe.pickLevel = playerData.pickaxe.pickLevel;
+			this.player.pickaxe.pickLevelInt = playerData.pickaxe.pickLevelInt;
+
+			this.player.resetMine();
+			this.player.position.x = 150;
+			this.player.position.y = 0;
+			this.player.stoneBelow = null;
+		}
+	
+	}
 	update(dt) {
 		debug.update();
 		this.player.currentAnimation.update(dt);
@@ -26,7 +49,9 @@ export default class PlayState extends State {
 		if (this.player.isDead) {
 			stateMachine.change(GameStateName.GameOver);
 		}
+		this.saveGame();
 	}
+
 	render() {
 		images.render(ImageName.Background, 0, 0);
 		this.renderElevatorShaft();
@@ -39,6 +64,24 @@ export default class PlayState extends State {
 		//if(this.player.targetedStone)
 			//this.renderTargetedStone();
 
+	}
+
+	async saveGame()
+	{
+		if(!this.savingGame)
+		{
+			await timer.addTask(() =>{
+				GameSaveManager.savePlayerData(this.player);
+				this.savingGame = true;
+			},
+			10,
+			10,
+			() =>
+			{
+				this.savingGame = false;
+			}
+		);
+		}
 	}
 	renderTargetedStone() {
 		context.save();

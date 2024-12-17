@@ -21,6 +21,11 @@ export default class TitleScreenState extends State {
 	 */
 	constructor() {
 		super();
+		this.menuOptions = {
+			start: 'Start',
+			load: 'Load Game',
+		};
+		this.highlighted = this.menuOptions.start;
 	}
 
 	enter() {
@@ -30,9 +35,23 @@ export default class TitleScreenState extends State {
 	}
 
 	update(dt) {
-		sounds.play(SoundName.Music);
-		if (input.isKeyPressed(Input.KEYS.ENTER)) {
-			stateMachine.change(GameStateName.Play);
+		//sounds.play(SoundName.Music);
+		if (input.isKeyPressed(Input.KEYS.W)) 
+		{
+			this.highlighted = this.menuOptions.start;
+		}
+		else if (input.isKeyPressed(Input.KEYS.S))
+		{
+			this.highlighted = this.menuOptions.load;
+
+		}
+		else if (input.isKeyPressed(Input.KEYS.ENTER)) {
+			if (this.highlighted === this.menuOptions.start)
+				stateMachine.change(GameStateName.Play, false);
+			else
+			{
+				stateMachine.change(GameStateName.Play, true);
+			}
 		}
 	}
 
@@ -44,10 +63,9 @@ export default class TitleScreenState extends State {
 		context.textAlign = 'center';
 		context.fillText('Dig It Up', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 30);
 		context.font = '30px small';
-		context.fillText(
-			'press enter to begin',
-			CANVAS_WIDTH / 2,
-			CANVAS_HEIGHT - 40
-		);
+		context.fillStyle = this.highlighted === this.menuOptions.start ? "red" : "white";
+		context.fillText(`${this.menuOptions.start}`, CANVAS_WIDTH * 0.5, CANVAS_HEIGHT * 0.7);
+		context.fillStyle = this.highlighted === this.menuOptions.load ? "red" : "white";
+		context.fillText(`${this.menuOptions.load}`, CANVAS_WIDTH * 0.5, CANVAS_HEIGHT * 0.8);
 	}
 }

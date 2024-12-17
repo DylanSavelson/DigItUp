@@ -17,6 +17,7 @@ import Backpack from '../objects/Backpack.js';
 import PlayerShopState from '../states/player/PlayerShopState.js';
 import Pickaxe from './Pickaxe.js';
 import ImageName from '../enums/ImageName.js';
+import PickaxeLevel from '../enums/PickaxeLevel.js';
 
 export default class Player extends GameEntity {
 	static WIDTH = 26;
@@ -91,7 +92,7 @@ export default class Player extends GameEntity {
 		this.elevator = null;
 		this.mineShaft = null;
 		this.shopKeeper = null;
-		this.pickaxe = new Pickaxe(this);
+		this.pickaxe = new Pickaxe();
 	}
 
 
@@ -154,5 +155,55 @@ export default class Player extends GameEntity {
 	{
 		this.mineShaft.resetMine();
 	}
+
+	upgrade()
+    {
+        switch (this.pickaxe.pickLevel) {
+            case PickaxeLevel.Wood:
+                if(this.pickaxe.levelUpCoins <= this.backpack.coins && this.pickaxe.levelUpOres <= this.backpack.iron)
+                {
+                    this.pickaxe.pickLevelInt++;
+                    this.backpack.iron-= 10;
+                    this.backpack.coins-= this.pickaxe.levelUpCoins;
+                    this.pickaxe.levelUpCoins = 200;
+                    this.pickaxe.levelUpMessage = "10x Gold";
+                    this.pickaxe.pickLevel = PickaxeLevel.Iron;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case PickaxeLevel.Iron:
+                if(this.pickaxe.levelUpCoins <= this.backpack.coins && this.pickaxe.levelUpOres <= this.backpack.gold)
+                {
+                    this.pickaxe.pickLevelInt++;
+                    this.backpack.gold -= 10;
+                    this.backpack.coins -= this.pickaxe.levelUpCoins;
+                    this.pickaxe.levelUpCoins = 300;
+                    this.pickaxe.levelUpMessage = "10x Diamond";
+                    this.pickaxe.pickLevel = PickaxeLevel.Gold;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case PickaxeLevel.Gold:
+                if(this.pickaxe.levelUpCoins <= this.backpack.coins && this.pickaxe.levelUpOres <= this.backpack.diamonds)
+                {
+                    this.backpack.diamonds -= 10;
+                    this.backpack.coins -= this.pickaxe.levelUpCoins;
+                    this.pickaxe.levelUpMessage = "Maxed!";
+                    this.pickaxe.pickLevel = PickaxeLevel.Diamond;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+        }
+    }
 
 }

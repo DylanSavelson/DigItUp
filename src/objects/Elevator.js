@@ -57,7 +57,6 @@ export default class Elevator extends GameObject {
     checkIfPlayerInside()
     {
         const distance = this.player.hitbox.position.y - this.hitbox.position.y;
-        console.log(distance)
         if(this.player.hitbox.position.x - 14 < this.hitbox.position.x && ((distance > -7 && this.lastDirection == Direction.DOwn) || (distance < 153 && this.lastDirection == Direction.Up)))
         {
             this.playerInside = true;

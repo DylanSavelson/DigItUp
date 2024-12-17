@@ -25,7 +25,7 @@ export default class Backpack extends GameObject {
     /**
      * The backpack, where all ores, defuse kits and coins are stored
      */
-    constructor(player) {
+    constructor() {
         super(Backpack.dimensions, Backpack.position);
         this.oreSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(ImageName.Ores),
@@ -45,7 +45,6 @@ export default class Backpack extends GameObject {
         this.sprites = this.oreSprites;
         this.isCollidable = false;
         this.isSolid = false;
-        this.player = player;
         this.stone = 0;
         this.iron = 0;
         this.gold = 0;

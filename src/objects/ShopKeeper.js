@@ -372,7 +372,7 @@ export default class ShopKeeper extends GameObject {
             case 6: 
             if(this.player.pickaxe.pickLevel !== PickaxeLevel.Diamond)
             {
-                if (this.player.pickaxe.upgrade()) 
+                if (this.player.upgrade()) 
                 {
                     sounds.play(SoundName.Coin);
                     this.saleText = `Upgraded Pickaxe`;

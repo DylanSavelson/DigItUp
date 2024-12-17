@@ -21,7 +21,8 @@ export default class GameSaveManager {
 	static savePlayerData(player) {
 		const saveData = {
 			backpack: player.backpack,
-			pickaxe: player.pickaxe
+			pickaxe: player.pickaxe,
+			time: player.totalTime
 		}
 		localStorage.setItem('player', JSON.stringify(saveData));
 	}

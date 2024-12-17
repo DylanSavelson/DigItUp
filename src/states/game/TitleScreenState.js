@@ -29,6 +29,7 @@ export default class TitleScreenState extends State {
 	}
 
 	enter() {
+		this.highlighted = this.menuOptions.start;
 	}
 
 	exit() {
@@ -46,6 +47,7 @@ export default class TitleScreenState extends State {
 
 		}
 		else if (input.isKeyPressed(Input.KEYS.ENTER)) {
+			console.log("START")
 			if (this.highlighted === this.menuOptions.start)
 				stateMachine.change(GameStateName.Play, false);
 			else

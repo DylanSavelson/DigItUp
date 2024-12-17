@@ -93,6 +93,8 @@ export default class Player extends GameEntity {
 		this.mineShaft = null;
 		this.shopKeeper = null;
 		this.pickaxe = new Pickaxe();
+		this.win = false;
+		this.totalTime = 0;
 	}
 
 

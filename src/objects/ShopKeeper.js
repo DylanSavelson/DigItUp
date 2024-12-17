@@ -361,7 +361,7 @@ export default class ShopKeeper extends GameObject {
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
                     sounds.play(SoundName.Coin);
-                    stateMachine.change(GameStateName.Victory);
+                    this.player.win = true;
                 }
                 else
                 {

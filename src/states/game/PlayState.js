@@ -10,13 +10,14 @@ import GameStateName from '../../enums/GameStateName.js';
 import GameSaveManager from '../../services/GameSaveManager.js';
 
 export default class PlayState extends State {
-	constructor(loadGame) {
+	constructor() {
 		super();
 		this.player = new Player();
 		this.mineShaft = new MineShaft(this.player);
 		this.player.mineShaft = this.mineShaft;
 		this.userInterface = new UserInterface(this.player);
 		this.savingGame = false;
+		this.adding = false;
 	}
 
 	enter(loadGame)
@@ -32,11 +33,21 @@ export default class PlayState extends State {
 
 			this.player.pickaxe.pickLevel = playerData.pickaxe.pickLevel;
 			this.player.pickaxe.pickLevelInt = playerData.pickaxe.pickLevelInt;
+			this.player.totalTime = playerData.totalTime;
 
 			this.player.resetMine();
 			this.player.position.x = 150;
 			this.player.position.y = 0;
 			this.player.stoneBelow = null;
+		}
+		else
+		{
+			this.player = new Player();
+			this.mineShaft = new MineShaft(this.player);
+			this.player.mineShaft = this.mineShaft;
+			this.userInterface = new UserInterface(this.player);
+			this.savingGame = false;
+			this.adding = false;
 		}
 	
 	}
@@ -49,6 +60,25 @@ export default class PlayState extends State {
 		if (this.player.isDead) {
 			stateMachine.change(GameStateName.GameOver);
 		}
+
+
+		if(!this.adding)
+		{
+			this.adding = true;
+			timer.addTask(
+				() => {
+				  this.player.totalTime += 1; 
+					if (this.player.win)
+					{
+						stateMachine.change(GameStateName.Victory, this.player.totalTime);
+						timer.clear();
+					}
+				},
+				1.8 
+			);
+			
+		}
+
 		this.saveGame();
 	}
 

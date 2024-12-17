@@ -49,7 +49,7 @@ export default class Backpack extends GameObject {
         this.iron = 0;
         this.gold = 0;
         this.diamonds = 0;
-        this.coins = 0;
+        this.coins = 1000;
         this.defuseKits = 1;
         this.display = false;
         this.renderPriority = 101;

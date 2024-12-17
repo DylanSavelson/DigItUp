@@ -57,8 +57,17 @@ export default class PlayerIdlingState extends State {
 		this.characterYawn();
 		this.checkforFall();
 		this.player.updateTargetedStone();
+		this.checkForElevatorDeath();
 	}
 
+	checkForElevatorDeath()
+	{
+		if (this.player.position.y > MineShaft.BOTTOM_EDGE - 28)
+		{
+			//implement
+			this.player.changeState(PlayerStateName.Death);
+		}
+	}
 	checkForKeys() {
 		if (input.isKeyPressed(Input.KEYS.S)) {
 			this.player.direction = Direction.Down;

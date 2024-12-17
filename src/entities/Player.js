@@ -30,6 +30,8 @@ export default class Player extends GameEntity {
 	static PICKAXE_SWINGING_SPRITE_HEIGHT = 32;
 	static MAX_SPEED = 100;
 	static MAX_HEALTH = 6;
+	static DAMAGE_DURATION = 1.5;
+	static DAMAGE_FLASH_INTERVAL = 0.1
 
 	/**
 	 * The character the player controls in the map.
@@ -95,11 +97,14 @@ export default class Player extends GameEntity {
 		this.pickaxe = new Pickaxe();
 		this.win = false;
 		this.totalTime = 0;
+		this.alpha = 1;
 	}
 
 
 	render() {
 		const currentSprites = this.pickaxe.pickLevels[this.pickaxe.pickLevel];
+
+
 
 		this.walkingSprites = Sprite.generateSpritesFromSpriteSheet(
 			images.get(currentSprites.walk),
@@ -116,10 +121,22 @@ export default class Player extends GameEntity {
 			Player.PICKAXE_SWINGING_SPRITE_WIDTH,
 			Player.PICKAXE_SWINGING_SPRITE_HEIGHT
 		);
-
+		context.save();
+		context.globalAlpha = this.alpha;
 		super.render();
+		context.restore();
 	}
-
+	
+	takeDamage()
+	{
+		timer.addTask(()=>
+		{
+			this.alpha = this.alpha === 1 ? 0.5 : 1;
+		}, Player.DAMAGE_FLASH_INTERVAL, Player.DAMAGE_DURATION, () =>
+		{
+			this.alpha = 1;
+		});
+	}
 	updateTargetedStone()
 	{
 		if(this.targetedStone && this.direction != this.targetedStone.dirNumber)
@@ -127,7 +144,7 @@ export default class Player extends GameEntity {
 			this.targetedStone = null;  
 		}
 	}
-
+	
 	reset() {
 		this.position.x = MineShaft.CENTER_X - Player.WIDTH / 2;
 		this.position.y = MineShaft.CENTER_Y - Player.HEIGHT / 2;

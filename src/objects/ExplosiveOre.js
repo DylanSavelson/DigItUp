@@ -1,5 +1,6 @@
 import Input from '../../lib/Input.js';
 import Sprite from '../../lib/Sprite.js';
+import Player from '../entities/Player.js';
 import ImageName from '../enums/ImageName.js';
 import SoundName from '../enums/SoundName.js';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, sounds, timer } from '../globals.js';
@@ -143,6 +144,7 @@ export default class Explosive extends Stone {
             {
                 sounds.play(SoundName.Explosion);
                 sounds.play(SoundName.Hit);
+                this.player.takeDamage();
                 this.exploded = true;
                 this.player.health-=2;
             }

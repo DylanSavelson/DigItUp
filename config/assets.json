@@ -131,6 +131,12 @@
 			"path": "./assets/images/explosion.png",
 			"width": 336,
 			"height": 48
+		},
+		{
+			"name": "freedom",
+			"path": "./assets/images/america.png",
+			"width": 16,
+			"height": 16
 		}
 	],
 	"fonts": [

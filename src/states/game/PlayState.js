@@ -75,7 +75,7 @@ export default class PlayState extends State {
 		context.fillStyle = 'rgb(0, 0, 0)';
 		roundedRectangle(
 			context,
-			MineShaft.LEFT_EDGE + 40,
+			MineShaft.LEFT_EDGE + 37,
 			MineShaft.TOP_EDGE + 32,
 			3,
 			128,

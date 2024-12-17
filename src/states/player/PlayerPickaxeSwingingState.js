@@ -20,8 +20,8 @@ export default class PlayerPickaxeSwingingState extends State {
 
 		this.animation = {
 			[Direction.Down]: null,
-			[Direction.Left]: new Animation([15, 14, 13, 12, 11, 10, 9, 8], 0.2, 1),
-			[Direction.Right]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.2, 1),
+			[Direction.Left]: new Animation([15, 14, 13, 12, 11, 10, 9, 8], 0.25, 1),
+			[Direction.Right]: new Animation([0, 1, 2, 3, 4, 5, 6, 7], 0.25, 1),
 		}
 	}
 
@@ -42,10 +42,9 @@ export default class PlayerPickaxeSwingingState extends State {
 		{
 			this.player.swinging = true;
 			this.player.swung = true;
-			sounds.play(SoundName.Swing);
 		}
 
-		if(this.player.currentAnimation.currentFrame >= (this.player.currentAnimation.frames.length / 1.25))
+		if(this.player.currentAnimation.currentFrame >= (this.player.currentAnimation.frames.length / 1.9))
 		{
 			sounds.play(SoundName.Swing);
 		}

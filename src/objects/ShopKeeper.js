@@ -1,7 +1,7 @@
 import GameObject from '../objects/GameObject.js';
 import Vector from '../../lib/Vector.js';
 import Sprite from '../../lib/Sprite.js';
-import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, sounds, timer } from '../globals.js';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, context, images, input, sounds, stateMachine, timer } from '../globals.js';
 import ImageName from '../enums/ImageName.js'
 import PlayerStateName from '../enums/PlayerStateName.js';
 import Input from '../../lib/Input.js';
@@ -11,6 +11,7 @@ import Iron from './IronOre.js';
 import Gold from './GoldOre.js';
 import Diamond from './DiamondOre.js';
 import SoundName from '../enums/SoundName.js';
+import GameStateName from '../enums/GameStateName.js';
 
 export default class ShopKeeper extends GameObject {
 	static WIDTH = 64;
@@ -61,6 +62,11 @@ export default class ShopKeeper extends GameObject {
 			images.get(ImageName.Coin),
 			10,
 			18
+        );
+        this.freedom = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Freedom),
+			16,
+			16
         );
         this.options = null;
         this.saleText = "";
@@ -123,7 +129,7 @@ export default class ShopKeeper extends GameObject {
                     mousePos.y > option.sellZone.y &&
                     mousePos.y < option.sellZone.y + option.sellZone.height) 
                 {
-                    if(option.itemType !== 5)
+                    if(option.itemType !== 5 && option.itemType !== 6)
                     {
                         context.fillStyle = 'rgba(255, 255, 255, 0.4)'
                         context.fillRect(option.sellZone.x, option.sellZone.y, option.sellZone.width, option.sellZone.height);
@@ -179,16 +185,21 @@ export default class ShopKeeper extends GameObject {
                 { sprite: this.oreSprites[1], x: CANVAS_WIDTH / 4 - 20, y: CANVAS_HEIGHT / 2, buyPrice: 75, sellPrice: Iron.sellValue(this.player.pickaxe)},
                 { sprite: this.oreSprites[2], x: CANVAS_WIDTH / 4 + 30, y: CANVAS_HEIGHT / 2 - 40, buyPrice: 100, sellPrice: Gold.sellValue(this.player.pickaxe)},
                 { sprite: this.oreSprites[3], x: CANVAS_WIDTH / 4 + 30, y: CANVAS_HEIGHT / 2, buyPrice: 125, sellPrice: Diamond.sellValue(this.player.pickaxe) },
-                { sprite: this.defuse[0], x: CANVAS_WIDTH / 4 + 80, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 20, sellPrice: 1},
+                { sprite: this.defuse[0], x: CANVAS_WIDTH / 4 + 80, y: CANVAS_HEIGHT / 2 - 40, buyPrice: 20, sellPrice: 1},
+                { sprite: this.freedom[0], x: CANVAS_WIDTH / 4 + 80, y: CANVAS_HEIGHT / 2, buyPrice: 1000, sellPrice: 1, freedom: true},
                 { sprite :this.player.pickaxe.sprites[this.player.pickaxe.pickLevelInt], x: CANVAS_WIDTH / 4 + 170, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 100, sellPrice: 1, upgrade: true}
             ];
     
             this.options.forEach((option) => {
                 option.sprite.render(option.x, option.y);
-                if(!option.upgrade)
+                if(!option.upgrade && !option.freedom)
                 {
                     context.fillText(`Buy ${option.buyPrice}¢`, option.x + 10, option.y + 20);
                     context.fillText(`Sell ${option.sellPrice}¢`, option.x + 10, option.y + 30);
+                }
+                else if(option.freedom)
+                {
+                    context.fillText(`Buy ${option.buyPrice}¢`, option.x + 10, option.y + 20);
                 }
                 else
                 {
@@ -346,6 +357,18 @@ export default class ShopKeeper extends GameObject {
                 }
                 break;
             case 5: 
+                if (this.player.backpack.coins >= option.buyPrice) 
+                {
+                    sounds.play(SoundName.Coin);
+                    stateMachine.change(GameStateName.Victory);
+                }
+                else
+                {
+                    this.saleText ='Not enough coins to buy freedom';
+                }
+                break;
+
+            case 6: 
             if(this.player.pickaxe.pickLevel !== "Diamond")
             {
                 if (this.player.pickaxe.upgrade()) 

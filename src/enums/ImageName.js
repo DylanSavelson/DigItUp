@@ -20,7 +20,8 @@ const ImageName = {
 	Defuse: 'defuse',
 	Pickaxes: 'pickaxes',
 	Hearts: 'hearts',
-	Explosion: "explosion"
+	Explosion: "explosion",
+	Freedom: "freedom"
 };
 
 export default ImageName;

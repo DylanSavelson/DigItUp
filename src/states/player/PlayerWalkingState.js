@@ -63,8 +63,8 @@ export default class PlayerWalkingState extends State {
 			if (this.player.position.x <= MineShaft.LEFT_EDGE - 15) {
 				this.player.position.x = MineShaft.LEFT_EDGE - 15;
 			}
-			if (this.player.position.y >= MineShaft.TOP_EDGE + 32 && this.player.position.x <= MineShaft.LEFT_EDGE + 20 && this.player.position.y <= MineShaft.BOTTOM_EDGE - 32 ) {
-				this.player.position.x = MineShaft.LEFT_EDGE + 20;
+			if (this.player.position.y >= MineShaft.TOP_EDGE + 32 && this.player.position.x <= MineShaft.LEFT_EDGE + 15 && this.player.position.y <= MineShaft.BOTTOM_EDGE - 32 ) {
+				this.player.position.x = MineShaft.LEFT_EDGE + 15;
 			}
 		} 
 		else if (input.isKeyPressed(Input.KEYS.SPACE)) {

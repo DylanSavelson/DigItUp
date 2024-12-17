@@ -118,6 +118,11 @@ export default class ShopKeeper extends GameObject {
                         context.fillStyle = 'rgba(255, 255, 255, 0.4)'
                         context.fillRect(option.buyZone.x, option.buyZone.y, option.buyZone.width, option.buyZone.height);
                     }
+                    if(option.itemType === 5)
+                    {
+                        context.fillStyle = 'rgba(255, 255, 255, 0.4)'
+                        context.fillRect(option.buyZone.x - 5, option.buyZone.y, option.buyZone.width + 10, option.buyZone.height);
+                    }
                     else if (option.itemType !== 6)
                     {
                         context.fillStyle = 'rgba(255, 255, 255, 0.4)'

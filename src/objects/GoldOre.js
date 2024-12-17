@@ -23,6 +23,7 @@ export default class Gold extends Stone {
 	{
 		return Math.floor(pickaxe.coinMultiplier * Gold.baseValue);
 	}
+    
     onCollision(collider)
     {
         super.onCollision(collider)

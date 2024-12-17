@@ -70,7 +70,6 @@ export default class PlayState extends State {
 			timer.addTask(
 				() => {
 				  this.player.totalTime += 1; 
-				  console.log(this.player.totalTime)
 					if (this.player.win)
 					{
 						stateMachine.change(GameStateName.Victory, this.player.totalTime);

@@ -54,19 +54,20 @@ export default class Elevator extends GameObject {
 	}
 
 
-    checkIfPlayerInside()
-    {
-        const distance = this.player.hitbox.position.y - this.hitbox.position.y;
+    checkIfPlayerInside() {
         const xDistance = this.player.hitbox.position.x - this.hitbox.position.x;
-        if( xDistance <= 18 && ((distance > -8 && this.lastDirection == Direction.Up) || (distance < 153 && this.lastDirection == Direction.Down)))
+        const yDistance = this.player.hitbox.position.y - this.hitbox.position.y;
+    
+        if (xDistance <= 18 && yDistance <= 0)
         {
             this.playerInside = true;
-        }
-        else
+        } 
+        else 
         {
             this.playerInside = false;
         }
     }
+    
     
     playSound()
     {
@@ -83,6 +84,7 @@ export default class Elevator extends GameObject {
     {
         if (this.move && !this.moving)
         {
+
             this.moving = true;
             if(this.lastDirection === Direction.Up)
             {
@@ -108,6 +110,7 @@ export default class Elevator extends GameObject {
     async moveUp(elevatorOrPlayer)
     {
         const movement = Elevator.HEIGHT*5 + 1;
+        this.lastDirection = Direction.Up;
         await Promise.all([
             timer.tweenAsync(
                 elevatorOrPlayer.position,
@@ -124,12 +127,12 @@ export default class Elevator extends GameObject {
         ]);
         this.moving = false;
         this.move = false;
-        this.lastDirection = Direction.Up;
     }
 
     async moveDown(elevatorOrPlayer)
     {
         const movement = Elevator.HEIGHT*5 + 1;
+        this.lastDirection = Direction.Down;
         await Promise.all([
             timer.tweenAsync(
                 elevatorOrPlayer.position,
@@ -146,7 +149,6 @@ export default class Elevator extends GameObject {
         ]);
         this.moving = false;
         this.move = false;
-        this.lastDirection = Direction.Down;
     }
 
 

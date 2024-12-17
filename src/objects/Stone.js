@@ -8,6 +8,7 @@ import ImageName from '../enums/ImageName.js';
 import Easing from '../../lib/Easing.js';
 import Hitbox from '../../lib/Hitbox.js';
 import SoundName from '../enums/SoundName.js';
+import PickaxeLevel from '../enums/PickaxeLevel.js';
 
 export default class Stone extends GameObject{
 	static WIDTH = 32;
@@ -64,7 +65,30 @@ export default class Stone extends GameObject{
 	getHit() {
         if(this.player.targetedStone === this && this.player.swinging === true && !this.mined)
 		{
-			this.currentFrame++;
+			if(this.player.pickaxe.pickLevel === PickaxeLevel.Wood)
+			{
+				this.currentFrame++;
+			}
+			else if (this.player.pickaxe.pickLevel === PickaxeLevel.Iron)
+			{
+				if(this.currentFrame < 2)
+					this.currentFrame += 2;
+				else
+					this.currentFrame ++;
+			}
+			else if (this.player.pickaxe.pickLevel === PickaxeLevel.Gold)
+			{
+				if(this.currentFrame < 4)
+					this.currentFrame += 2;
+				else
+					this.currentFrame++;
+			}
+			else{
+				if(this.currentFrame < 4)
+					this.currentFrame += 4;
+				else
+					this.currentFrame+=1;
+			}
 			this.player.swinging = false;
 			sounds.play(SoundName.Pickaxe);
 			if(this.currentFrame === 5)

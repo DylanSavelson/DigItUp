@@ -16,7 +16,8 @@ const ImageName = {
 	Ores: 'ores',
 	Coin: 'coin',
 	Elevator: 'elevator',
-	ShopKeeper: 'shopkeeper'
+	ShopKeeper: 'shopkeeper',
+	Defuse: 'defuse'
 };
 
 export default ImageName;

@@ -37,6 +37,11 @@ export default class Backpack extends GameObject {
 			10,
 			18
         );
+        this.defuse = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Defuse),
+			16,
+			16
+        );
         this.sprites = this.oreSprites;
         this.isCollidable = false;
         this.isSolid = false;
@@ -105,8 +110,7 @@ export default class Backpack extends GameObject {
             this.sprites[1].render( CANVAS_WIDTH / 4 + 45, CANVAS_HEIGHT / 2 - 20);
             this.sprites[2].render( CANVAS_WIDTH / 4 + 85, CANVAS_HEIGHT / 2 - 20);
             this.sprites[3].render( CANVAS_WIDTH / 4 + 125, CANVAS_HEIGHT / 2 - 20);
-            //placeholder for defuse
-            this.sprites[3].render( CANVAS_WIDTH / 4 + 168, CANVAS_HEIGHT / 2 - 20);
+            this.defuse[0].render( CANVAS_WIDTH / 4 + 168, CANVAS_HEIGHT / 2 - 20);
 
             this.coin[0].render(CANVAS_WIDTH / 2 - 15 - (2* this.coins.toString().length), CANVAS_HEIGHT / 2 + 25);
             context.font = '10px small';

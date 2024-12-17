@@ -107,7 +107,13 @@
 			"path": "./assets/images/ShopKeeper.png",
 			"width": 128,
 			"height": 32
-        }
+        },
+		{
+			"name": "defuse",
+			"path": "./assets/images/DefuseKit.png",
+			"width": 16,
+			"height": 16
+		}
 	],
 	"fonts": [
 		{

@@ -40,6 +40,11 @@ export default class ShopKeeper extends GameObject {
 			ShopKeeper.WIDTH,
 			ShopKeeper.HEIGHT
 		);
+        this.defuse = Sprite.generateSpritesFromSpriteSheet(
+			images.get(ImageName.Defuse),
+			16,
+			16
+        );
         this.renderPriority = 102
         this.isCollidable = true;
         this.isSolid = true;
@@ -157,16 +162,17 @@ export default class ShopKeeper extends GameObject {
             context.font = '10px small';
 
             this.options = [
-                { sprite: this.oreSprites[0], x: CANVAS_WIDTH / 4 - 40, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 50, sellPrice: Stone.sellValue(this.player.pickaxe)},
-                { sprite: this.oreSprites[1], x: CANVAS_WIDTH / 4 + 10, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 75, sellPrice: Iron.sellValue(this.player.pickaxe)},
-                { sprite: this.oreSprites[2], x: CANVAS_WIDTH / 4 + 60, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 100, sellPrice: Gold.sellValue(this.player.pickaxe)},
-                { sprite: this.oreSprites[3], x: CANVAS_WIDTH / 4 + 110, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 125, sellPrice: Diamond.sellValue(this.player.pickaxe) }
+                { sprite: this.oreSprites[0], x: CANVAS_WIDTH / 4 - 20, y: CANVAS_HEIGHT / 2 - 40, buyPrice: 50, sellPrice: Stone.sellValue(this.player.pickaxe)},
+                { sprite: this.oreSprites[1], x: CANVAS_WIDTH / 4 - 20, y: CANVAS_HEIGHT / 2, buyPrice: 75, sellPrice: Iron.sellValue(this.player.pickaxe)},
+                { sprite: this.oreSprites[2], x: CANVAS_WIDTH / 4 + 30, y: CANVAS_HEIGHT / 2 - 40, buyPrice: 100, sellPrice: Gold.sellValue(this.player.pickaxe)},
+                { sprite: this.oreSprites[3], x: CANVAS_WIDTH / 4 + 30, y: CANVAS_HEIGHT / 2, buyPrice: 125, sellPrice: Diamond.sellValue(this.player.pickaxe) },
+                { sprite: this.defuse[0], x: CANVAS_WIDTH / 4 + 80, y: CANVAS_HEIGHT / 2 - 20, buyPrice: 20, sellPrice: 1}
             ];
     
             this.options.forEach((option) => {
                 option.sprite.render(option.x, option.y);
-                context.fillText(`Buy ${option.buyPrice}¢`, option.x + 12, CANVAS_HEIGHT / 2);
-                context.fillText(`Sell ${option.sellPrice}¢`, option.x + 12, CANVAS_HEIGHT / 2 + 10);
+                context.fillText(`Buy ${option.buyPrice}¢`, option.x + 12, option.y + 20);
+                context.fillText(`Sell ${option.sellPrice}¢`, option.x + 12, option.y + 30);
             });
 
             this.coin[0].render(CANVAS_WIDTH / 2 - 120 - (2.2* this.player.backpack.coins.toString().length), CANVAS_HEIGHT / 2 + 65);
@@ -200,7 +206,7 @@ export default class ShopKeeper extends GameObject {
             this.checkForHover();
             context.font = '16px small';
             context.fillStyle = 'black';
-            context.fillText(this.saleText, CANVAS_WIDTH / 4 + 90, CANVAS_HEIGHT / 2 + 40);
+            context.fillText(this.saleText, CANVAS_WIDTH / 4 + 100, CANVAS_HEIGHT / 2 + 50);
             context.restore();
             
         }
@@ -246,7 +252,7 @@ export default class ShopKeeper extends GameObject {
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
                     this.player.backpack.coins -= option.buyPrice;
-                    this.player.backpack.stone += 1;
+                    this.player.backpack.stone++;
                     this.saleText =  `Bought 1 stone for ${option.buyPrice}¢`;
                 } 
                 else 
@@ -258,6 +264,7 @@ export default class ShopKeeper extends GameObject {
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
                     this.player.backpack.coins -= option.buyPrice;
+                    this.player.backpack.iron++;
                     this.saleText = `Bought 1 iron for ${option.buyPrice}¢`;
                 } 
                 else 
@@ -269,6 +276,7 @@ export default class ShopKeeper extends GameObject {
                 if (this.player.backpack.coins >= option.buyPrice) 
                 {
                     this.player.backpack.coins -= option.buyPrice;
+                    this.player.backpack.gold++;
                     this.saleText = `Bought 1 gold for ${option.buyPrice}¢`;
                 } 
                 else 
@@ -280,6 +288,7 @@ export default class ShopKeeper extends GameObject {
                 if (this.player.backpack.coins >= option.buyPrice)
                 {
                     this.player.backpack.coins -= option.buyPrice;
+                    this.player.backpack.diamonds++;
                     this.saleText =`Bought 1 diamond for ${option.buyPrice}¢`;
                 } 
                 else 
@@ -290,6 +299,7 @@ export default class ShopKeeper extends GameObject {
             case 4: 
                 if (this.player.backpack.coins >= option.buyPrice) {
                     this.player.backpack.coins -= option.buyPrice;
+                    this.player.backpack.defuseKits++;
                     this.saleText = `Bought 1 defuse kit for ${option.buyPrice}¢`;
                 } 
                 else 

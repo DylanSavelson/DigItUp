@@ -24,21 +24,15 @@ export default class TitleScreenState extends State {
 	}
 
 	enter() {
-		sounds.play(SoundName.Rain);
 	}
 
 	exit() {
-		sounds.stop(SoundName.Rain);
 	}
 
 	update(dt) {
-		timer.update(dt);
-
+		sounds.play(SoundName.Music);
 		if (input.isKeyPressed(Input.KEYS.ENTER)) {
-			stateMachine.change(GameStateName.Transition, {
-				fromState: this,
-				toState: stateMachine.states[GameStateName.Play],
-			});
+			stateMachine.change(GameStateName.Play);
 		}
 	}
 

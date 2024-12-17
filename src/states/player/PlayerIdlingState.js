@@ -94,6 +94,12 @@ export default class PlayerIdlingState extends State {
 				this.player.explodingOre = null;
             }
 		} 
+		else if (input.isKeyPressed(Input.KEYS.R)) {
+			this.player.resetMine();
+			this.player.position.x = 150;
+			this.player.position.y = 0;
+			this.player.stoneBelow = null;
+		} 
 	}
 
 	characterYawn()

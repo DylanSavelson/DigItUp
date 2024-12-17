@@ -10,7 +10,6 @@ export default class GameOverState extends State {
 		super();
 	}
 	enter() {
-		sounds.stop(SoundName.Music);
 		sounds.stop(SoundName.Elevator);
 	}
 

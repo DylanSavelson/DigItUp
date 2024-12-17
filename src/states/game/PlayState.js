@@ -6,7 +6,6 @@ import { roundedRectangle } from '../../../lib/Drawing.js';
 import Stone from '../../objects/Stone.js';
 import ImageName from '../../enums/ImageName.js';
 import UserInterface from '../../services/UserInterface.js';
-import SoundName from '../../enums/SoundName.js';
 import GameStateName from '../../enums/GameStateName.js';
 
 export default class PlayState extends State {
@@ -23,7 +22,7 @@ export default class PlayState extends State {
 		this.player.currentAnimation.update(dt);
 		timer.update(dt);
 		this.mineShaft.update(dt);
-		//sounds.play(SoundName.Music);
+
 		if (this.player.isDead) {
 			stateMachine.change(GameStateName.GameOver);
 		}

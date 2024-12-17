@@ -16,7 +16,7 @@ export default class Elevator extends GameObject {
 
 	static dimensions = new Vector(this.WIDTH,this.HEIGHT)
 	/**
-	 * The elevator used to bring player to the surface
+	 * The elevator used to bring player to the surface or down
 	 */
 	constructor(position, player) {
 		super(Elevator.dimensions, position);
@@ -57,7 +57,8 @@ export default class Elevator extends GameObject {
     checkIfPlayerInside()
     {
         const distance = this.player.hitbox.position.y - this.hitbox.position.y;
-        if(this.player.hitbox.position.x - 14 < this.hitbox.position.x && distance > -7)
+        console.log(distance)
+        if(this.player.hitbox.position.x - 14 < this.hitbox.position.x && ((distance > -7 && this.lastDirection == Direction.DOwn) || (distance < 153 && this.lastDirection == Direction.Up)))
         {
             this.playerInside = true;
         }

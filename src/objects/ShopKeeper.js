@@ -32,7 +32,7 @@ export default class ShopKeeper extends GameObject {
 	static dimensions = new Vector(this.WIDTH,this.HEIGHT)
     static display_position = new Vector(ShopKeeper.LEFT_EDGE + 50, ShopKeeper.CENTER_Y - 100)
 	/**
-	 * The elevator used to bring player to the surface
+	 * The shop used to buy and sell stuff
 	 */
 	constructor(position, player) {
 		super(ShopKeeper.dimensions, position);

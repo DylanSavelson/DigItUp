@@ -62,10 +62,9 @@ export default class PlayerIdlingState extends State {
 
 	checkForElevatorDeath()
 	{
-		if (this.player.position.y > MineShaft.BOTTOM_EDGE - 28)
+		if (this.player.position.y > MineShaft.BOTTOM_EDGE - 24)
 		{
-			//implement
-			this.player.changeState(PlayerStateName.Death);
+			this.player.health = 0;
 		}
 	}
 	checkForKeys() {

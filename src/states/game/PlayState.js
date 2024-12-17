@@ -7,6 +7,7 @@ import Stone from '../../objects/Stone.js';
 import ImageName from '../../enums/ImageName.js';
 import UserInterface from '../../services/UserInterface.js';
 import SoundName from '../../enums/SoundName.js';
+import GameStateName from '../../enums/GameStateName.js';
 
 export default class PlayState extends State {
 	constructor() {
@@ -22,7 +23,10 @@ export default class PlayState extends State {
 		this.player.currentAnimation.update(dt);
 		timer.update(dt);
 		this.mineShaft.update(dt);
-		sounds.play(SoundName.Music);
+		//sounds.play(SoundName.Music);
+		if (this.player.isDead) {
+			stateMachine.change(GameStateName.GameOver);
+		}
 	}
 	render() {
 		images.render(ImageName.Background, 0, 0);

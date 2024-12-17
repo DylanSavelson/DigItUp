@@ -125,6 +125,10 @@ export default class MineShaft {
 	
 	updateEntities(dt) {
 		this.entities.forEach((entity) => {
+			if (entity.health <= 0) {
+				entity.isDead = true;
+			}
+
 			this.objects.forEach((object) => {
 				if (object && object.didCollideWithEntity(entity.hitbox)) {
 					if (object.isCollidable) {

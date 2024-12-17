@@ -119,6 +119,12 @@
 			"path": "./assets/images/Pickaxes.png",
 			"width": 48,
 			"height": 16
+		},		
+		{
+			"name": "hearts",
+			"path": "./assets/images/hearts.png",
+			"width": 96,
+			"height": 16
 		}
 	],
 	"fonts": [

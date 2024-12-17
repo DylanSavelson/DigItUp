@@ -171,7 +171,7 @@ export default class MineShaft {
 				{
 					//for now randomize cause i wanna see but will fix with equation later
 					let oreType = OreName[pickRandomElement(Object.keys(OreName))];
-					let newOre = OreFactory.createInstance(OreName.Iron, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
+					let newOre = OreFactory.createInstance(OreName.Health, sprites, this.player, new Vector((32 * i), MineShaft.BOTTOM_EDGE - 32 * j))
 					objects.push(newOre);
 				}
 	

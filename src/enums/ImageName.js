@@ -18,7 +18,9 @@ const ImageName = {
 	Elevator: 'elevator',
 	ShopKeeper: 'shopkeeper',
 	Defuse: 'defuse',
-	Pickaxes: 'pickaxes'
+	Pickaxes: 'pickaxes',
+	Hearts: 'hearts',
+
 };
 
 export default ImageName;

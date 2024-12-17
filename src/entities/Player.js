@@ -79,7 +79,7 @@ export default class Player extends GameEntity {
 		this.dimensions.y = Player.HEIGHT;
 		this.speed = Player.MAX_SPEED;
 		this.totalHealth = Player.MAX_HEALTH;
-		this.health = Player.MAX_HEALTH;
+		this.health = Player.MAX_HEALTH - 2;
 		this.stateMachine = this.initializeStateMachine();
 		this.renderPriority = 100;
 		this.lastDirection = Direction.Right;

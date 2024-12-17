@@ -19,9 +19,10 @@ export default class Health extends Stone {
     onCollision(collider)
     {
         super.onCollision(collider)
+        console.log(this.player.health)
         if(this.mined)
         {
-            if(this.player.health + 2 >= this.player.totalHealth)
+            if(this.player.health + 2 <= this.player.totalHealth)
             {
                 this.player.health+=2;
             }

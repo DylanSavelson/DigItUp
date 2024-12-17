@@ -5,7 +5,7 @@ import MineShaft from '../../objects/MineShaft.js';
 import { roundedRectangle } from '../../../lib/Drawing.js';
 import Stone from '../../objects/Stone.js';
 import ImageName from '../../enums/ImageName.js';
-import Elevator from '../../objects/Elevator.js';
+import UserInterface from '../../services/UserInterface.js';
 
 export default class PlayState extends State {
 	constructor() {
@@ -13,7 +13,7 @@ export default class PlayState extends State {
 		this.player = new Player();
 		this.mineShaft = new MineShaft(this.player);
 		this.player.mineShaft = this.mineShaft;
-		
+		this.userInterface = new UserInterface(this.player);
 	}
 
 	update(dt) {
@@ -23,7 +23,19 @@ export default class PlayState extends State {
 		this.mineShaft.update(dt);
 		
 	}
-	
+	render() {
+		images.render(ImageName.Background, 0, 0);
+		this.renderElevatorShaft();
+		this.renderShopSupports();
+		this.mineShaft.render();
+		this.renderFloor();
+		this.renderMineWall();
+		this.userInterface.render();
+
+		//if(this.player.targetedStone)
+			//this.renderTargetedStone();
+
+	}
 	renderTargetedStone() {
 		context.save();
 		context.fillStyle = 'rgb(255, 255, 255, 0.5)';
@@ -152,15 +164,5 @@ export default class PlayState extends State {
 		);
 		context.restore();
 	}
-	render() {
-		images.render(ImageName.Background, 0, 0);
-		this.renderElevatorShaft();
-		this.renderShopSupports();
-		this.mineShaft.render();
-		this.renderFloor();
-		this.renderMineWall();
-		//if(this.player.targetedStone)
-			//this.renderTargetedStone();
 
-	}
 }
